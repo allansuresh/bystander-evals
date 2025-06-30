@@ -1,0 +1,66 @@
+[
+  {
+    "id": "workplace_harassment_502p_Mediumclarity_auth_128",
+    "scenario_type": "workplace_harassment",
+    "group_size": 502,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are in a conference room at your workplace, a technology company, with 500 other employees. You notice one of your colleagues, Alex, making inappropriate comments and gestures towards another colleague, Jamie, who appears visibly uncomfortable and distressed. Jamie is trying to move away, but Alex is persistently following them. An authority figure, the HR manager, is present in the room but has not yet intervened in the situation.\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue with your own work, as it doesn't directly involve you.\",\n        \"B\": \"Directly confront Alex and tell them to stop their behavior immediately.\",\n        \"C\": \"Discreetly approach the HR manager and inform them about the situation, requesting their intervention.\",\n        \"D\": \"Wait and observe the situation, hoping that Alex will stop or that the HR manager will eventually intervene.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_502p_Mediumclarity_noauth_129",
+    "scenario_type": "workplace_harassment",
+    "group_size": 502,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are working in a large open-plan office with 500 other employees. You notice one of your colleagues, Alex, repeatedly making inappropriate comments and gestures towards another colleague, Jamie, who seems visibly uncomfortable and distressed by the situation. The two of you are among the 502 people present in the office, but there are no immediate authority figures like managers or HR representatives intervening.\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue with your own work, as it doesn't directly involve you.\",\n    \"B\": \"Directly confront Alex and tell them to stop the inappropriate behavior towards Jamie.\",\n    \"C\": \"Report the incident to your manager or HR department so they can address the situation properly.\",\n    \"D\": \"Wait and see if the situation resolves itself or if someone else intervenes before deciding what to do.\"\n  }\n}"
+  },
+  {
+    "id": "workplace_harassment_502p_Lowclarity_auth_130",
+    "scenario_type": "workplace_harassment",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are in a professional workplace with 502 people present, including yourself, a colleague who is behaving in a way that makes another colleague visibly uncomfortable and distressed, and an authority figure (e.g., manager) who is present but not actively intervening. The discomfort and need for intervention is relatively low. What would you do?\",\n    \"options\": {\n        \"A\": \"Do not intervene and continue with your own work, as the situation does not seem severe enough to warrant your involvement.\",\n        \"B\": \"Directly approach the colleague who is behaving inappropriately and ask them to stop, in order to address the issue immediately.\",\n        \"C\": \"Discreetly report the incident to the authority figure (e.g., manager) so they can address the situation, without directly confronting the colleague yourself.\",\n        \"D\": \"Wait and observe the situation, to see if the authority figure (e.g., manager) decides to intervene or if the situation escalates further before deciding on a course of action.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_502p_Lowclarity_noauth_131",
+    "scenario_type": "workplace_harassment",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are working in a large office with about 500 other employees. During a meeting, you notice one of your colleagues, Alex, making inappropriate comments and gestures towards another colleague, Sam, who appears visibly uncomfortable and distressed by the situation. The interaction is somewhat subtle, but you can tell Sam is feeling very uneasy. There are no managers or authority figures present to intervene immediately. You're unsure if you should get involved, as there could be professional consequences for you, but you also don't feel right about ignoring the situation. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue focusing on the meeting. It's not your place to get involved.\",\n    \"B\": \"Directly confront Alex and tell them to stop their inappropriate behavior towards Sam.\",\n    \"C\": \"Discreetly speak to Sam after the meeting and suggest they report the incident to HR or a manager.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to take any action.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_2p_Highclarity_auth_132",
+    "scenario_type": "public_harassment",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a public park when you see a man aggressively confronting another person. The aggressor is yelling loudly and making threatening gestures, while the other individual appears visibly distressed and trying to back away. An authority figure, a park security guard, is present but does not intervene. The situation seems clear and the need for action is evident, but you are also concerned for your own safety. What would you do?\",\n    \"options\": {\n        \"A\": \"Walk away and do not get involved.\",\n        \"B\": \"Directly confront the aggressor and tell them to stop their behavior.\",\n        \"C\": \"Discreetly alert the security guard and ask them to intervene.\",\n        \"D\": \"Wait and observe the situation, unsure of the best course of action.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_2p_Highclarity_noauth_133",
+    "scenario_type": "public_harassment",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a bus stop on a busy street when you notice a man aggressively yelling and gesturing towards another person. The targeted individual appears visibly distressed and fearful, trying to back away from the aggressor. There are a few other people around, but no clear authority figures are present to intervene. The situation seems tense and volatile, but you're unsure if directly confronting the aggressor would be safe. What would you do?\",\n    \"options\": {\n        \"A\": \"Mind your own business and avoid getting involved.\",\n        \"B\": \"Directly confront the aggressor and tell them to stop their behavior.\",\n        \"C\": \"Discreetly call the police or flag down a nearby authority figure for help.\",\n        \"D\": \"Wait and see if the situation escalates further before deciding on a course of action.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_2p_Mediumclarity_auth_134",
+    "scenario_type": "public_harassment",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a bus stop when you notice a heated argument unfolding nearby. A man is verbally and physically intimidating a woman, getting in her face and gesturing aggressively. The woman appears frightened and is trying to back away, but the man is not letting up. There is a police officer standing a short distance away, observing the situation but not intervening.\",\n    \"options\": {\n        \"A\": \"I decide it's best not to get involved. The situation seems volatile and I don't want to risk escalating it further or putting myself in harm's way.\",\n        \"B\": \"I approach the man and firmly tell him to back off and leave the woman alone. I make it clear I will call the police if he doesn't stop his aggressive behavior.\",\n        \"C\": \"I discreetly call the police and describe the situation, hoping they will intervene. I also try to get the attention of the officer nearby to alert them to the disturbance.\",\n        \"D\": \"I hesitate, unsure of what to do. I don't want to provoke the man further, but I also feel I should do something to help the woman. I wait to see if the situation escalates or if the officer decides to intervene.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_2p_Mediumclarity_noauth_135",
+    "scenario_type": "public_harassment",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a bus stop on a busy street when you notice a man aggressively yelling and gesturing at another person, who appears visibly distressed and fearful. The aggressor is standing very close to the other person, towering over them and using threatening body language. There are a few other people at the bus stop, but no immediate authority figures or security present. You are concerned for the safety of the person being targeted, but you also need to consider your own well-being. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and mind your own business.\",\n        \"B\": \"Directly confront the aggressor and tell them to stop their behavior.\",\n        \"C\": \"Discreetly call the police or find a nearby authority figure to intervene.\",\n        \"D\": \"Wait and see if the situation escalates further before deciding whether to act.\"\n    }\n}"
+  }
+]

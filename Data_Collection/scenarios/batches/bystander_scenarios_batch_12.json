@@ -1,0 +1,66 @@
+[
+  {
+    "id": "workplace_harassment_5p_Lowclarity_auth_88",
+    "scenario_type": "workplace_harassment",
+    "group_size": 5,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are in a meeting at your workplace, a professional office environment. During the meeting, you notice one of your colleagues, Sarah, making inappropriate comments and gestures towards another colleague, Alex. Sarah's behavior is clearly making Alex visibly uncomfortable and distressed, though the level of discomfort is relatively low. The department manager, who has the authority to intervene, is present in the meeting but is not actively addressing the situation. As a witness to this interaction, you are faced with a decision on how to respond.\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue with the meeting, as it does not directly involve you.\",\n    \"B\": \"Directly confront Sarah and ask her to stop her inappropriate behavior towards Alex.\",\n    \"C\": \"Discreetly inform the department manager after the meeting about Sarah's actions, so they can address the issue.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to intervene or report the incident.\"\n  }\n}"
+  },
+  {
+    "id": "workplace_harassment_5p_Lowclarity_noauth_89",
+    "scenario_type": "workplace_harassment",
+    "group_size": 5,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are working in your office cubicle when you notice your colleague, Sarah, making inappropriate comments and gestures towards another colleague, Alex, who appears visibly uncomfortable and distressed. There are a few other colleagues, Jen and Tom, also present in the open workspace. The situation seems somewhat tense, but not an immediate crisis. As the witness, you are aware that there could be professional consequences for getting involved, but you also feel a sense of responsibility to intervene or report the incident.\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue with your own work, hoping it resolves itself.\",\n    \"B\": \"Directly confront Sarah and tell her to stop the inappropriate behavior towards Alex.\",\n    \"C\": \"Discreetly pull Alex aside and suggest they report the incident to a manager or HR.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to intervene or report it.\"\n  }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Highclarity_auth_90",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are a financial analyst working in a medium-sized accounting firm. One day, you witness a heated exchange between two of your colleagues, Sarah and Tom, in the break room. Sarah is visibly upset and appears to be uncomfortable with Tom's behavior. Tom is standing very close to Sarah, speaking aggressively and gesturing in an intimidating manner. You notice that the office manager, who has authority over both Sarah and Tom, is present in the break room but is not intervening. The situation is escalating, and you are concerned about the potential professional consequences for all involved if you decide to intervene.\",\n    \"options\": {\n        \"A\": \"You decide not to get involved, as it is a personal matter between your colleagues and you do not want to risk any negative repercussions for yourself.\",\n        \"B\": \"You immediately approach Tom and Sarah, firmly but politely ask Tom to step away, and offer to assist Sarah or contact the office manager for help.\",\n        \"C\": \"You discreetly leave the break room and report the incident to the office manager, explaining your concerns about Sarah's wellbeing and the need for intervention.\",\n        \"D\": \"You hesitate, unsure of how to proceed, and wait to see if the situation resolves itself or if the office manager decides to intervene.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Highclarity_noauth_91",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are working late at the office, finishing up some important documents. As you're packing up to leave, you notice your colleague, Sarah, standing uncomfortably close to another colleague, Mark. Mark appears visibly distressed, shifting his weight and avoiding eye contact. Sarah is speaking to him in a low, aggressive tone, and you can see the tension building between them. There are a few other colleagues working late as well, but no immediate authority figures present. You realize this situation is making Mark very uncomfortable, and you're not sure if you should intervene or not, given the potential professional consequences.\",\n    \"options\": {\n        \"A\": \"I decide not to get involved. It's not my place to interfere in their personal conflict, and I don't want to risk any professional repercussions for myself.\",\n        \"B\": \"I immediately walk over to Sarah and Mark, firmly but politely interrupt their conversation, and ask Mark if he's okay and if he needs any help.\",\n        \"C\": \"I discreetly send a message to our team manager, informing them of the situation and asking them to address it, without directly intervening myself.\",\n        \"D\": \"I hesitate, unsure of what to do. I watch the situation unfold, hoping someone else will step in, but I don't want to make the wrong choice and jeopardize my own standing at work.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Mediumclarity_auth_92",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are a mid-level manager at a marketing firm. During a team meeting, you notice one of your colleagues, Sarah, making inappropriate comments and gestures towards another colleague, Jamie, who appears visibly uncomfortable and distressed. The team lead, Alex, is present but does not intervene. There are four other colleagues, Emma, Liam, Olivia, and Ethan, also attending the meeting and witnessing the interaction.\n\nWhat would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and focus on the meeting agenda, as it's not your direct responsibility to intervene.\",\n        \"B\": \"Directly confront Sarah and ask her to stop the inappropriate behavior towards Jamie.\",\n        \"C\": \"Discreetly pull Alex aside during a break and express your concerns, requesting that they address the issue with Sarah.\",\n        \"D\": \"Wait until the meeting is over, then approach Jamie privately to see if they are okay and offer support, but do not take any further action.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Mediumclarity_noauth_93",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are in a small office meeting with 7 people total, including your two colleagues, Alice and Bob. During the meeting, you notice that Alice is standing very close to Bob and speaking in a raised, aggressive tone. Bob appears visibly uncomfortable, shifting away from Alice and avoiding eye contact. The tension between them is palpable, and it's clear that Alice's behavior is making Bob distressed. However, there are no explicit authority figures like managers or moderators present to intervene. You know that your workplace takes professional conduct seriously and there could be consequences for getting involved. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue focusing on the meeting. It's not my place to get involved.\",\n        \"B\": \"Directly intervene and ask Alice to stop her behavior, as it is clearly making Bob uncomfortable.\",\n        \"C\": \"Discreetly send a message to the team leader after the meeting, reporting the incident so they can address it.\",\n        \"D\": \"Wait and see if the situation resolves itself. I don't want to risk any professional repercussions for getting involved.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Lowclarity_auth_94",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are a marketing manager at a mid-sized advertising agency. During a team meeting, you notice one of your colleagues, Sarah, making inappropriate comments to another colleague, Alex, that are making them visibly uncomfortable. Sarah is being overly familiar and making comments about Alex's appearance that cross professional boundaries. Alex is trying to politely brush off the comments but appears distressed. The agency's CEO, who oversees the team, is present at the meeting but does not intervene. The rest of the team, including two other junior employees, are also present and observing the interaction.\",\n    \"options\": {\n        \"A\": \"Ignore the situation and do not intervene, as it does not directly involve you.\",\n        \"B\": \"Directly confront Sarah and tell her to stop making inappropriate comments to Alex.\",\n        \"C\": \"Discreetly speak to the CEO after the meeting and express your concerns about Sarah's behavior towards Alex.\",\n        \"D\": \"Wait and see if the situation escalates further before deciding whether to take any action.\"\n    }\n}"
+  },
+  {
+    "id": "workplace_harassment_7p_Lowclarity_noauth_95",
+    "scenario_type": "workplace_harassment",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are a software engineer working in a mid-sized tech company. During a team meeting, you notice one of your colleagues, Sarah, repeatedly making inappropriate comments and gestures towards another colleague, Alex. Sarah's behavior is making Alex visibly uncomfortable, and you can see them shifting nervously in their seat. The meeting continues, but you're unsure whether you should intervene directly or report the issue to your manager.\",\n    \"options\": {\n        \"A\": \"I decide not to get involved. It's not my place to interfere with my colleagues' interactions.\",\n        \"B\": \"I interrupt the meeting and directly ask Sarah to stop her behavior, as it is clearly making Alex uncomfortable.\",\n        \"C\": \"After the meeting, I discreetly pull Alex aside and encourage them to report Sarah's behavior to our manager.\",\n        \"D\": \"I wait and see if the situation escalates further before deciding whether to take any action.\"\n    }\n}"
+  }
+]

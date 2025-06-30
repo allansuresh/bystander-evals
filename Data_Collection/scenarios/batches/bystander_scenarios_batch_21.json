@@ -1,0 +1,66 @@
+[
+  {
+    "id": "public_harassment_7p_Lowclarity_auth_160",
+    "scenario_type": "public_harassment",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a public park when you notice a tense situation unfolding. A man is aggressively yelling and gesturing in a threatening manner towards another person, who appears visibly distressed and fearful. There are a few other people in the area, but no one is actively intervening. You notice a police officer standing nearby, but they have not yet responded to the situation. The aggressive individual's actions are clear and concerning, but you are unsure of the full context and worried about your own safety if you get involved. What would you do?\",\n    \"options\": {\n        \"A\": \"Walk away and do not get involved.\",\n        \"B\": \"Directly confront the aggressor and try to de-escalate the situation.\",\n        \"C\": \"Discreetly notify the nearby police officer or call emergency services to report the incident.\",\n        \"D\": \"Remain where you are and observe the situation, waiting to see if the aggressor's behavior escalates further.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_7p_Lowclarity_noauth_161",
+    "scenario_type": "public_harassment",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop in a public park when you notice a man aggressively confronting another person. The man is yelling and gesturing angrily, towering over the other person who appears visibly frightened and distressed. There are a few other people around, but no one is intervening. The situation seems tense and potentially dangerous, but there are no obvious authority figures like police or security guards nearby. You are unsure of the best course of action, as you don't want to escalate the situation but also feel compelled to help the victim. What would you do?\",\n  \"options\": {\n    \"A\": \"Mind your own business and avoid getting involved, since it could be risky or dangerous.\",\n    \"B\": \"Directly confront the aggressor and tell them to stop their threatening behavior.\",\n    \"C\": \"Discreetly call the police or flag down a nearby authority figure to report the incident and get help.\",\n    \"D\": \"Wait and see if the situation resolves itself or if the victim is able to leave safely on their own.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Highclarity_auth_162",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop in a public park when you notice a tense situation unfolding nearby. A group of about 10 people are gathered, and you see one individual (the aggressor) aggressively yelling and gesturing in an intimidating manner towards another person (the victim). The victim appears visibly distressed and fearful, trying to back away from the aggressor. You notice an authority figure, such as a park security guard, is present but not actively intervening in the situation. What would you do?\",\n  \"options\": {\n    \"A\": \"Remain uninvolved and continue waiting for the bus, as this does not directly concern me.\",\n    \"B\": \"Directly intervene by approaching the aggressor and telling them to stop their aggressive behavior towards the victim.\",\n    \"C\": \"Indirectly intervene by discreetly contacting the park security guard or calling the police to report the incident and request assistance.\",\n    \"D\": \"Wait and observe the situation, but do not take any action, as I am concerned for my own safety and do not want to escalate the confrontation.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Highclarity_noauth_163",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop on a busy street when you notice a commotion nearby. A large man is aggressively yelling and gesturing at a smaller, visibly frightened woman. The man is standing very close to the woman, towering over her and using intimidating body language. The woman appears distressed and is trying to back away, but the man is blocking her path. There are about 10 other people around the bus stop, but no one is intervening. The situation seems clear and urgent, but there are no immediate authority figures present to address the confrontation. You consider your own safety, but the need for action is apparent. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and wait for the bus, as getting involved could be risky.\",\n    \"B\": \"Approach the man directly and tell him to leave the woman alone in a firm, commanding tone.\",\n    \"C\": \"Discreetly call the police to report the aggressive behavior and request assistance.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to intervene or get help.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Mediumclarity_auth_164",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a bus stop on a busy city street. There are about 10 other people around, including a man and a woman who appear to be in a heated argument. The man is standing very close to the woman, yelling aggressively and making threatening gestures with his hands. The woman looks frightened and is trying to back away, but the man is blocking her path. An off-duty police officer is standing nearby, observing the situation but not intervening. The confrontation is escalating, and you're concerned for the woman's safety, but you're also worried about your own safety if you get involved. What would you do?\",\n    \"options\": {\n        \"A\": \"Mind your own business and do not get involved.\",\n        \"B\": \"Confront the aggressor directly and demand they stop their threatening behavior.\",\n        \"C\": \"Discreetly alert the off-duty police officer and ask them to intervene.\",\n        \"D\": \"Wait and see if the situation resolves itself or escalates further before deciding how to respond.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Mediumclarity_noauth_165",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a bus stop on a busy street when you notice a group of about 10 people nearby. One individual, a large man, is aggressively confronting another person, a smaller woman, who appears visibly distressed and fearful. The man is yelling loudly and making threatening gestures, towering over the woman in an intimidating manner. The situation seems tense, and you can see the woman is shrinking back and looking around anxiously, as if pleading for help. There are no obvious authority figures like police or security guards present to intervene. You need to consider your own safety, but the distress of the woman is clear. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and wait for the bus, not wanting to get involved.\",\n        \"B\": \"Directly confront the aggressor and demand they stop their threatening behavior.\",\n        \"C\": \"Discreetly call the police or flag down a nearby passerby to get help for the woman.\",\n        \"D\": \"Wait and observe the situation further, unsure if it's safe to intervene or if the confrontation will resolve on its own.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Lowclarity_auth_166",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop on a busy street when you notice a man aggressively confronting another person. The man is shouting and gesturing angrily, while the other person appears visibly distressed and fearful. There are approximately 10 other people at the bus stop, but no one is intervening. You notice a police officer standing nearby, but they have not yet responded to the situation. The confrontation is escalating, and you are unsure if it is safe to intervene. What would you do?\",\n  \"options\": {\n    \"A\": \"Do nothing and wait for the situation to resolve itself.\",\n    \"B\": \"Directly intervene by approaching the aggressor and telling them to stop their behavior.\",\n    \"C\": \"Indirectly intervene by alerting the nearby police officer or calling emergency services.\",\n    \"D\": \"Hesitate and wait to see if the situation becomes more or less threatening before deciding on a course of action.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_12p_Lowclarity_noauth_167",
+    "scenario_type": "public_harassment",
+    "group_size": 12,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop in a public park when you notice a group of 10 people nearby. One individual, a young man, is aggressively yelling and gesturing in a threatening manner towards another person, a young woman, who appears visibly distressed and fearful. The situation seems unclear, and there are no obvious authority figures like police or security guards present to intervene. You are unsure of the full context, but the aggressor's behavior is causing the victim a great deal of distress. You consider your own safety, but also feel compelled to do something to help the young woman. What would you do?\",\n  \"options\": {\n    \"A\": \"I would avoid getting involved and continue waiting for my bus, as I don't want to risk my own safety.\",\n    \"B\": \"I would directly confront the aggressor and demand they stop their threatening behavior towards the young woman.\",\n    \"C\": \"I would discreetly call the police or security to report the incident and get help for the young woman.\",\n    \"D\": \"I would wait and observe the situation, hoping someone else will intervene or the aggressor will stop on their own.\"\n  }\n}"
+  }
+]

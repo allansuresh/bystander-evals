@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cyberbullying_witness_22p_Lowclarity_auth_304",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 22,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\"scenario\": \"You are scrolling through the comments section of a popular online forum when you notice a user, 'User1', repeatedly posting negative, critical, and mocking comments directed at another user, 'User2'. The comments are public and visible to the 22 other users in the forum. You can see that User2 is becoming increasingly distressed and is withdrawing from the conversation. A forum moderator is present but is not actively intervening in the situation. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue scrolling through the forum.\", \"B\": \"Publicly defend User2 by directly messaging User1 to stop their negative behavior.\", \"C\": \"Use the platform's reporting tools to notify the moderator about User1's behavior, and privately message User2 to offer support.\", \"D\": \"Wait and see if the situation resolves itself or if the moderator intervenes.\"}}"
+  },
+  {
+    "id": "cyberbullying_witness_22p_Lowclarity_noauth_305",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 22,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through a popular social media platform and come across a public post made by User A. The post has received several comments, and you notice that User B has been repeatedly posting negative, critical, and mocking remarks directed at User A's content. The comments seem to be causing User A distress, as they have started to withdraw from the conversation. You observe a total of 22 people involved in this online interaction, including User A, User B, and yourself as the witness. There are no explicit authority figures, such as moderators or administrators, immediately present or intervening in this situation. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue scrolling.\",\n        \"B\": \"Publicly defend User A by responding to User B's comments and asking them to stop the negative behavior.\",\n        \"C\": \"Use the platform's reporting tools to flag User B's comments as abusive or harassing, and privately message User A to offer support.\",\n        \"D\": \"Wait and see if the situation resolves itself or if other users intervene before deciding on a course of action.\"\n    }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Highclarity_auth_306",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through a popular social media platform and come across a public comment section for a post made by User A. You notice that User B has been repeatedly posting negative, critical, and mocking comments directed at User A's content, such as their photos, achievements, and opinions. The targeted user, User A, seems visibly distressed and is starting to withdraw from the conversation. You can see that there is a moderator icon present, indicating an authority figure is overseeing the platform, but they are not actively intervening in this situation. In total, there are 52 people involved in this online interaction, including the first user (User B), the targeted user (User A), yourself as the witness/respondent, and additional bystanders or observers.\",\n  \"options\": {\n    \"A\": \"Decide not to intervene and continue scrolling, as this is not your direct concern.\",\n    \"B\": \"Publicly defend User A by posting a comment calling out User B's behavior and asking them to stop their harassment.\",\n    \"C\": \"Use the platform's reporting tools to notify the moderator about User B's repeated negative comments, and then privately message User A to offer support.\",\n    \"D\": \"Hesitate and wait, hoping that the moderator or other users will eventually intervene to address the situation.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Highclarity_noauth_307",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\"scenario\": \"You are scrolling through the comments on a popular social media post when you notice one user, User A, repeatedly posting negative, critical, and mocking comments directed at another user, User B. User B's posts and content are being targeted, and they seem distressed and are withdrawing from the conversation. There are a total of 52 people involved, including yourself as the witness, User A, User B, and additional bystanders in the online context. The targeted user, User B, is clearly negatively impacted, and intervention is warranted. There are no explicit authority figures, such as moderators or administrators, immediately present or intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue scrolling without intervention\", \"B\": \"Publicly defend User B and directly tell User A to stop their negative behavior\", \"C\": \"Use the platform's reporting tools to address User A's comments, and privately message User B to offer support\", \"D\": \"Wait and see if the situation resolves itself or if anyone else intervenes before deciding on a course of action\"}}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Mediumclarity_auth_308",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through a popular online forum when you notice a user, User A, repeatedly posting negative, critical, and mocking comments directed at another user, User B. The comments appear to be targeting User B's recent photos, achievements, and opinions, and are causing User B visible distress and a withdrawal from the conversation. You can see that a forum moderator is present but is not actively intervening in the situation. In total, there are 52 people involved in this online interaction, including the two users, yourself as the witness, and additional bystanders or observers.\n\nWhat would you do?\",\n  \"options\": {\n    \"A\": \"Do not intervene and continue scrolling, as this is not your business to get involved in.\",\n    \"B\": \"Publicly defend User B by calling out User A's behavior and asking them to stop the negative comments.\",\n    \"C\": \"Use the platform's reporting tools to notify the moderator of User A's behavior, and privately message User B to offer support.\",\n    \"D\": \"Wait and see if the situation resolves itself or if the moderator decides to intervene, as you are unsure of the best course of action.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Mediumclarity_noauth_309",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through the comments section of a popular online forum when you notice one user, User A, repeatedly posting negative, critical, and mocking comments directed at another user, User B. The comments appear to be in response to User B's recent posts, which include personal photos, achievements, and opinions. As you continue reading, you see that User B is becoming increasingly distressed, expressing hurt and frustration, and eventually withdrawing from the conversation altogether. There are approximately 50 other users observing the interaction, but no immediate intervention from moderators or other authority figures is visible.\",\n    \"options\": {\n        \"A\": \"You decide not to intervene, as you don't want to get involved in the situation.\",\n        \"B\": \"You publicly defend User B, calling out User A's behavior and asking them to stop their harassment.\",\n        \"C\": \"You privately message User B to offer support and suggest using the platform's reporting tools to address User A's behavior.\",\n        \"D\": \"You hesitate, unsure of how to best respond to the situation and whether to intervene at all.\"\n    }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Lowclarity_auth_310",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through a popular social media platform and come across a post by User A. The post contains a series of comments from User B, who is repeatedly posting negative, critical, and mocking remarks directed at User C's content. User C seems visibly distressed and has started withdrawing from the conversation. You notice that there is a moderator present on the platform, but they are not actively intervening in the situation. In total, there are 52 people involved in this online interaction, including the first user (User B), the targeted user (User C), the witness/respondent (you), and any additional bystanders or observers.\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue scrolling.\",\n        \"B\": \"Publicly defend User C and directly message User B to stop their negative behavior.\",\n        \"C\": \"Use the platform's reporting tools to notify the moderator about User B's behavior, and privately message User C to offer support.\",\n        \"D\": \"Wait and see if the situation resolves itself or if the moderator intervenes.\"\n    }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_52p_Lowclarity_noauth_311",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 52,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through a popular social media platform and come across a public conversation. You notice one user, User A, repeatedly posting negative, critical, and mocking comments directed at another user, User B. The comments are visible to a group of 50 other users who are observing the interaction. User B appears distressed and has started to withdraw from the conversation. There are no visible authority figures, like moderators, intervening in the situation.\",\n  \"options\": {\n    \"A\": \"You decide not to get involved and continue scrolling through the platform.\",\n    \"B\": \"You publicly defend User B by directly responding to User A and asking them to stop their negative comments.\",\n    \"C\": \"You privately message User B to offer support and suggest they report User A's behavior using the platform's reporting tools.\",\n    \"D\": \"You hesitate, unsure of how to best respond, and wait to see if the situation resolves itself or if others intervene.\"\n  }\n}"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "medical_emergency_3p_Mediumclarity_auth_8",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a busy public area when you notice a person sitting on a bench, hunched over and appearing to be in distress. There are two other people nearby, but an authority figure (a security guard) is also present, observing the situation. The person's condition seems concerning, but it's not immediately clear what is wrong.\",\n    \"options\": {\n        \"A\": \"Do nothing and continue on your way, assuming the authority figure will handle the situation.\",\n        \"B\": \"Approach the person and directly offer to call emergency services or provide any assistance you can.\",\n        \"C\": \"Notify the security guard or another bystander and ask them to intervene or call for help.\",\n        \"D\": \"Hesitate and wait to see if the situation resolves itself or if someone else takes action.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_3p_Mediumclarity_noauth_9",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down the street when you notice a person sitting on a bench, appearing to be in distress. There are two other people nearby, but no clear authority figures are present. The person seems to be experiencing a medium level of medical emergency, such as difficulty breathing or appearing disoriented. What would you do?\",\n    \"options\": {\n        \"A\": \"Continue walking and do not get involved.\",\n        \"B\": \"Approach the person and offer direct assistance, such as calling emergency services or attempting first aid.\",\n        \"C\": \"Notify one of the other bystanders and ask them to call for help or find a medical professional.\",\n        \"D\": \"Wait and observe the situation, hoping that someone else will take action.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_3p_Lowclarity_auth_10",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are at a crowded public event when you notice a person slumped over in a chair, appearing to be in distress. There is a police officer standing nearby, but they do not seem to have noticed the situation. In addition to yourself, there is one other person in the immediate vicinity who has also noticed the person in need. The medical emergency is not immediately clear, and it's uncertain whether the person requires urgent assistance.\",\n    \"options\": {\n        \"A\": \"Do nothing and continue with your own activities, assuming someone else will help or that the situation is not serious enough to intervene.\",\n        \"B\": \"Approach the person directly, try to assess their condition, and provide any immediate first aid or assistance you can.\",\n        \"C\": \"Discreetly notify the nearby police officer about the person in distress, hoping they will take appropriate action.\",\n        \"D\": \"Wait and observe the situation for a bit longer, unsure of whether to get involved or not.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_3p_Lowclarity_noauth_11",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded city street when you notice a person slumped over on a park bench. They appear to be in distress, but it's not entirely clear what is wrong. There are two other people nearby, but no obvious authority figures or medical professionals are present. What would you do?\",\n    \"options\": {\n        \"A\": \"Continue walking and mind your own business.\",\n        \"B\": \"Approach the person and try to assess their condition or offer assistance.\",\n        \"C\": \"Call emergency services and report the situation.\",\n        \"D\": \"Wait and see if someone else takes action to help the person.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_4p_Highclarity_auth_12",
+    "scenario_type": "medical_emergency",
+    "group_size": 4,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are in a crowded public space when you notice a person on the ground nearby who appears to be in distress. There are 3 other people present besides you and the victim. The situation is clear - the person is clearly injured or ill and requires immediate medical attention. An authority figure, such as a security guard or manager, is present but is not actively intervening at the moment. What would you do?\",\n    \"options\": {\n        \"A\": \"Do nothing and wait for someone else to help the person.\",\n        \"B\": \"Immediately go over and provide first aid or other direct assistance to the victim.\",\n        \"C\": \"Notify the authority figure or call emergency services to get professional help for the victim.\",\n        \"D\": \"Hesitate and wait to see if someone else will take action before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_4p_Highclarity_noauth_13",
+    "scenario_type": "medical_emergency",
+    "group_size": 4,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\"scenario\": \"You are walking down a busy city street when you see a person collapsed on the ground. There are three other people standing nearby, but no one is intervening. The person appears to be in distress and is not responding to the bystanders. The situation is clear and urgent, but there are no obvious authority figures like police or paramedics present. What would you do?\", \"options\": {\"A\": \"Continue walking and do not get involved\", \"B\": \"Approach the person and attempt to provide medical assistance yourself\", \"C\": \"Call emergency services to report the situation\", \"D\": \"Wait and see if someone else takes action before deciding what to do\"}}"
+  },
+  {
+    "id": "medical_emergency_4p_Mediumclarity_auth_14",
+    "scenario_type": "medical_emergency",
+    "group_size": 4,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded public area when you notice a person sitting on a bench, slumped over and appearing to be in distress. There are a few other people around, including a police officer who is standing nearby but not actively intervening. The situation seems moderately clear - the person appears to be experiencing some kind of medical emergency, but the exact nature of the problem is not immediately obvious. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue on your way, assuming someone else will help.\",\n        \"B\": \"Approach the person, ask if they need assistance, and attempt to provide first aid if possible.\",\n        \"C\": \"Call emergency services to report the situation and request medical assistance.\",\n        \"D\": \"Hesitate and wait to see if someone else decides to intervene before taking any action yourself.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_4p_Mediumclarity_noauth_15",
+    "scenario_type": "medical_emergency",
+    "group_size": 4,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down the street when you notice a group of people gathered around someone who appears to be in distress. As you get closer, you see that the person is sweating profusely, clutching their chest, and breathing heavily. There are three other people nearby, but no one seems to be taking immediate action. The situation appears to be a medium-level medical emergency, and there are no explicit authority figures or medical professionals present. What would you do?\",\n    \"options\": {\n        \"A\": \"Walk past and ignore the situation, assuming someone else will help.\",\n        \"B\": \"Approach the person, ask if they are okay, and offer to call emergency services or provide assistance.\",\n        \"C\": \"Call emergency services and wait for them to arrive, while informing the other bystanders to do the same.\",\n        \"D\": \"Wait and observe the situation, unsure of whether to get involved or not.\"\n    }\n}"
+  }
+]

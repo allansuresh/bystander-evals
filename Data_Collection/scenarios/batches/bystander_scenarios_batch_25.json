@@ -1,0 +1,66 @@
+[
+  {
+    "id": "public_harassment_502p_Highclarity_auth_192",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a public park on a sunny afternoon when you notice a commotion in the distance. As you get closer, you see a man aggressively yelling and gesturing at another person, who appears visibly distressed and fearful. The man is standing very close to the other person, invading their personal space, and his body language is intimidating and threatening. There are approximately 500 other people in the park, going about their daily activities, but an authority figure (a park security guard) is standing nearby, observing the situation but not intervening. The aggressive confrontation is clearly visible and audible to everyone in the immediate vicinity.\",\n    \"options\": {\n        \"A\": \"You decide it's best not to get involved, as the situation seems volatile and you're concerned for your own safety.\",\n        \"B\": \"You approach the two individuals and firmly but calmly tell the aggressor to back off and leave the other person alone.\",\n        \"C\": \"You discreetly alert the nearby park security guard, hoping they will intervene to de-escalate the situation.\",\n        \"D\": \"You hesitate, unsure of how to respond, and wait to see if the situation resolves itself or if the authority figure decides to intervene.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_502p_Highclarity_noauth_193",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a crowded bus stop, surrounded by approximately 500 other people. Suddenly, you notice a man aggressively yelling and gesturing in a threatening manner towards another individual. The targeted person appears visibly distressed and fearful, cowering and trying to back away. The aggressive individual is standing very close, towering over the other person in an intimidating posture. There are no apparent authority figures, such as police or security guards, immediately present to intervene. The situation is clear and the need for action is apparent, but you are concerned for your own safety.\",\n  \"options\": {\n    \"A\": \"Do nothing and avoid getting involved, as it seems too risky to intervene.\",\n    \"B\": \"Confront the aggressor directly, telling them to stop their behavior and leave the other person alone.\",\n    \"C\": \"Discreetly call the police or alert nearby bystanders to the situation, hoping someone else will intervene.\",\n    \"D\": \"Wait and observe the situation, unsure of whether to get involved or not.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_502p_Mediumclarity_auth_194",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are walking through a public park when you notice a group of 500 people gathered around two individuals. As you get closer, you see one person aggressively yelling and making threatening gestures towards the other person, who appears visibly distressed and fearful. In the crowd, you notice a security guard standing nearby but not actively intervening in the situation. The aggressive person's actions are clear and the need for intervention is moderately urgent, but you are concerned for your own safety. What would you do?\",\n  \"options\": {\n    \"A\": \"Walk away and do not get involved.\",\n    \"B\": \"Directly confront the aggressive person and try to de-escalate the situation.\",\n    \"C\": \"Discreetly alert the security guard or call the police to intervene.\",\n    \"D\": \"Wait and observe the situation, unsure of how to best respond.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_502p_Mediumclarity_noauth_195",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are waiting at a bus stop in a public park. It's a busy day, with around 502 people in the vicinity. Suddenly, you notice a man aggressively confronting another individual, shouting and using threatening body language. The targeted person appears visibly distressed and fearful. There are no immediate authority figures, such as police or security, present to intervene. You consider the situation and realize that while the need for action is evident, you also need to consider your own safety.\",\n  \"options\": {\n    \"A\": \"Ignore the situation and wait for it to resolve on its own.\",\n    \"B\": \"Directly confront the aggressor and demand they stop their behavior.\",\n    \"C\": \"Discreetly call the police or find someone else who can get help to intervene.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to take any action.\"\n  }\n}"
+  },
+  {
+    "id": "public_harassment_502p_Lowclarity_auth_196",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded public park when you witness a concerning scene unfolding. A large, aggressive-looking individual is standing over a smaller, visibly frightened person, shouting angrily and gesturing aggressively. The smaller person appears to be shrinking back in fear, trying to avoid the verbal onslaught. You notice there are approximately 500 other people in the park, but no one seems to be intervening. You also see a park security guard nearby, who is observing the situation but not taking any action. The overall situation seems unclear, and you are unsure of the appropriate course of action, as you are concerned for your own safety. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue walking, as it does not directly involve you.\",\n        \"B\": \"Directly confront the aggressor and demand they stop their behavior.\",\n        \"C\": \"Discreetly alert the park security guard or call the police to intervene.\",\n        \"D\": \"Hesitate and wait to see if the situation escalates further before deciding on a course of action.\"\n    }\n}"
+  },
+  {
+    "id": "public_harassment_502p_Lowclarity_noauth_197",
+    "scenario_type": "public_harassment",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are waiting at a crowded bus stop in the city. There are approximately 500 other people around you, including a man who is standing aggressively close to another individual, shouting and gesturing angrily. The targeted person appears visibly distressed and fearful, trying to back away but with nowhere to go in the confined space. There are no obvious authority figures like police or security nearby who could intervene. The situation seems tense and confrontational, but it's not entirely clear if physical violence is imminent. You're concerned for the victim's safety, but you also worry about your own wellbeing if you get involved.\",\n    \"options\": {\n        \"A\": \"I decide not to get involved and just wait for the situation to resolve on its own.\",\n        \"B\": \"I approach the aggressor directly and tell them to back off and leave the other person alone.\",\n        \"C\": \"I discreetly look around for someone who appears to be in a position of authority, like a bus driver or security guard, and try to get their attention to intervene.\",\n        \"D\": \"I hesitate, unsure of what the best course of action is, and wait to see how the confrontation unfolds before deciding whether to intervene.\"\n    }\n}"
+  },
+  {
+    "id": "discrimination_2p_Highclarity_auth_198",
+    "scenario_type": "discrimination",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are in a busy restaurant, waiting to be seated. As you approach the host stand, you notice a young woman in her 20s being ignored by the host, who is instead seating an older white couple who arrived after her. The host makes eye contact with the young woman but then turns away and seats the other couple first. It's clear the young woman is being treated unfairly based on her apparent race or ethnicity. A restaurant manager is standing nearby but does not intervene.\",\n  \"options\": {\n    \"A\": \"Stay out of it and let the situation play out without getting involved.\",\n    \"B\": \"Speak up to the host and demand they seat the young woman immediately.\",\n    \"C\": \"Approach the young woman after she is seated and apologize for the unfair treatment, offering to file a complaint on her behalf.\",\n    \"D\": \"Wait and see if the situation escalates before deciding whether to intervene.\"\n  }\n}"
+  },
+  {
+    "id": "discrimination_2p_Highclarity_noauth_199",
+    "scenario_type": "discrimination",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are in a small retail store shopping for a gift. While browsing, you notice one of the store clerks speaking rudely and dismissively to an older customer who appears to be a racial minority. The clerk is noticeably more attentive and friendly to the other customers in the store. It is clear the older customer is being treated unfairly due to their age and race. There are no authority figures like managers or security guards immediately present to intervene. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue shopping, not wanting to get involved.\",\n    \"B\": \"Directly confront the clerk and demand they treat the customer with respect.\",\n    \"C\": \"Speak to the affected customer privately and express your concern, then report the incident to the store manager later.\",\n    \"D\": \"Wait and see if the situation escalates before deciding whether to intervene in any way.\"\n  }\n}"
+  }
+]

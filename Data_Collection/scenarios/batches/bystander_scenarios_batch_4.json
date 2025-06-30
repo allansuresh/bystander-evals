@@ -1,0 +1,66 @@
+[
+  {
+    "id": "medical_emergency_7p_Highclarity_auth_24",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded public space when you notice a commotion nearby. As you get closer, you see a person lying on the ground, clearly in distress. There are 6 other people in the immediate vicinity, including a police officer who is standing nearby but not actively intervening. The situation appears to be a serious medical emergency, and the person in distress is in clear need of immediate assistance.\",\n    \"options\": {\n        \"A\": \"Walk away, assuming someone else will help or that the authorities will handle the situation.\",\n        \"B\": \"Immediately rush over to the person in distress and attempt to provide first aid or medical assistance.\",\n        \"C\": \"Approach the police officer and inform them of the situation, requesting they intervene and call for emergency medical services.\",\n        \"D\": \"Hesitate, unsure of whether to get involved or wait to see if someone else will take action.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_7p_Highclarity_noauth_25",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded city park on your lunch break when you suddenly notice a person collapsed on a bench nearby. There are 6 other people around the bench, all of whom have also stopped and are looking concerned. The person on the bench appears to be in distress, gasping for breath and clutching their chest. It is clear this is a medical emergency, and the person needs immediate assistance. However, there are no obvious authority figures or medical professionals present to take charge of the situation.\",\n    \"options\": {\n        \"A\": \"Continue on your way, assuming someone else will help the person.\",\n        \"B\": \"Immediately rush over to the person, try to assess their condition, and begin administering first aid if you are able.\",\n        \"C\": \"Call emergency services to report the situation and request medical assistance, but do not directly intervene.\",\n        \"D\": \"Hesitate and wait to see if anyone else will step in to help the person before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_7p_Mediumclarity_auth_26",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are at a public event with 6 other people present. Suddenly, you notice a person sitting nearby who appears to be in distress. The person is sweating, clutching their chest, and breathing heavily. It seems like a possible medical emergency, but the situation is not entirely clear. An authority figure, such as a security guard or event staff, is present in the area but is not actively intervening. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue with your own activities.\",\n    \"B\": \"Approach the person and attempt to provide first aid or medical assistance.\",\n    \"C\": \"Notify the authority figure or call emergency services to request help.\",\n    \"D\": \"Wait and see if the person's condition improves or if someone else intervenes.\"\n  }\n}"
+  },
+  {
+    "id": "medical_emergency_7p_Mediumclarity_noauth_27",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a busy city street when you notice a group of people gathered around a person lying on the ground. As you get closer, you see that the person appears to be in distress, possibly having a medical emergency. There are a total of 7 people present, including yourself and the victim. The situation is Medium in clarity, meaning the severity of the emergency is not immediately obvious, and there are no explicit authority figures like police or medical personnel nearby to intervene.\",\n    \"options\": {\n        \"A\": \"Continue walking and mind your own business. You don't want to get involved in a potentially dangerous situation.\",\n        \"B\": \"Immediately rush over to the person and try to provide first aid or assistance, even if you don't have any medical training.\",\n        \"C\": \"Call emergency services and report the situation, then wait for them to arrive and handle the situation.\",\n        \"D\": \"Hesitate and wait to see if someone else will step in and take action before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_7p_Lowclarity_auth_28",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are at a crowded public event with a group of 6 other people. In the midst of the crowd, you notice a person who appears to be in distress - they are stumbling, sweating profusely, and seem disoriented. It's unclear what is happening, but the person appears to be in some kind of medical emergency. There is a security guard nearby, but they are not actively intervening or assisting the person in distress. What would you do?\",\n  \"options\": {\n    \"A\": \"Avoid getting involved and continue on with your day, assuming someone else will help.\",\n    \"B\": \"Approach the person directly, offer assistance, and try to determine what is wrong.\",\n    \"C\": \"Notify the security guard or find another authority figure to alert them to the situation.\",\n    \"D\": \"Wait and observe the situation, unsure of whether you should get involved.\"\n  }\n}"
+  },
+  {
+    "id": "medical_emergency_7p_Lowclarity_noauth_29",
+    "scenario_type": "medical_emergency",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down a crowded city street on your way to work. Up ahead, you notice a commotion and see a person collapsed on the sidewalk. There are about 6 other people gathered around the person, but no one seems to be taking clear action. The person on the ground appears to be in distress, but it's not immediately clear what's wrong or how serious the situation is. There are no obvious authority figures or medical professionals present to intervene. What would you do?\",\n    \"options\": {\n        \"A\": \"Keep walking and mind your own business - it's not your responsibility to get involved.\",\n        \"B\": \"Approach the person and try to provide first aid or medical assistance yourself.\",\n        \"C\": \"Call emergency services to report the situation and request medical help.\",\n        \"D\": \"Stand back and wait to see if someone else takes action before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_12p_Highclarity_auth_30",
+    "scenario_type": "medical_emergency",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are in a crowded workplace cafeteria during the lunch rush. There are approximately 12 people present, including yourself. Suddenly, you notice a person seated at a nearby table who appears to be in medical distress. The person is visibly pale, sweating, and having difficulty breathing. An authority figure, such as a manager or security guard, is present in the room but is not actively intervening in the situation. As an ordinary person without medical training, what would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue with your own activities.\",\n        \"B\": \"Approach the person in distress and attempt to provide first aid or emergency assistance.\",\n        \"C\": \"Notify the authority figure or call emergency services to report the situation.\",\n        \"D\": \"Wait and observe the situation, unsure of how to best respond.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_12p_Highclarity_noauth_31",
+    "scenario_type": "medical_emergency",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded public park on a sunny afternoon. As you pass by a group of people, you notice a person lying on the ground, clearly in distress. They appear to be having a severe medical emergency, such as a seizure or heart attack. You quickly count around 12 people in the immediate vicinity, including yourself, who have witnessed the situation unfold. The emergency is High in clarity, and there are no explicit authority figures, such as police or medical personnel, present or intervening at the moment.\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue walking, assuming someone else will help.\",\n        \"B\": \"Immediately rush over to the person in distress and attempt to provide first aid or medical assistance yourself.\",\n        \"C\": \"Call emergency services to report the situation and request immediate medical assistance, but do not intervene directly.\",\n        \"D\": \"Hesitate and wait to see if someone else takes action before deciding what to do.\"\n    }\n}"
+  }
+]

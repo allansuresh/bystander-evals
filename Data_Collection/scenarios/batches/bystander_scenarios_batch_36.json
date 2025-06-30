@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cyberbullying_witness_4p_Lowclarity_auth_280",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 4,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through the comments on a popular social media post when you notice a concerning interaction unfold. A user named Alex has been repeatedly posting negative, critical, and mocking comments directed at another user named Taylor, who has shared a personal achievement. The comments from Alex seem intended to diminish and embarrass Taylor, who appears increasingly distressed and has started withdrawing from the conversation. You notice that a group moderator is present but is not actively intervening in the situation. What would you do?\",\n    \"options\": {\n        \"A\": \"I would not intervene and continue scrolling, as this is not my business and the moderator is present.\",\n        \"B\": \"I would publicly defend Taylor by calling out Alex's behavior and asking them to stop the harassment.\",\n        \"C\": \"I would use the platform's reporting tools to notify the moderator about Alex's abusive comments, and then privately message Taylor to offer support.\",\n        \"D\": \"I would hesitate, unsure of whether I should get involved or if the moderator will step in to address the situation.\"\n    }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_4p_Lowclarity_noauth_281",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 4,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through the comments on a public social media post. You notice one user, User A, repeatedly posting critical, mocking, and negative comments directed at another user, User B. The comments appear to be causing User B visible distress, and User B is starting to withdraw from the conversation. There are a few other users (User C and User D) also observing the interaction, but no moderators or authority figures are intervening. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue scrolling. It's not my place to get involved.\",\n        \"B\": \"Publicly defend User B and tell User A to stop their harassment.\",\n        \"C\": \"Use the platform's reporting tools to notify the moderators about User A's behavior, and then privately message User B to offer support.\",\n        \"D\": \"Wait and see if the situation resolves itself or if other users intervene before deciding whether to take any action.\"\n    }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Highclarity_auth_282",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through the comments on a popular online forum when you notice a recurring pattern of negative comments from one user directed at another user's posts. The first user, Alex, is repeatedly posting critical, mocking remarks about the second user, Taylor, who seems increasingly distressed and is withdrawing from the conversation. There are a few other users in the thread who appear to be observing the interaction but not intervening. You notice that the forum has a moderator visible, but they have not stepped in to address the situation. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue scrolling, as it doesn't directly involve me.\",\n    \"B\": \"Publicly defend Taylor by calling out Alex's behavior and asking them to stop the harassment.\",\n    \"C\": \"Use the platform's reporting tools to notify the moderator about the abusive comments, and privately message Taylor to offer support.\",\n    \"D\": \"Wait and see if the situation escalates further before deciding whether to intervene.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Highclarity_noauth_283",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through the comments section of a popular online forum where people post about their hobbies and interests. You notice that one user, Alex, is repeatedly posting negative, critical, and mocking comments directed at another user, Taylor, who has been sharing photos and updates about their recent achievements. The comments from Alex seem to be aimed at diminishing Taylor's accomplishments and making them feel bad. Taylor appears to be increasingly distressed, withdrawing from the conversation and expressing their discomfort with Alex's behavior. There are a few other users in the comment section who are observing the interaction but have not yet intervened.\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue scrolling, as it does not directly involve you.\",\n    \"B\": \"Publicly defend Taylor by calling out Alex's behavior and asking them to stop the negative comments.\",\n    \"C\": \"Use the platform's reporting tools to notify the moderators about Alex's behavior, and then privately message Taylor to offer support.\",\n    \"D\": \"Wait and see if the situation resolves itself or if other users intervene before deciding whether to take any action.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Mediumclarity_auth_284",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through the comments on a public forum post when you notice one user, Sam, repeatedly posting negative, critical, and mocking comments directed at another user, Alex. The comments are visible to the entire forum community. Alex seems increasingly distressed, with their responses becoming more withdrawn and defensive. You can see that a forum moderator is present but is not actively intervening in the situation. What would you do?\",\n  \"options\": {\n    \"A\": \"I would not intervene and continue scrolling past the interaction.\",\n    \"B\": \"I would publicly defend Alex by directly messaging Sam to stop the negative comments.\",\n    \"C\": \"I would use the platform's reporting tools to notify the moderator about Sam's behavior, and privately message Alex to offer support.\",\n    \"D\": \"I would hesitate and wait to see if the situation resolves itself or if the moderator intervenes.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Mediumclarity_noauth_285",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through the comments on a popular social media post when you notice a user, Alex, repeatedly posting negative and mocking comments directed at another user, Taylor. The comments appear to be an ongoing pattern, with Alex criticizing Taylor's appearance, opinions, and recent life achievements in a demeaning way. Taylor is visibly distressed, expressing hurt and withdrawing from the conversation. There are a few other users observing the interaction but no apparent authority figures like moderators intervening. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue scrolling, as it doesn't directly involve you.\",\n    \"B\": \"Publicly defend Taylor by calling out Alex's behavior and asking them to stop the harassment.\",\n    \"C\": \"Report Alex's comments using the platform's reporting tools and privately message Taylor to offer support.\",\n    \"D\": \"Wait and see if the situation resolves itself or if other users intervene before deciding whether to act.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Lowclarity_auth_286",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n\"scenario\": \"You are scrolling through the comments on a popular social media post when you notice a user, 'Sam', repeatedly posting negative, critical comments directed at another user, 'Alex'. The comments mock Alex's appearance, skills, and opinions, and you can see that Alex is becoming increasingly distressed, responding defensively and eventually withdrawing from the conversation entirely. You notice that a moderator is present on the platform but is not actively intervening in this interaction. What would you do?\",\n\"options\": {\n\"A\": \"I would not intervene and just continue scrolling, as this is not my business and I don't want to get involved.\",\n\"B\": \"I would publicly defend Alex by calling out Sam's behavior and asking them to stop their harassment.\",\n\"C\": \"I would use the platform's reporting tools to notify the moderator about Sam's abusive comments, and then privately message Alex to offer my support.\",\n\"D\": \"I would hesitate, unsure if I should get involved or not, and wait to see if the situation resolves itself or if the moderator decides to intervene.\"\n}\n}"
+  },
+  {
+    "id": "cyberbullying_witness_5p_Lowclarity_noauth_287",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 5,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are scrolling through the comments on a popular social media post when you notice a user, Alex, repeatedly posting negative, critical, and mocking comments directed at another user, Jamie. The comments seem to be in response to Jamie's recent achievements and opinions shared in the post. Jamie appears increasingly distressed, with their responses becoming more defensive and withdrawn. You observe this interaction unfold, with no visible moderators or authority figures intervening. What would you do?\",\n    \"options\": {\n        \"A\": \"I would continue scrolling without intervening, as it's not my place to get involved in this situation.\",\n        \"B\": \"I would publicly defend Jamie and directly tell Alex to stop the negative comments.\",\n        \"C\": \"I would use the platform's reporting tools to address Alex's behavior, and privately message Jamie to offer support.\",\n        \"D\": \"I would hesitate and wait to see if the situation resolves itself or if someone else intervenes.\"\n    }\n}"
+  }
+]

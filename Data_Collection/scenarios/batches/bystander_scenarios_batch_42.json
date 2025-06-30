@@ -1,0 +1,18 @@
+[
+  {
+    "id": "cyberbullying_witness_502p_Lowclarity_auth_328",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through a popular online forum when you come across a thread where one user, User A, is repeatedly posting negative, critical, and mocking comments directed at another user, User B. The comments are visible to the 500 other users participating in the forum discussion. User B appears to be increasingly distressed, with their responses becoming shorter and more withdrawn. Although a forum moderator is present and visible, they are not actively intervening in the situation.\",\n  \"options\": {\n    \"A\": \"Ignore the interaction and continue scrolling, as it is not your place to get involved.\",\n    \"B\": \"Publicly defend User B by directly responding to User A and asking them to stop their negative comments.\",\n    \"C\": \"Use the forum's reporting tools to notify the moderator about User A's behavior, and privately message User B to offer support.\",\n    \"D\": \"Wait and see if the situation resolves itself or if the moderator decides to intervene.\"\n  }\n}"
+  },
+  {
+    "id": "cyberbullying_witness_502p_Lowclarity_noauth_329",
+    "scenario_type": "cyberbullying_witness",
+    "group_size": 502,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are scrolling through a popular online forum and come across a thread where one user, User A, is repeatedly posting negative, critical, and mocking comments directed at another user, User B. The comments appear to be targeting User B's recent posts, photos, and opinions, and User B is becoming visibly distressed, asking User A to stop. There are 500 other users observing the interaction. No moderators or authority figures are immediately present to intervene. What would you do?\",\n  \"options\": {\n    \"A\": \"I would not intervene and continue scrolling, as this is not my business to get involved in.\",\n    \"B\": \"I would publicly defend User B and directly tell User A to stop their negative behavior.\",\n    \"C\": \"I would use the platform's reporting tools to notify the moderators about User A's behavior, and then privately message User B to offer support.\",\n    \"D\": \"I would hesitate and wait to see if the situation resolves itself or if someone else intervenes before deciding what to do.\"\n  }\n}"
+  }
+]

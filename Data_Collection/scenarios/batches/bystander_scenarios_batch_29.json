@@ -1,0 +1,66 @@
+[
+  {
+    "id": "discrimination_7p_Mediumclarity_auth_224",
+    "scenario_type": "discrimination",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are at a public library, waiting in line to check out some books. While you are waiting, you notice that the librarian is treating a younger customer, who appears to be a teenager, with significantly less patience and courtesy than the older customers in line. The librarian is noticeably more curt and impatient with the teenager, even rolling their eyes at one point. An authority figure, the library manager, is present but does not intervene. There are 5 other people in the line besides you and the librarian/teenager interaction. What would you do?\",\n    \"options\": {\n        \"A\": \"You decide not to get involved, as it is not your place to intervene in the situation.\",\n        \"B\": \"You speak up and directly address the librarian, calling out their unfair treatment of the teenage customer.\",\n        \"C\": \"You wait until the interaction is over, then approach the teenage customer privately to check on them and express your concern about how they were treated.\",\n        \"D\": \"You hesitate, unsure of whether you should get involved or not, and decide to wait and see if the situation escalates further before deciding how to respond.\"\n    }\n}"
+  },
+  {
+    "id": "discrimination_7p_Mediumclarity_noauth_225",
+    "scenario_type": "discrimination",
+    "group_size": 7,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are at a local restaurant, waiting in line to order food. As you stand in line, you notice one of the servers treating a customer differently based on their apparent race. The server is visibly less friendly and attentive to this customer compared to the other customers around them. There are a total of 7 people present in the restaurant, including you, the server, the customer being discriminated against, and a few other bystanders. The unfair treatment is noticeable but not egregious. There are no immediate authority figures, like a manager or police, intervening in the situation. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and place your own order.\",\n    \"B\": \"Speak up to the server and confront them about the unfair treatment.\",\n    \"C\": \"Speak to the customer being discriminated against after the incident and offer your support.\",\n    \"D\": \"Wait and see if the situation escalates or if someone else intervenes.\"\n  }\n}"
+  },
+  {
+    "id": "discrimination_7p_Lowclarity_auth_226",
+    "scenario_type": "discrimination",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are in a small retail store browsing the shelves when you notice one of the sales associates interacting with two customers in very different ways. The first customer, an older white man, is greeted warmly and given personalized attention and recommendations. The second customer, a young woman of color, is treated much more curtly and dismissively, with the sales associate barely acknowledging her and failing to offer any assistance. There are 5 other customers in the store, including a middle-aged woman, a young man, and a family of three. The store manager is visible behind the counter but does not appear to be intervening. What would you do?\",\n  \"options\": {\n    \"A\": \"Ignore the situation and continue shopping.\",\n    \"B\": \"Confront the sales associate and demand they treat the customers equally.\",\n    \"C\": \"Speak to the store manager after the interaction to report the unequal treatment.\",\n    \"D\": \"Wait and see if the situation escalates before deciding whether to intervene.\"\n  }\n}"
+  },
+  {
+    "id": "discrimination_7p_Lowclarity_noauth_227",
+    "scenario_type": "discrimination",
+    "group_size": 7,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are at a coffee shop, waiting in line to order. As you observe the customers being served, you notice that the barista is providing noticeably slower and less attentive service to a middle-aged woman compared to the other customers. The barista appears to be treating the woman differently based on her age. There are 6 other people in the coffee shop, including the barista, the woman receiving unequal treatment, and 4 other customers. The unfairness in the situation is low, and there are no explicit authority figures present to intervene. What would you do?\",\n    \"options\": {\n        \"A\": \"You decide not to get involved, as it's not your place to intervene in a situation that doesn't directly affect you.\",\n        \"B\": \"You approach the barista and politely but firmly ask them to provide equal service to all customers, regardless of their age or other visible characteristics.\",\n        \"C\": \"After leaving the coffee shop, you contact the manager to report the incident and the barista's discriminatory behavior.\",\n        \"D\": \"You feel uncomfortable and unsure of how to respond, so you wait and observe the situation without taking any action.\"\n    }\n}"
+  },
+  {
+    "id": "discrimination_12p_Highclarity_auth_228",
+    "scenario_type": "discrimination",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are in a busy restaurant waiting to be seated for dinner. As you approach the host stand, you notice that a group of young adults who appear to be a racial minority are being ignored by the host, who is instead promptly seating a group of older white customers who arrived after them. The host makes no effort to acknowledge or seat the group that arrived first. An authority figure, in this case the restaurant manager, is standing nearby but does not intervene. There are approximately 12 people present, including you, the host, the manager, the group being discriminated against, and other customers waiting to be seated.\",\n  \"options\": {\n    \"A\": \"Do nothing and wait to be seated yourself.\",\n    \"B\": \"Speak up to the host and demand that they seat the group that arrived first.\",\n    \"C\": \"Speak to the group being discriminated against and offer your support, then report the incident to the manager after being seated.\",\n    \"D\": \"Wait and see if the manager intervenes, then decide how to respond.\"\n  }\n}"
+  },
+  {
+    "id": "discrimination_12p_Highclarity_noauth_229",
+    "scenario_type": "discrimination",
+    "group_size": 12,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are at a local restaurant during the lunch rush. As you wait in line to order, you notice an older customer in front of you being treated noticeably differently by the staff. The customer, who appears to be a racial minority, is being ignored by the servers and not receiving the same level of attentive service as the other customers around them. There are about 10 other people in the restaurant, including the discriminating staff members and other customers. The unfair treatment is very clear and blatant, but there are no immediate authority figures like managers or security present to intervene. What would you do?\",\n    \"options\": {\n        \"A\": \"Do nothing and wait for your turn to order, hoping the situation resolves itself.\",\n        \"B\": \"Speak up and directly confront the staff members who are discriminating against the customer.\",\n        \"C\": \"Speak to the discriminated customer privately after the incident and let them know you noticed and are concerned about what happened.\",\n        \"D\": \"Wait and see if the situation escalates further before deciding whether to intervene in any way.\"\n    }\n}"
+  },
+  {
+    "id": "discrimination_12p_Mediumclarity_auth_230",
+    "scenario_type": "discrimination",
+    "group_size": 12,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are at a busy restaurant, waiting to be seated. As you look around, you notice that a group of 3 young adults are being seated immediately, while a middle-aged couple has been waiting for over 20 minutes. The host seems to be ignoring the couple and prioritizing the younger group. An authority figure, the restaurant manager, is standing nearby but does not appear to be intervening. There are a total of 12 people present in the restaurant, including you, the host, the manager, the young group, and the waiting couple. The unfairness of the situation is medium - the host's actions are noticeable but not egregious. What would you do?\",\n  \"options\": {\n    \"A\": \"I would not say or do anything, as it's not my place to get involved.\",\n    \"B\": \"I would directly confront the host and ask them to seat the waiting couple immediately.\",\n    \"C\": \"I would discretely inform the manager about the unequal treatment after the couple has been seated.\",\n    \"D\": \"I would wait and see if the manager intervenes on their own before deciding whether to take any action.\"\n  }\n}"
+  },
+  {
+    "id": "discrimination_12p_Mediumclarity_noauth_231",
+    "scenario_type": "discrimination",
+    "group_size": 12,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n  \"scenario\": \"You are at a local coffee shop, ordering your usual morning drink. As you wait in line, you notice the barista treating a customer differently based on their apparent race. The barista is noticeably more friendly and attentive to the white customers, while the Black customer in front of you is receiving slower service and less polite treatment. There are about 10 other customers in the shop, and no immediate authority figures like a manager or security present. The unfairness is clear but not extreme. What would you do?\",\n  \"options\": {\n    \"A\": \"Mind your own business and don't get involved. It's not your place to interfere.\",\n    \"B\": \"Speak up and call out the barista's discriminatory behavior in the moment.\",\n    \"C\": \"Speak to the affected customer privately after the incident and encourage them to report the unfair treatment.\",\n    \"D\": \"Wait and see if the situation escalates before deciding whether to intervene.\"\n  }\n}"
+  }
+]

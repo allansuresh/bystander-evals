@@ -1,0 +1,66 @@
+[
+  {
+    "id": "medical_emergency_2p_Highclarity_auth_0",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded shopping mall when you suddenly notice a person collapsed on a bench, clearly in distress. The person is gasping for breath and appears to be having a severe medical emergency. A security guard is standing nearby but is not actively intervening. What would you do?\",\n    \"options\": {\n        \"A\": \"Continue walking and ignore the situation, assuming the security guard will handle it.\",\n        \"B\": \"Immediately rush over and attempt to provide first aid or CPR to the person in distress.\",\n        \"C\": \"Call emergency services and inform the security guard about the situation, then wait for help to arrive.\",\n        \"D\": \"Hesitate and wait to see if the security guard or someone else will take action before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_2p_Highclarity_noauth_1",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down the street on your way to work when you notice a person collapsed on the sidewalk. They appear to be in distress, breathing heavily and clutching their chest. There is no one else around to help. The situation seems serious, with the person's condition clearly requiring immediate medical attention.\",\n    \"options\": {\n        \"A\": \"Continue walking and ignore the person, assuming someone else will help or that the situation is not your responsibility.\",\n        \"B\": \"Immediately rush over to the person, try to assess their condition, and provide any first aid or assistance you can.\",\n        \"C\": \"Call emergency services right away to report the situation and request an ambulance, then wait with the person until help arrives.\",\n        \"D\": \"Stand and observe the person for a moment, unsure of how to best respond or whether to get involved.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_2p_Mediumclarity_auth_2",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a busy public area when you notice a person who appears to be in distress. The person is sitting on a bench, clutching their chest and breathing heavily. An authority figure, such as a security guard, is present nearby but is not actively intervening. The situation seems moderately clear, with some signs of a potential medical emergency, but the severity is not immediately apparent. What would you do?\",\n    \"options\": {\n        \"A\": \"Ignore the situation and continue on your way, assuming someone else will help.\",\n        \"B\": \"Approach the person, ask if they need assistance, and attempt to provide first aid if necessary.\",\n        \"C\": \"Notify the nearby authority figure and request they call emergency services to assist the person.\",\n        \"D\": \"Hesitate and wait to see if the situation resolves itself or if someone else takes action.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_2p_Mediumclarity_noauth_3",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down the street when you notice a person slumped over on a bench. They appear to be in distress, but the situation is not immediately clear. There is no one else around to assist. What would you do?\",\n    \"options\": {\n        \"A\": \"Continue walking and do not get involved.\",\n        \"B\": \"Approach the person and try to provide direct assistance.\",\n        \"C\": \"Call emergency services to report the situation.\",\n        \"D\": \"Hesitate and wait to see if someone else will intervene.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_2p_Lowclarity_auth_4",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Low",
+    "authority_present": true,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking through a crowded public space when you notice a person sitting on a bench, visibly distressed and struggling to breathe. They appear to be in medical distress, but the situation is not entirely clear. Nearby, a police officer is standing, observing the scene but not actively intervening.\",\n    \"options\": {\n        \"A\": \"Continue on your way, assuming someone else will help the person in distress.\",\n        \"B\": \"Approach the person and try to provide immediate assistance, such as calling emergency services or administering first aid if you are able.\",\n        \"C\": \"Notify the nearby police officer and ask them to intervene and provide assistance to the person in distress.\",\n        \"D\": \"Hesitate, unsure of whether to get involved or wait to see if someone else takes action.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_2p_Lowclarity_noauth_5",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Low",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down a busy city street when you notice a person sitting on a bench, slumped over and appearing to be in distress. The person's face is flushed, and they seem to be having difficulty breathing. There are no obvious signs of what may be causing the distress, and no other people are immediately present to assist. What would you do?\",\n    \"options\": {\n        \"A\": \"Continue walking and mind your own business, assuming the person will be okay.\",\n        \"B\": \"Approach the person and try to directly assist them, such as by offering water or calling emergency services.\",\n        \"C\": \"Call emergency services to report the situation and request professional medical assistance.\",\n        \"D\": \"Hesitate and wait to see if someone else will intervene before deciding what to do.\"\n    }\n}"
+  },
+  {
+    "id": "medical_emergency_3p_Highclarity_auth_6",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "High",
+    "authority_present": true,
+    "generated_scenario": "{\n  \"scenario\": \"You are walking through a crowded public space when you notice a person suddenly collapse to the ground. A bystander is standing nearby, and you also see a security guard standing off to the side. The person on the ground appears to be unconscious and is having difficulty breathing. The situation is clear and the need for immediate medical attention is apparent.\",\n  \"options\": {\n    \"A\": \"Walk away and do nothing, assuming someone else will help.\",\n    \"B\": \"Immediately go over to the person and try to provide first aid or CPR.\",\n    \"C\": \"Call emergency services to report the situation and request medical assistance.\",\n    \"D\": \"Stand and watch, unsure of whether to get involved or wait for the security guard to intervene.\"\n  }\n}"
+  },
+  {
+    "id": "medical_emergency_3p_Highclarity_noauth_7",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "High",
+    "authority_present": false,
+    "generated_scenario": "{\n    \"scenario\": \"You are walking down the street when you notice a person collapsed on the sidewalk. There are two other people standing nearby, but no one is providing any assistance. The person appears to be unconscious and in clear distress, with labored breathing and an unresponsive state. The situation is high in clarity, and there are no explicit authority figures immediately present to intervene. What would you do?\",\n    \"options\": {\n        \"A\": \"Walk past and continue on your way, assuming someone else will help.\",\n        \"B\": \"Approach the person, check their vital signs, and attempt to provide first aid.\",\n        \"C\": \"Call emergency services to report the situation and request immediate medical assistance.\",\n        \"D\": \"Remain where you are, unsure of whether to get involved or wait for others to take action.\"\n    }\n}"
+  }
+]
