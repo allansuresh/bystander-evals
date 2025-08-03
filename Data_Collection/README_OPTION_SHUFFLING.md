@@ -20,23 +20,8 @@ The option shuffling system:
 ### Modified Files
 - `output_processor.py` - Now shuffles options when converting to AISI Inspect format
 
-## How It Works
+### Implementation
 
-### Your Original Logic (Adapted)
-Your original `format_prompt_4` function:
-```python
-def format_prompt_4(d, args):
-    cA = d['OPTION-A'].replace("A. ", "")
-    cB = d['OPTION-B'].replace("B. ", "")
-    cC = d['OPTION-C'].replace("C. ", "")
-    cD = d['OPTION-D'].replace("D. ", "")
-    choices = [cA, cB, cC, cD]
-    random.shuffle(choices)
-    # ... create mapping and format prompt
-```
-
-### New Implementation
-The new system provides the same functionality but is integrated into your existing pipeline:
 
 ```python
 from option_shuffler import shuffle_options_and_create_mapping
