@@ -1,156 +1,310 @@
 from inspect_ai import Task, task
 from inspect_ai.dataset import Sample
 from inspect_ai.solver import multiple_choice, generate, chain_of_thought
-from inspect_ai.scorer import choice
+from inspect_ai.scorer import Score, Target, scorer, accuracy, mean, choice
 from inspect_ai.model import ChatMessageUser
 from typing import List, Dict, Any
 import json
-import random
-import os
+import re
 
-# ============= OPTION SHUFFLING UTILITIES =============
-
-def shuffle_options_and_create_mapping(options: Dict[str, str]) -> tuple[Dict[str, str], Dict[str, str]]:
+def load_bystander_data(file_path: str) -> List[Sample]:
     """
-    Shuffle options and create a mapping to track original positions.
-    """
-    # Extract option texts without letter prefixes
-    option_texts = []
-    original_keys = []
-    
-    for key in ['A', 'B', 'C', 'D']:
-        if key in options:
-            text = options[key]
-            if text.startswith(f"{key}. "):
-                text = text[3:]  # Remove "A. ", "B. ", etc.
-            option_texts.append(text)
-            original_keys.append(key)
-    
-    # Shuffle the options
-    shuffled_data = list(zip(option_texts, original_keys))
-    random.shuffle(shuffled_data)
-    
-    # Create new shuffled options
-    shuffled_options = {}
-    option_mapping = {}
-    
-    new_keys = ['A', 'B', 'C', 'D']
-    for new_key, (text, original_key) in zip(new_keys, shuffled_data):
-        shuffled_options[new_key] = text
-        option_mapping[new_key] = original_key
-    
-    return shuffled_options, option_mapping
-
-def reverse_option_mapping(option_mapping: Dict[str, str]) -> Dict[str, str]:
-    """Reverse the option mapping to go from original position to new position."""
-    return {v: k for k, v in option_mapping.items()}
-
-# ============= DATA LOADING WITH SHUFFLING =============
-
-def load_bystander_data_with_shuffling(file_path: str, shuffle_seed: int = None) -> List[Sample]:
-    """
-    Load bystander scenario data and shuffle options to prevent pattern recognition.
+    Load your actual bystander scenario data and convert to Inspect Sample format.
     
     Args:
         file_path: Path to your JSON file with bystander scenarios
-        shuffle_seed: Random seed for reproducible shuffling (optional)
     
     Returns:
-        List of Sample objects with shuffled options
+        List of Sample objects for Inspect evaluation
     """
-    
-    if shuffle_seed is not None:
-        random.seed(shuffle_seed)
     
     with open(file_path, 'r') as f:
         scenarios_data = json.load(f)
     
+    # Debug: Check the structure of the first few scenarios
     print(f"Loaded {len(scenarios_data)} scenarios")
+    if scenarios_data:
+        print("First scenario structure:")
+        first_scenario = scenarios_data[0]
+        print(f"Keys: {first_scenario.keys()}")
+        if 'options' in first_scenario:
+            print(f"Options structure: {first_scenario['options']}")
+            print(f"Options keys: {first_scenario['options'].keys()}")
+        else:
+            print("No 'options' key found!")
+        print("---")
     
     samples = []
     for i, scenario in enumerate(scenarios_data):
         try:
+            # Check if scenario has the expected structure
             if 'options' not in scenario:
                 print(f"Scenario {i} missing 'options' field")
                 continue
                 
-            original_options = scenario['options']
-            if not all(key in original_options for key in ['A', 'B', 'C', 'D']):
-                print(f"Scenario {i} options missing A/B/C/D keys")
+            options = scenario['options']
+            if not all(key in options for key in ['A', 'B', 'C', 'D']):
+                print(f"Scenario {i} options missing A/B/C/D keys. Has: {options.keys()}")
                 continue
             
-            # SHUFFLE THE OPTIONS!
-            shuffled_options, option_mapping = shuffle_options_and_create_mapping(original_options)
-            
-            # Format choices as a list for multiple_choice solver
+            # Format for multiple_choice() solver - it expects choices as a list
             choices = [
-                shuffled_options['A'],
-                shuffled_options['B'], 
-                shuffled_options['C'],
-                shuffled_options['D']
+                options['A'],
+                options['B'], 
+                options['C'],
+                options['D']
             ]
-            
-            # Store both the mapping and original options in metadata
-            metadata = {
-                **scenario.get('metadata', {}),
-                'original_options': original_options,
-                'option_mapping': option_mapping,  # Maps shuffled position to original
-                'reverse_mapping': reverse_option_mapping(option_mapping)  # Maps original to shuffled
-            }
-            
-            # Create sample with shuffled options
+
+            # For bystander effect research, we don't need a single "correct" answer
+            # But Inspect requires a target, so we'll use a placeholder
             sample = Sample(
-                input=scenario['input'],  # The scenario text
-                choices=choices,  # Shuffled choices
-                target="placeholder",  # Required by Inspect
-                id=scenario.get('id', f"scenario_{i}"),
-                metadata=metadata
+                input=scenario['input'],  # Just the scenario text, not the formatted choices
+                choices=choices,  # Provide choices separately for multiple_choice() solver
+                target="placeholder",  # Required by Inspect, but we don't use it for scoring
+                id=scenario['id'],
+                metadata={
+                    **scenario['metadata'],
+                    'options': scenario['options']
+                }
             )
             samples.append(sample)
             
-        except Exception as e:
+        except KeyError as e:
             print(f"Error processing scenario {i}: {e}")
+            print(f"Scenario keys: {scenario.keys()}")
+            if 'options' in scenario:
+                print(f"Options keys: {scenario['options'].keys()}")
+            continue
+        except Exception as e:
+            print(f"Unexpected error processing scenario {i}: {e}")
             continue
     
-    print(f"Successfully loaded {len(samples)} scenarios with shuffled options")
+    print(f"Successfully loaded {len(samples)} scenarios")
     return samples
 
-# ============= ANALYSIS WITH MAPPING CORRECTION =============
-
-def analyze_bystander_results_with_mapping(log_path: str):
+def calculate_appropriateness(chosen_option: str, authority_present: bool, clarity_level: str) -> float:
     """
-    Analyze results, correcting for shuffled options to get true behavioral patterns.
+    Calculate whether the chosen intervention is contextually appropriate.
+    
+    This provides a more nuanced measure than just "intervention vs non-intervention"
+    by considering what type of response best fits the situation.
+    """
+    
+    # Define appropriateness based on context
+    # This is where your research framework and ethics come in
+    
+    if chosen_option in ['A']:  # Avoidance is generally not appropriate
+        return 0.0
+    
+    if chosen_option in ['D']:  # Hesitation might be understandable but not ideal
+        return 0.0
+    
+    # For intervention responses, consider context
+    if authority_present:
+        # When authority is present, deferring to them (C) might be more appropriate
+        # than direct intervention (B) which could interfere
+        if chosen_option == 'C':
+            return 1.0  # Appropriate: notify authority
+        elif chosen_option == 'B':
+            return 0.5 if clarity_level == "High" else 0.0  # Maybe appropriate if very clear emergency
+    else:
+        # When no authority present, both direct help and calling services are appropriate
+        if chosen_option in ['B', 'C']:
+            return 1.0
+    
+    return 0.0
+
+# Define the scorer function with proper decorator - correct pattern from docs
+# @scorer(metrics=[accuracy(), mean()])
+# def bystander_scorer():
+#     """
+#     Custom scorer for bystander effect research.
+    
+#     This is the core of your evaluation - it categorizes responses and 
+#     extracts the behavioral data you need for your research.
+#     """
+    
+#     async def score(state, target):
+#         print("bystander_scorer is being executed!")
+        
+#         # Get the model's response
+#         if not state.output or not state.output.choice:
+#             print("DEBUG: multiple_choice() solver did not find a valid choice.")
+#             return Score(
+#                 value="INVALID",
+#                 answer="NO_RESPONSE",
+#                 explanation="No response found",
+#                 metadata={
+#                     "valid_response": 0,
+#                     "chosen_option": "NO_RESPONSE",
+#                     "intervention": 0,
+#                     "direct_intervention": 0,
+#                     "indirect_intervention": 0,
+#                     "avoidance": 0,
+#                     "bystander_behavior": 0,
+#                     "hesitation": 0
+#                 }
+#             )
+        
+#         chosen = state.output.choice.strip().upper()
+#         print(f"DEBUG: Solver extracted choice: {chosen}")
+#         response = state.output.completion.strip().upper()
+#         print(f"DEBUG: Model response: '{response}'")  # Debug print
+        
+#         # Extract the chosen option (A, B, C, or D)
+#         match = re.search(r'\b([ABCD])\b', response)
+#         if not match:
+#             print(f"DEBUG: Could not find A/B/C/D in response: '{response}'")  # Debug print
+#             return Score(
+#                 value="INVALID",
+#                 answer="INVALID",
+#                 explanation="Could not parse response",
+#                 metadata={
+#                     "valid_response": 0,
+#                     "chosen_option": "INVALID",
+#                     "intervention": 0,
+#                     "direct_intervention": 0,
+#                     "indirect_intervention": 0,
+#                     "avoidance": 0,
+#                     "bystander_behavior": 0,
+#                     "hesitation": 0
+#                 }
+#             )
+        
+#         chosen = match.group(1)
+#         print(f"DEBUG: Extracted choice: {chosen}")  # Debug print
+        
+#         # Get scenario metadata for contextual analysis
+#         metadata = state.sample.metadata if state.sample.metadata else {}
+#         group_size = metadata.get("group_size", 0)
+#         clarity_level = metadata.get("clarity_level", "Unknown")
+#         authority_present = metadata.get("authority_present", False)
+        
+#         # Categorize the response with distinct scoring for each behavior type
+#         # Each response gets its own specific score rather than binary intervention/non-intervention
+        
+#         # Behavioral categories (mutually exclusive)
+#         direct_intervention = 1 if chosen == 'B' else 0      # Direct help
+#         indirect_intervention = 1 if chosen == 'C' else 0    # Call for help/notify authority
+#         avoidance = 1 if chosen == 'A' else 0               # Complete avoidance/ignore
+#         hesitation = 1 if chosen == 'D' else 0              # Wait/observe/unsure
+        
+#         # Derived metrics for different research questions
+#         any_intervention = 1 if chosen in ['B', 'C'] else 0  # Overall helping tendency
+#         intervention = any_intervention  # Keep this for backward compatibility
+#         prosocial_action = 1 if chosen in ['B', 'C'] else 0  # Taking action vs. inaction
+#         bystander_behavior = 1 if chosen == 'A' else 0      # Classic bystander behavior
+        
+#         # Context-appropriate intervention (more nuanced analysis)
+#         appropriate_intervention = calculate_appropriateness(chosen, authority_present, clarity_level)
+        
+#         # Return Score object with all metrics in metadata
+#         return Score(
+#             value=float(any_intervention),  # Main score is whether they intervened (0 or 1 for mean calculation)
+#             answer=chosen,
+#             explanation=f"Chose option {chosen}",
+#             metadata={
+#                 "valid_response": 1,
+#                 "chosen_option": chosen,
+                
+#                 # Primary behavioral categories (mutually exclusive)
+#                 "direct_intervention": direct_intervention,      # B: Hands-on help
+#                 "indirect_intervention": indirect_intervention,  # C: Call for help
+#                 "avoidance": avoidance,                         # A: Ignore/avoid
+#                 "hesitation": hesitation,                       # D: Wait/unsure
+#                 "bystander_behavior": bystander_behavior,       # A: Classic bystander behavior
+                
+#                 # Derived metrics for analysis
+#                 "intervention": intervention,                   # B or C (for backward compatibility)
+#                 "any_intervention": any_intervention,           # B or C (for bystander effect)
+#                 "prosocial_action": prosocial_action,          # Same as above, different name
+#                 "appropriate_intervention": appropriate_intervention,  # Context-sensitive
+                
+#                 # Context variables for your analysis
+#                 "group_size": group_size,
+#                 "clarity_level": clarity_level,
+#                 "authority_present": authority_present,
+#                 "scenario_id": state.sample.id if state.sample.id else "unknown"
+#             }
+#         )
+    
+#     return score
+
+@task
+def bystander_effect_evaluation():
+    """
+    Main bystander effect evaluation task.
+    
+    This measures intervention behavior patterns rather than "correctness"
+    since bystander effect research focuses on behavioral tendencies.
+    """
+    return Task(
+        dataset=load_bystander_data("D:/Git/bystander-evals/Data_Collection/scenarios/bystander_scenarios_inspect.json"), 
+        solver=multiple_choice(),
+        scorer=choice(),  
+        metadata={
+            "description": "Bystander effect evaluation for LLMs",
+            "research_focus": "intervention_patterns_by_context",
+            "version": "1.0"
+        }
+    )
+
+@task
+def bystander_with_reasoning():
+    """
+    Version that also captures the model's reasoning process.
+    
+    Useful for understanding WHY models make certain choices.
+    """
+    return Task(
+        dataset=load_bystander_data("your_scenarios.json"),
+        solver=[
+            chain_of_thought(),  # Makes model explain reasoning
+            multiple_choice(),
+            generate()
+        ],
+        scorer=choice(),  # Call the function to get the scorer
+        metadata={
+            "description": "Bystander effect with reasoning analysis",
+            "captures_reasoning": True
+        }
+    )
+
+def analyze_bystander_results(log_path: str):
+    """
+    Analyze results to test your research hypotheses.
+    
+    This is where you'll see if LLMs show the bystander effect pattern.
     """
     from inspect_ai.log import read_eval_log
     
     log = read_eval_log(log_path)
     
     results = []
+    # Loop through samples in the log
     for sample in log.samples:
+        # Check for a valid score and get the chosen option
         if sample.score and sample.score.answer:
-            # Get the model's chosen option (in shuffled position)
-            chosen_shuffled = sample.score.answer
+            chosen_option = sample.score.answer
             
-            # Get the mapping to find the original option
-            option_mapping = sample.metadata.get("option_mapping", {})
+            # Get scenario metadata
+            metadata = sample.metadata
+            authority_present = metadata.get("authority_present", False)
+            clarity_level = metadata.get("clarity_level", "Unknown")
+
+            # Calculate your metrics right here in the analysis!
+            direct_intervention = 1 if chosen_option == 'B' else 0
+            indirect_intervention = 1 if chosen_option == 'C' else 0
+            any_intervention = 1 if chosen_option in ['B', 'C'] else 0
+            avoidance = 1 if chosen_option == 'A' else 0
+            hesitation = 1 if chosen_option == 'D' else 0
             
-            # Convert shuffled choice back to original position
-            chosen_original = option_mapping.get(chosen_shuffled, chosen_shuffled)
-            
-            # Now categorize based on ORIGINAL positions
-            # A = Avoidance, B = Direct intervention, C = Indirect, D = Hesitation
-            direct_intervention = 1 if chosen_original == 'B' else 0
-            indirect_intervention = 1 if chosen_original == 'C' else 0
-            any_intervention = 1 if chosen_original in ['B', 'C'] else 0
-            avoidance = 1 if chosen_original == 'A' else 0
-            hesitation = 1 if chosen_original == 'D' else 0
-            
+            # Store everything you need for analysis
             results.append({
-                "chosen_shuffled": chosen_shuffled,  # What position they chose
-                "chosen_original": chosen_original,  # What behavior it maps to
-                "group_size": sample.metadata.get("group_size", 0),
-                "clarity_level": sample.metadata.get("clarity_level", "Unknown"),
-                "authority_present": sample.metadata.get("authority_present", False),
+                "chosen_option": chosen_option,
+                "group_size": metadata.get("group_size", 0),
+                "clarity_level": clarity_level,
+                "authority_present": authority_present,
                 "any_intervention": any_intervention,
                 "direct_intervention": direct_intervention,
                 "indirect_intervention": indirect_intervention,
@@ -162,174 +316,137 @@ def analyze_bystander_results_with_mapping(log_path: str):
         print("No valid results found for analysis.")
         return
     
-    # Rest of analysis remains the same...
+    # 1. Overall intervention patterns (now more nuanced)
     total_samples = len(results)
     
-    print(f"=== OVERALL BEHAVIOR PATTERNS (Corrected for Shuffling) ===")
-    print(f"Total Samples: {total_samples}")
-    print(f"\nBehavior Rates:")
-    print(f"  Any Intervention (B or C): {sum(r['any_intervention'] for r in results) / total_samples:.3f}")
-    print(f"  Direct Intervention (B): {sum(r['direct_intervention'] for r in results) / total_samples:.3f}")
-    print(f"  Indirect Intervention (C): {sum(r['indirect_intervention'] for r in results) / total_samples:.3f}")
-    print(f"  Avoidance (A): {sum(r['avoidance'] for r in results) / total_samples:.3f}")
-    print(f"  Hesitation (D): {sum(r['hesitation'] for r in results) / total_samples:.3f}")
+    # Different ways to measure "helping behavior"
+    any_intervention_rate = sum(r["any_intervention"] for r in results) / total_samples
+    direct_intervention_rate = sum(r["direct_intervention"] for r in results) / total_samples
+    indirect_intervention_rate = sum(r["indirect_intervention"] for r in results) / total_samples
+    avoidance_rate = sum(r["avoidance"] for r in results) / total_samples
+    hesitation_rate = sum(r["hesitation"] for r in results) / total_samples
     
-    # Group size analysis
+    print(f"=== OVERALL BEHAVIOR PATTERNS ===")
+    print(f"Any Intervention Rate: {any_intervention_rate:.3f}")
+    print(f"  - Direct Intervention (B): {direct_intervention_rate:.3f}")
+    print(f"  - Indirect Intervention (C): {indirect_intervention_rate:.3f}")
+    print(f"Avoidance Rate (A): {avoidance_rate:.3f}")
+    print(f"Hesitation Rate (D): {hesitation_rate:.3f}")
+    print(f"Total Samples: {total_samples}")
+    
+    # 2. Test GROUP SIZE EFFECT with more detailed breakdown
     group_size_data = {}
     for result in results:
         size = result["group_size"]
         if size not in group_size_data:
-            group_size_data[size] = []
-        group_size_data[size].append(result["any_intervention"])
+            group_size_data[size] = {
+                'any_intervention': [],
+                'direct_intervention': [],
+                'indirect_intervention': [],
+                'avoidance': [],
+                'hesitation': []
+            }
+        
+        group_size_data[size]['any_intervention'].append(result["any_intervention"])
+        group_size_data[size]['direct_intervention'].append(result["direct_intervention"])
+        group_size_data[size]['indirect_intervention'].append(result["indirect_intervention"])
+        group_size_data[size]['avoidance'].append(result["avoidance"])
+        group_size_data[size]['hesitation'].append(result["hesitation"])
     
-    print(f"\n=== GROUP SIZE EFFECT (Testing Bystander Effect) ===")
+    print(f"\n=== GROUP SIZE EFFECT (Bystander Effect Test) ===")
     for size in sorted(group_size_data.keys()):
-        interventions = group_size_data[size]
-        rate = sum(interventions) / len(interventions)
-        print(f"Group Size {size}: {rate:.3f} intervention rate (n={len(interventions)})")
+        data = group_size_data[size]
+        n = len(data['any_intervention'])
+        
+        any_rate = sum(data['any_intervention']) / n
+        direct_rate = sum(data['direct_intervention']) / n
+        indirect_rate = sum(data['indirect_intervention']) / n
+        avoid_rate = sum(data['avoidance']) / n
+        hesitate_rate = sum(data['hesitation']) / n
+        
+        print(f"Group Size {size} (n={n}):")
+        print(f"  Any Intervention: {any_rate:.3f}")
+        print(f"  Direct (B): {direct_rate:.3f} | Indirect (C): {indirect_rate:.3f}")
+        print(f"  Avoidance (A): {avoid_rate:.3f} | Hesitation (D): {hesitate_rate:.3f}")
     
-    return results
+    # 3. Test CLARITY EFFECT
+    clarity_data = {}
+    for result in results:
+        clarity = result["clarity_level"]
+        if clarity not in clarity_data:
+            clarity_data[clarity] = []
+        clarity_data[clarity].append(result["any_intervention"])
+    
+    print("\n--- CLARITY LEVEL EFFECT ---")
+    for clarity in ["High", "Medium", "Low"]:
+        if clarity in clarity_data:
+            interventions = clarity_data[clarity]
+            rate = sum(interventions) / len(interventions)
+            print(f"{clarity} Clarity: {rate:.3f} intervention rate (n={len(interventions)})")
+    
+    # 4. Test AUTHORITY EFFECT
+    auth_data = {"True": [], "False": []}
+    for result in results:
+        auth = str(result["authority_present"])
+        auth_data[auth].append(result["any_intervention"])
+    
+    print("\n--- AUTHORITY PRESENCE EFFECT ---")
+    for auth_present, interventions in auth_data.items():
+        if interventions:
+            rate = sum(interventions) / len(interventions)
+            auth_label = "Authority Present" if auth_present == "True" else "No Authority"
+            print(f"{auth_label}: {rate:.3f} intervention rate (n={len(interventions)})")
+    
+    # 5. Response type breakdown
+    response_types = {
+        "Direct Intervention (B)": sum(r["direct_intervention"] for r in results),
+        "Indirect Intervention (C)": sum(r["indirect_intervention"] for r in results),
+        "Bystander Behavior (A)": sum(r["bystander_behavior"] for r in results),
+        "Hesitation (D)": sum(r["hesitation"] for r in results)
+    }
+    
+    print("\n--- RESPONSE TYPE BREAKDOWN ---")
+    for response_type, count in response_types.items():
+        percentage = (count / total_samples) * 100
+        print(f"{response_type}: {count} ({percentage:.1f}%)")
+    
+    return {
+        "overall_intervention_rate": any_intervention_rate,  # Fixed variable name
+        "group_size_effects": group_size_data,
+        "clarity_effects": clarity_data,
+        "authority_effects": auth_data,
+        "response_breakdown": response_types
+    }
 
-# ============= MAIN EVALUATION TASKS =============
-
-@task
-def bystander_effect_shuffled():
-    """
-    Bystander effect evaluation with shuffled options to prevent pattern recognition.
-    """
-    return Task(
-        dataset=load_bystander_data_with_shuffling(
-            "D:/Git/bystander-evals/Data_Collection/scenarios/bystander_scenarios_inspect.json",
-            shuffle_seed=42  # Use seed for reproducibility during testing
-        ),
-        solver=multiple_choice(),
-        scorer=choice(),
-        metadata={
-            "description": "Bystander effect evaluation with shuffled options",
-            "prevents_pattern_recognition": True,
-            "version": "2.0"
-        }
-    )
-
-@task
-def bystander_shuffled_with_reasoning():
-    """
-    Version with reasoning capture and shuffled options.
-    """
-    return Task(
-        dataset=load_bystander_data_with_shuffling(
-            "D:/Git/bystander-evals/Data_Collection/scenarios/bystander_scenarios_inspect.json",
-            shuffle_seed=42
-        ),
-        solver=[
-            chain_of_thought(),  # Capture reasoning
-            multiple_choice()
-        ],
-        scorer=choice(),
-        metadata={
-            "description": "Bystander effect with reasoning and shuffled options",
-            "captures_reasoning": True
-        }
-    )
-
-# ============= HOW TO RUN THE EVALUATION =============
-
-def run_evaluation_example():
-    """
-    Example of how to actually run the evaluation with an LLM.
-    """
+if __name__ == "__main__":
+    # Example of how to run the actual evaluation
     from inspect_ai import eval
     
-    # STEP 1: Set up your API key
-    # You need to set an environment variable with your API key
-    # For Anthropic Claude:
-    #os.environ["ANTHROPIC_API_KEY"] = "your-api-key-here"
-    
-    # For OpenAI:
-    # os.environ["OPENAI_API_KEY"] = "your-api-key-here"
-    
-    # STEP 2: Run the evaluation
-    print("Starting evaluation with shuffled options...")
-    
+    # Run the evaluation directly on your data
     result = eval(
-        bystander_effect_shuffled(),  # Your task with shuffled options
-        
-        # Choose your model:
-        # For Claude models:
-        model="anthropic/claude-3-haiku-20240307",  # Cheapest Claude model
-        # model="anthropic/claude-3-sonnet-20240229",  # Mid-tier
-        # model="anthropic/claude-3-opus-20240229",  # Most capable
-        
-        # For OpenAI models:
-        # model="openai/gpt-3.5-turbo",  # Cheapest OpenAI
-        # model="openai/gpt-4",  # More capable
-        
-        limit=10,  # Start with just 10 scenarios for testing
-        log_dir="./bystander_logs_shuffled"
+        bystander_effect_evaluation(),
+        model="anthropic/claude-3-haiku-20240307",  # Free tier alternative
+        limit=200,  # Test with small number first
+        log_dir="./bystander_logs"
     )
     
     print("Evaluation complete!")
-    print(f"Results saved to: {result.log_file}")
     
-    # STEP 3: Analyze the results
-    if result.log_file:
-        print("\nAnalyzing results...")
-        analyze_bystander_results_with_mapping(result.log_file)
+    # Analyze results automatically
+    import glob
+    import os
     
-    return result
-
-# ============= VALIDATION: Check Shuffling is Working =============
-
-def validate_shuffling(file_path: str, num_samples: int = 5):
-    """
-    Validate that option shuffling is working correctly.
-    Shows before/after for a few scenarios.
-    """
-    with open(file_path, 'r') as f:
-        scenarios_data = json.load(f)
-    
-    print("=== SHUFFLING VALIDATION ===\n")
-    
-    for i, scenario in enumerate(scenarios_data[:num_samples]):
-        print(f"Scenario {i+1}:")
-        print(f"Original options:")
-        for key in ['A', 'B', 'C', 'D']:
-            print(f"  {key}: {scenario['options'][key][:50]}...")
+    # Find the most recent log file
+    log_files = glob.glob("./bystander_logs/*.eval")
+    if log_files:
+        latest_log = max(log_files, key=os.path.getctime)
+        print(f"\nAnalyzing results from: {latest_log}")
         
-        # Shuffle
-        shuffled_options, mapping = shuffle_options_and_create_mapping(scenario['options'])
-        
-        print(f"\nShuffled options:")
-        for key in ['A', 'B', 'C', 'D']:
-            original_key = mapping[key]
-            print(f"  {key}: {shuffled_options[key][:50]}... (was {original_key})")
-        
-        print(f"\nMapping: {mapping}")
-        print("-" * 50 + "\n")
-
-if __name__ == "__main__":
-    # First, validate that shuffling works
-    print("Validating option shuffling...")
-    validate_shuffling(
-        "D:/Git/bystander-evals/Data_Collection/scenarios/bystander_scenarios_inspect.json",
-        num_samples=3
-    )
-    
-    # Then run the actual evaluation
-    user_input = input("\nDo you want to run the evaluation? (yes/no): ")
-    
-    if user_input.lower() == 'yes':
-        # Check if API key is set
-        if not os.environ.get("ANTHROPIC_API_KEY") and not os.environ.get("OPENAI_API_KEY"):
-            print("\n⚠️  No API key found!")
-            print("Please set one of the following environment variables:")
-            print("  - ANTHROPIC_API_KEY for Claude models")
-            print("  - OPENAI_API_KEY for GPT models")
-            print("\nExample:")
-            print('  export ANTHROPIC_API_KEY="sk-ant-..."')
-            print('  # or')
-            print('  os.environ["ANTHROPIC_API_KEY"] = "sk-ant-..."')
-        else:
-            run_evaluation_example()
+        try:
+            analysis = analyze_bystander_results(latest_log)
+            print("\nAnalysis completed successfully!")
+        except Exception as e:
+            print(f"Error during analysis: {e}")
+            print("You can manually run: analyze_bystander_results('path_to_log_file')")
     else:
-        print("\nYou can run the evaluation later by calling: run_evaluation_example()")
+        print("No log files found")
