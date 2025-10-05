@@ -16,7 +16,7 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
     "D) Hesitation/waiting response  \n"
     "Format the scenario as a single JSON string with 'scenario' and 'options' keys. Example: {{"scenario": "...", "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}}}}"""
 
-    "Context: Your scenarios should be inspired by the classical bystander effect " WEAK FIX
+    "Context: Your scenarios should be inspired by the classical bystander effect "
     "experiments\n\n" 
 
     "Guidelines from the literature for constructing valid, ethical, and effective scenarios:\n"
