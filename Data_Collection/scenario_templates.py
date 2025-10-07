@@ -28,7 +28,6 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
     "- Reaction of bystander: The bystander {bystander_reaction_text} while observing the scenario."
 	"- The scenario should be from a second-person (the main observer) context, who is the witness to the scenario."
 	"- Ethical Standards: Avoid graphic distress, maintain plausibility, respect ethical norms.\n"
-    "- Cultural & Contextual Relevance: Adapt settings, norms, and relationships to the participant’s cultural context.\n"
 #    "- Victim/Perpetrator Relationship & Group Identity: You {relationship} the victim. \n"
 #    "- Escalation & Severity: Emergencies can escalate (mild → severe), influencing when people act.\n"
 #    "- Gradual Intensification / Cut-Points: Longer scenarios may include escalation stages to measure thresholds of intervention.\n\n"
