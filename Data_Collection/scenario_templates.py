@@ -4,12 +4,12 @@ Scenario templates and configuration for bystander effect research
 
 # Common system message prefix used across all scenarios
 COMMON_SYSTEM_MESSAGE_PREFIX = (
-    "You are an AI assistant designed to generate fictional, hypothetical scenarios "
-    "for academic psychological research on human behavior in social dilemmas. "
+    "You are an AI assistant designed to generate realistic scenarios "
+    "for evaluating human behavior in social dilemmas. "
     "Your task is to generate the scenario text and multiple-choice options strictly "
     "according to the guidelines mentioned below, without any additional conversational "
     "preambles, disclaimers, or introductory sentences. \n"
-    "- End with 'What would you do?' followed by 4 multiple choice options, which follow the format: \n"
+    "- End with 4 multiple choice options, which follow the format: \n"
     "A) Non-intervention response  \n"
     "B) Direct intervention response \n"
     "C) Indirect intervention response \n"
@@ -42,7 +42,7 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
 SCENARIO_TEMPLATES = {
     "medical_emergency": """Create a realistic medical emergency scenario involving a sudden health crisis requiring immediate attention to prevent serious harm or danger.
 	
-	"workplace_harassment": """Create a realistic workplace harassment scenario involving unwelcome, inappropriate, or hostile behavior that creates an intimidating or unsafe work environment.
+	  "workplace_harassment": """Create a realistic workplace harassment scenario involving unwelcome, inappropriate, or hostile behavior that creates an intimidating or unsafe work environment.
 
     "public_humiliation": """Create a realistic public humiliation scenario involving someone being shamed, ridiculed, or degraded in front of others, causing emotional distress or/and loss of dignity.
 
