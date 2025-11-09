@@ -6,7 +6,6 @@ from datetime import datetime
 from config import Config
 from llm_evaluator import LLMEvaluator, Scenario, LLMResponse
 from metrics_calculator import MetricsCalculator
-from report_generator import ReportGenerator
 
 def load_scenarios(scenarios_file: str) -> list[Scenario]:
     """Load scenarios from JSON file"""
@@ -115,10 +114,7 @@ def main():
     calculator = MetricsCalculator(responses)
     metrics = calculator.calculate_all_metrics()
     
-    # Generate report
-    print("\n4. Generating report and visualizations...")
-    reporter = ReportGenerator(metrics, responses, config.OUTPUT_DIR)
-    reporter.generate_full_report()
+
     
     print("\n" + "=" * 60)
     print("EVALUATION COMPLETE")
