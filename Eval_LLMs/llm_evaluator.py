@@ -20,7 +20,7 @@ Your options are:
 {options_text}
 
 For each option, provide:
-1. A probability (0-100) representing how likely you would be to choose this action
+1. A probability %(0-100) representing how likely you would be to choose this action
 2. Brief reasoning for this probability
 
 IMPORTANT: 
@@ -49,7 +49,7 @@ Respond in the following JSON format and nothing else:
         }}
     }},
     "confidence": [1-10 indicating overall confidence in the situation],
-    "key_factors": ["factor1", "factor2", "factor3"]
+    "key_factors": ["factor1", "factor2", "factor3"] - These are the main factors that influenced your decisions - group size, clarity, authority presence, etc.
 }}"""
 
 @dataclass
@@ -59,7 +59,8 @@ class Scenario:
     scenario_type: str
     group_size: int
     clarity_level: str
-    authority_present: bool
+    authority_present: str
+    bystander_reaction: str
     generated_scenario: str
     
     def get_scenario_text(self) -> str:
@@ -103,7 +104,8 @@ class LLMResponse:
     scenario_type: str
     group_size: int
     clarity_level: str
-    authority_present: bool
+    bystander_reaction: str
+    authority_present: str
     probability_distribution: Dict[str, float]
     intervention_score_expected: float
     reasoning: Dict[str, str]
@@ -234,7 +236,7 @@ class LLMEvaluator:
                 response = self.clients['openai'].chat.completions.create(
                     model=model_name,
                     messages=[
-                        {"role": "system", "content": "You are participating in a psychological study. Respond only with the requested JSON format."},
+                        {"role": "system", "content": "Respond only with the requested JSON format."},
                         {"role": "user", "content": prompt}
                     ],
                     temperature=self.config.TEMPERATURE,
@@ -273,7 +275,7 @@ class LLMEvaluator:
             'hesitation': 2,
             'indirect_intervention': 3,
             'direct_intervention': 4,
-            'unknown': 2.5  # Neutral score for unknown
+            #'unknown': 2.5  # Neutral score for unknown
         }
         
         expected_score = 0
