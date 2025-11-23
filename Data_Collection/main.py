@@ -20,6 +20,7 @@ load_dotenv()
 
 from scenario_generator import ScenarioGenerator
 from pipeline_runner import PipelineRunner
+from pipeline_runner_gemini import PipelineRunnerGemini
 from output_processor import OutputProcessor
 from config import GenerationConfig, validate_api_key, estimate_generation_time, estimate_cost
 from scenario_templates import calculate_total_scenarios, PRIORITY_COMBINATIONS
@@ -29,9 +30,20 @@ class BystanderScenarioGenerator:
     
     def __init__(self, config: GenerationConfig):
         self.config = config
-        self.api_key = validate_api_key()
+        self.api_key = validate_api_key(config.provider)
         self.scenario_generator = ScenarioGenerator()
-        self.pipeline_runner = PipelineRunner(self.api_key, config.model)
+        
+        # Select pipeline runner based on provider
+        if config.provider == "gemini":
+            self.pipeline_runner = PipelineRunnerGemini(
+                self.api_key, 
+                config.model,
+                temperature=config.temperature,
+                max_tokens=config.max_tokens
+            )
+        else:  # claude
+            self.pipeline_runner = PipelineRunner(self.api_key, config.model)
+        
         self.output_processor = OutputProcessor()
     
     def run_generation(self) -> list:
@@ -104,14 +116,29 @@ class BystanderScenarioGenerator:
 def main():
     """Main execution function"""
     print("=== Bystander Effect Scenario Generation (Rate-Limited) ===")
-    print("Using Distilabel framework with Anthropic Claude")
+    
+    # Get provider from environment or default to claude
+    provider = os.getenv("LLM_PROVIDER", "claude").lower()
+    if provider not in ["claude", "gemini"]:
+        print(f"⚠️  Invalid provider '{provider}', defaulting to 'claude'")
+        provider = "claude"
+    
+    # Set default model based on provider
+    from config import get_default_model
+    default_model = get_default_model(provider)
+    
+    if provider == "gemini":
+        print("Using Google Gemini API")
+    else:
+        print("Using Distilabel framework with Anthropic Claude")
     
     # Configuration
     config = GenerationConfig(
         batch_size=8,
         limit_scenarios=None,  # Generate all scenarios
         priority_mode=False,
-        model="claude-3-haiku-20240307"
+        provider=provider,
+        model=default_model
     )
     
     # Calculate totals and estimates
@@ -121,10 +148,11 @@ def main():
     
     print(f"📊 Total possible scenarios: {total_possible}")
     print(f"\n🔧 Configuration:")
+    print(f"   Provider: {config.provider}")
+    print(f"   Model: {config.model}")
     print(f"   Batch size: {config.batch_size}")
     print(f"   Total scenarios limit: {config.limit_scenarios}")
     print(f"   Priority mode: {config.priority_mode}")
-    print(f"   Model: {config.model}")
     print(f"   Estimated batches: {(total_possible + config.batch_size - 1) // config.batch_size}")
     print(f"   Estimated time: {estimated_time:.1f} minutes ({estimated_time/60:.1f} hours)")
     print(f"   Estimated cost: ~${estimated_cost:.2f} (very rough estimate)")
@@ -162,11 +190,16 @@ def main():
     except Exception as e:
         print(f"❌ Generation failed: {e}")
         print("\nTroubleshooting tips:")
-        print("1. Check your ANTHROPIC_API_KEY is set correctly")
-        print("2. Ensure you have sufficient API credits")
-        print("3. Reduce batch_size and limit_scenarios in config")
-        print("4. Check your rate limit tier in Anthropic Console")
-        print("5. Try switching to Claude Haiku for faster/cheaper generation")
+        if config.provider == "gemini":
+            print("1. Check your GOOGLE_API_KEY or GEMINI_API_KEY is set correctly")
+            print("2. Ensure you have sufficient API credits/quota")
+            print("3. Install google-generativeai: pip install google-generativeai")
+        else:
+            print("1. Check your ANTHROPIC_API_KEY is set correctly")
+            print("2. Ensure you have sufficient API credits")
+        print("4. Reduce batch_size and limit_scenarios in config")
+        print("5. Check your rate limit tier in the API console")
+        print("6. Try switching providers by setting LLM_PROVIDER environment variable")
 
 if __name__ == "__main__":
     main()

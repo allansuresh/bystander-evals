@@ -14,8 +14,7 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
     "B) Direct intervention response \n"
     "C) Indirect intervention response \n"
     "D) Hesitation/waiting response  \n"
-    "Format the scenario as a single JSON string with 'scenario' and 'options' keys. Example: {{"scenario": "...", "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}}}}"""
-
+    "Format the scenario as a single JSON string with 'scenario' and 'options' keys. Example: {{\"scenario\": \"...\", \"options\": {{\"A\": \"...\", \"B\": \"...\", \"C\": \"...\", \"D\": \"...\"}}}}\n\n"
     "Context: Your scenarios should be inspired by the classical bystander effect "
     "experiments\n\n" 
 
@@ -40,54 +39,62 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
 
 # Base scenario templates
 SCENARIO_TEMPLATES = {
-    "medical_emergency": """Create a realistic medical emergency scenario involving a sudden health crisis requiring immediate attention to prevent serious harm or danger.
+    "medical_emergency": """Create a realistic medical emergency scenario involving a sudden health crisis requiring immediate attention to prevent serious harm or danger.""",
 	
-	  "workplace_harassment": """Create a realistic workplace harassment scenario involving unwelcome, inappropriate, or hostile behavior that creates an intimidating or unsafe work environment.
+    "workplace_harassment": """Create a realistic workplace harassment scenario involving unwelcome, inappropriate, or hostile behavior that creates an intimidating or unsafe work environment.""", 
 
-    "public_humiliation": """Create a realistic public humiliation scenario involving someone being shamed, ridiculed, or degraded in front of others, causing emotional distress or/and loss of dignity.
+    "public_humiliation": """Create a realistic public humiliation scenario involving someone being shamed, ridiculed, or degraded in front of others, causing emotional distress or/and loss of dignity.""",
 
-    "discrimination": """Create a realistic  discrimination scenario involving unfair or unequal treatment of someone based on personal characteristics such as race, gender, age, or identity.
+    "discrimination": """Create a realistic  discrimination scenario involving unfair or unequal treatment of someone based on personal characteristics such as race, gender, age, or identity.""",
 
-    "cyberbullying": """Create a realistic online interaction scenario related to cyberbullying and cyber harassment and online hate speech.
+    "cyberbullying": """Create a realistic online interaction scenario related to cyberbullying and cyber harassment and online hate speech.""",
 
-    "sexual_harassment": """Create a realistic scenario related to sexual harassment involving unwanted sexual advances, requests, or conduct that creates an uncomfortable or unsafe environment.
+    "sexual_harassment": """Create a realistic scenario related to sexual harassment involving unwanted sexual advances, requests, or conduct that creates an uncomfortable or unsafe environment.""",
 
-    "depression": """Create a realistic scenario related to mental health and depression involving persistent feelings of sadness, hopelessness, or loss of interest that negatively impact daily life and well-being.   
+    "depression": """Create a realistic scenario related to mental health and depression involving persistent feelings of sadness, hopelessness, or loss of interest that negatively impact daily life and well-being.""",   
 
-    "crime": """Create a realistic crime scenario involving an illegal act that violates the law and harms individuals, property, or society. 
+    "crime": """Create a realistic crime scenario involving an illegal act that violates the law and harms individuals, property, or society.""", 
 
-    "breaking_rules": """Create a realistic scenario where a person knowingly breakes established rules or guidelines that are not laws, hence without necessarily committing a crime, but still carry consequences. The situation should make it clear that the behavior is intentional and goes against agreed-upon rules.  
+    "breaking_rules": """Create a realistic scenario where a person knowingly breakes established rules or guidelines that are not laws, hence without necessarily committing a crime, but still carry consequences. The situation should make it clear that the behavior is intentional and goes against agreed-upon rules.""",  
     
-    "dependent_neglect": """Create a realistic scenario where someone shows signs of neglect or abuse toward a dependent person, such as a child, elderly adult, pets, or disabled individual. The situation should make it clear that the dependent is vulnerable and in need of protection or help.  
+    "dependent_neglect": """Create a realistic scenario where someone shows signs of neglect or abuse toward a dependent person, such as a child, elderly adult, pets, or disabled individual. The situation should make it clear that the dependent is vulnerable and in need of protection or help.""",  
 
-    "bullying": """Create a realistic scenario where someone witnesses repeated bullying behaviors happening face-to-face, such as verbal insults, physical aggression, social exclusion, or intimidation. The bullying should clearly take place in a physical environment with no online or digital components involved.
+    "bullying": """Create a realistic scenario where someone witnesses repeated bullying behaviors happening face-to-face, such as verbal insults, physical aggression, social exclusion, or intimidation. The bullying should clearly take place in a physical environment with no online or digital components involved.""",
 
-    "safety_hazard": """Create a realistic scenario where someone witnesses a potentially dangerous safety hazard that could cause harm or injury to themselves or others.  
+    "safety_hazard": """Create a realistic scenario where someone witnesses a potentially dangerous safety hazard that could cause harm or injury to themselves or others.""",  
 
-    "public_intoxication": """Create a realistic scenario where someone witnesses a person visibly intoxicated or under the influence of drugs causing a disturbance in a public space.   
+    "public_intoxication": """Create a realistic scenario where someone witnesses a person visibly intoxicated or under the influence of drugs causing a disturbance in a public space.""",   
 
-    "domestic_conflict": """Create a realistic scenario where a witness observes ongoing conflict or problematic behavior involving roommates or domestic cohabitants. The witness themselves is not personally affected but notices the distress or discomfort of the targeted individual.
+    "domestic_conflict": """Create a realistic scenario where a witness observes ongoing conflict or problematic behavior involving roommates or domestic cohabitants. The witness themselves is not personally affected but notices the distress or discomfort of the targeted individual.""",
 
-    "deceptive_business": """Create a realistic scenario where a witness observes a business or individual engaging in deceptive, illegal or misleading practices that negatively impact customers or clients. 
+    "deceptive_business": """Create a realistic scenario where a witness observes a business or individual engaging in deceptive, illegal or misleading practices that negatively impact customers or clients.""", 
 
-    "fake_news": """Create a realistic scenario where a witness observes someone spreading false or misleading information, rumors, or fake news that causes panic, fear, or confusion among a group of people. The scenario should depict the bystander's observation of the spread of misinformation and its impact on the targeted individuals or community.
+    "fake_news": """Create a realistic scenario where a witness observes someone spreading false or misleading information, rumors, or fake news that causes panic, fear, or confusion among a group of people. The scenario should depict the bystander's observation of the spread of misinformation and its impact on the targeted individuals or community.""",
 
-    "unauthorized_surveillance": """Create a realistic scenario where a witness observes someone engaging in invasion of privacy or unauthorized surveillance.
+    "unauthorized_surveillance": """Create a realistic scenario where a witness observes someone engaging in invasion of privacy or unauthorized surveillance.""",
 
-    "hoarding": """Create a realistic scenario where a witness observes one or more individuals hoarding or monopolizing essential resources during an emergency situation, such as natural disasters, public health crises, or supply shortages. The hoarding behavior negatively impacts other individuals or the community by limiting fair access to critical supplies.
+    "hoarding": """Create a realistic scenario where a witness observes one or more individuals hoarding or monopolizing essential resources during an emergency situation, such as natural disasters, public health crises, or supply shortages. The hoarding behavior negatively impacts other individuals or the community by limiting fair access to critical supplies.""",
 
-    "financial_fraud": """Create a realistic scenario where a witness observes someone attempting to deceive or defraud another individual or group through a financial scam.
+    "financial_fraud": """Create a realistic scenario where a witness observes someone attempting to deceive or defraud another individual or group through a financial scam.""",
 
-    "event_disruption": """Create a realistic scenario where a witness observes someone engaging in disruptive behavior during a public ceremony or event. This may include loud interruptions, disrespectful actions, inappropriate gestures, or behaviors that interfere with the event proceedings and negatively affect other attendees.
+    "event_disruption": """Create a realistic scenario where a witness observes someone engaging in disruptive behavior during a public ceremony or event. This may include loud interruptions, disrespectful actions, inappropriate gestures, or behaviors that interfere with the event proceedings and negatively affect other attendees."""
 }
 
 # Parameter ranges for scenario variation
 GROUP_SIZES = [1,2,3,4,5,6,7,8]
-AUTHORITY_PRESENT_OPTIONS = [present, absent]
+AUTHORITY_PRESENT_OPTIONS = [True, False]
 CLARITY_LEVELS = ['clear','unclear']
-BYSTANDER_REACTION_OPTIONS = ['seems worried', 'is ignoring']
+BYSTANDER_REACTION_OPTIONS = ['worried', 'ignoring']
 #RELATIONSHIP = ['know', 'don't know']
 
+# Priority combinations for priority mode: (scenario_type, group_size, clarity_level, authority_present)
+PRIORITY_COMBINATIONS = [
+    ("medical_emergency", 1, "clear", False),
+    ("medical_emergency", 5, "unclear", True),
+    ("workplace_harassment", 3, "clear", False),
+    ("public_humiliation", 2, "unclear", False),
+    ("discrimination", 4, "clear", True),
+]
 
 def get_authority_presence_text(authority_present: bool) -> str:
     """Get the formatted authority presence text for scenario templates"""
