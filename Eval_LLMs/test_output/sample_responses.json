@@ -1,0 +1,107 @@
+{
+  "mock-gpt-4": [
+    {
+      "scenario_id": "medical_emergency_2_High_present_001",
+      "probability_distribution": {
+        "A": 0.24786028028934065,
+        "B": 0.23807109233277132,
+        "C": 0.402502124026019,
+        "D": 0.11156650335186896
+      },
+      "intervention_score_expected": 2.630784028402221,
+      "dominant_response": "C"
+    },
+    {
+      "scenario_id": "medical_emergency_2_High_absent_002",
+      "probability_distribution": {
+        "A": 0.24251719178500908,
+        "B": 0.3820923595653981,
+        "C": 0.2514116010717331,
+        "D": 0.12397884757785982
+      },
+      "intervention_score_expected": 2.7730791284175207,
+      "dominant_response": "B"
+    },
+    {
+      "scenario_id": "medical_emergency_2_Medium_present_003",
+      "probability_distribution": {
+        "A": 0.2139999665313865,
+        "B": 0.09222037139068347,
+        "C": 0.45593198796336115,
+        "D": 0.23784767411456878
+      },
+      "intervention_score_expected": 2.4263727642133412,
+      "dominant_response": "C"
+    }
+  ],
+  "mock-claude-3": [
+    {
+      "scenario_id": "medical_emergency_2_High_present_001",
+      "probability_distribution": {
+        "A": 0.24307802510585066,
+        "B": 0.3051381381323015,
+        "C": 0.31531968068156185,
+        "D": 0.13646415608028598
+      },
+      "intervention_score_expected": 2.682517931840314,
+      "dominant_response": "C"
+    },
+    {
+      "scenario_id": "medical_emergency_2_High_absent_002",
+      "probability_distribution": {
+        "A": 0.2679517803690427,
+        "B": 0.4023278176405958,
+        "C": 0.19819712108263163,
+        "D": 0.13152328090772977
+      },
+      "intervention_score_expected": 2.73490097599478,
+      "dominant_response": "B"
+    },
+    {
+      "scenario_id": "medical_emergency_2_Medium_present_003",
+      "probability_distribution": {
+        "A": 0.2526807357643608,
+        "B": 0.1351503581009626,
+        "C": 0.3490466860808501,
+        "D": 0.26312222005382646
+      },
+      "intervention_score_expected": 2.366666666518414,
+      "dominant_response": "C"
+    }
+  ],
+  "mock-gemini-pro": [
+    {
+      "scenario_id": "medical_emergency_2_High_present_001",
+      "probability_distribution": {
+        "A": 0.27129858345156127,
+        "B": 0.2464272358879507,
+        "C": 0.3322405250268686,
+        "D": 0.15003365563361937
+      },
+      "intervention_score_expected": 2.5537964133512085,
+      "dominant_response": "C"
+    },
+    {
+      "scenario_id": "medical_emergency_2_High_absent_002",
+      "probability_distribution": {
+        "A": 0.21283211522278897,
+        "B": 0.36654279707829285,
+        "C": 0.23383827104934607,
+        "D": 0.1867868166495721
+      },
+      "intervention_score_expected": 2.754091749983143,
+      "dominant_response": "B"
+    },
+    {
+      "scenario_id": "medical_emergency_2_Medium_present_003",
+      "probability_distribution": {
+        "A": 0.20470021432454918,
+        "B": 0.14492928851019293,
+        "C": 0.37936920456015244,
+        "D": 0.2710012926051055
+      },
+      "intervention_score_expected": 2.464527567255989,
+      "dominant_response": "C"
+    }
+  ]
+}

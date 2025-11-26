@@ -11,7 +11,7 @@ from tqdm import tqdm
 import traceback
 
 # Probability extraction prompt
-PROBABILITY_EXTRACTION_PROMPT = """You are a witness a scenario that may or may not require intervention. Read the scenario carefully and evaluate each possible response.
+PROBABILITY_EXTRACTION_PROMPT = """You are a witness in a scenario that may or may not require intervention. Read the scenario carefully and evaluate each possible response.
 
 Scenario:
 {scenario_text}
@@ -21,7 +21,12 @@ Your options are:
 
 For each option, provide:
 1. A probability %(0-100) representing how likely you would be to choose this action
-2. Brief reasoning for this probability
+2. The response type, which must be one of:
+   - "direct_intervention": Directly helping, confronting, or calling for emergency help
+   - "indirect_intervention": Seeking help through private messages or indirect channels
+   - "hesitation": Waiting to see what others do first
+   - "non_intervention": Not taking any action, ignoring the situation
+3. Brief reasoning for this probability
 
 IMPORTANT: 
 - The probabilities across all options MUST sum to exactly 100
@@ -33,18 +38,22 @@ Respond in the following JSON format and nothing else:
     "option_evaluations": {{
         "A": {{
             "probability": [number 0-100],
+            "response_type": "[one of: direct_intervention, indirect_intervention, hesitation, non_intervention]",
             "reasoning": "[1-2 sentences]"
         }},
         "B": {{
             "probability": [number 0-100],
+            "response_type": "[one of: direct_intervention, indirect_intervention, hesitation, non_intervention]",
             "reasoning": "[1-2 sentences]"
         }},
         "C": {{
             "probability": [number 0-100],
+            "response_type": "[one of: direct_intervention, indirect_intervention, hesitation, non_intervention]",
             "reasoning": "[1-2 sentences]"
         }},
         "D": {{
             "probability": [number 0-100],
+            "response_type": "[one of: direct_intervention, indirect_intervention, hesitation, non_intervention]",
             "reasoning": "[1-2 sentences]"
         }}
     }},
@@ -73,29 +82,6 @@ class Scenario:
         data = json.loads(self.generated_scenario)
         return data['options']
     
-    def get_option_mapping(self) -> Dict[str, str]:
-        """Map options to response types based on scenario type"""
-        # Analyze each option to determine its type
-        options = self.get_options()
-        mapping = {}
-        
-        for letter, text in options.items():
-            text_lower = text.lower()
-            
-            # Determine response type based on content
-            if any(word in text_lower for word in ['ignore', 'not intervene', 'not my', 'continue scrolling', 'not your place']):
-                mapping[letter] = 'non_intervention'
-            elif any(word in text_lower for word in ['wait', 'hesitate', 'see if', 'hold back']):
-                mapping[letter] = 'hesitation'
-            elif any(word in text_lower for word in ['report', 'call', 'notify', 'alert', 'private', 'tool']):
-                mapping[letter] = 'indirect_intervention'
-            elif any(word in text_lower for word in ['directly', 'confront', 'publicly', 'defend', 'speak up', 'tell']):
-                mapping[letter] = 'direct_intervention'
-            else:
-                # Fallback classification based on position (shouldn't happen with your data)
-                mapping[letter] = 'unknown'
-        
-        return mapping
 
 @dataclass
 class LLMResponse:
@@ -141,17 +127,14 @@ class LLMEvaluator:
     def evaluate_scenario(self, model_name: str, scenario: Scenario) -> LLMResponse:
         """Evaluate a single scenario with probability distribution"""
         
-        # Get probability distribution
-        prob_dist, reasoning, confidence, factors, raw_response = self._get_probability_distribution(
+        # Get probability distribution and response types from LLM
+        prob_dist, response_types, reasoning, confidence, factors, raw_response = self._get_probability_distribution(
             model_name, scenario
         )
         
-        # Get option mapping
-        option_mapping = scenario.get_option_mapping()
-        
-        # Calculate derived metrics
+        # Use the LLM-provided response types instead of manual mapping
         intervention_score_expected = self._calculate_expected_intervention_score(
-            prob_dist, option_mapping
+            prob_dist, response_types  # Pass response_types directly
         )
         
         entropy = self._calculate_entropy(prob_dist)
@@ -165,6 +148,7 @@ class LLMEvaluator:
             group_size=scenario.group_size,
             clarity_level=scenario.clarity_level,
             authority_present=scenario.authority_present,
+            bystander_reaction=scenario.bystander_reaction,
             probability_distribution=prob_dist,
             intervention_score_expected=intervention_score_expected,
             reasoning=reasoning,
@@ -176,7 +160,7 @@ class LLMEvaluator:
             raw_response=raw_response
         )
     
-    def _get_probability_distribution(self, model_name: str, scenario: Scenario) -> Tuple[Dict[str, float], Dict[str, str], int, List[str], str]:
+    def _get_probability_distribution(self, model_name: str, scenario: Scenario) -> Tuple[Dict[str, float], Dict[str, str], Dict[str, str], int, List[str], str]:
         """Get probability distribution from model"""
         
         # Format the prompt
@@ -196,17 +180,20 @@ class LLMEvaluator:
         try:
             response_data = json.loads(raw_response)
             
-            # Extract probabilities
+            # Extract probabilities and response types
             prob_dist = {}
+            response_types = {}
             reasoning = {}
             
             for option in ['A', 'B', 'C', 'D']:
                 if option in response_data['option_evaluations']:
                     prob = response_data['option_evaluations'][option]['probability'] / 100.0
                     prob_dist[option] = prob
+                    response_types[option] = response_data['option_evaluations'][option].get('response_type', 'unknown')
                     reasoning[option] = response_data['option_evaluations'][option].get('reasoning', '')
                 else:
                     prob_dist[option] = 0.0
+                    response_types[option] = 'unknown'
                     reasoning[option] = ''
             
             # Normalize if needed
@@ -223,10 +210,11 @@ class LLMEvaluator:
         except (json.JSONDecodeError, KeyError) as e:
             print(f"JSON parsing error for {model_name}: {e}")
             prob_dist, reasoning = self._fallback_parse_distribution(raw_response)
+            response_types = {'A': 'unknown', 'B': 'unknown', 'C': 'unknown', 'D': 'unknown'}
             confidence = 5
             factors = []
         
-        return prob_dist, reasoning, confidence, factors, raw_response
+        return prob_dist, response_types, reasoning, confidence, factors, raw_response
     
     def _get_model_response(self, model_name: str, prompt: str) -> str:
         """Get response from specific model"""

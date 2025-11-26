@@ -22,6 +22,7 @@ def load_scenarios(scenarios_file: str) -> list[Scenario]:
             group_size=s['group_size'],
             clarity_level=s['clarity_level'],
             authority_present=s['authority_present'],
+            bystander_reaction=s['bystander_reaction'],
             generated_scenario=s['generated_scenario']
         )
         scenarios.append(scenario)
@@ -135,7 +136,11 @@ def main():
         print(f"  - WIS: {primary.get('WIS_global', 'N/A'):.3f}" if primary.get('WIS_global') else "  - WIS: N/A")
         print(f"  - DRI: {primary.get('DRI', 'N/A'):.3f}" if primary.get('DRI') else "  - DRI: N/A")
         print(f"  - Bystander Effect: {'Present ✓' if statistical.get('bystander_effect_present') else 'Not detected ✗'}")
-        print(f"  - Intervention Tendency: {behavioral.get('intervention_tendency', 0):.1%}")
-
+        intervention_tendency = behavioral.get('intervention_tendency')
+        if intervention_tendency is not None:
+            print(f"  - Intervention Tendency: {intervention_tendency:.1%}")
+        else:
+            print(f"  - Intervention Tendency: N/A")
+            
 if __name__ == "__main__":
     main()

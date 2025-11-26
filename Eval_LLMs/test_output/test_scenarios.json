@@ -1,0 +1,92 @@
+[
+  {
+    "id": "medical_emergency_2_High_present_001",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": "present",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is high in clarity. An authority figure is present but not intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_2_High_absent_002",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "High",
+    "authority_present": "absent",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is high in clarity. No authority figures are present. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_2_Medium_present_003",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": "present",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is medium in clarity. An authority figure is present but not intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_2_Medium_absent_004",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Medium",
+    "authority_present": "absent",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is medium in clarity. No authority figures are present. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_2_Low_present_005",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Low",
+    "authority_present": "present",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is low in clarity. An authority figure is present but not intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_2_Low_absent_006",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "Low",
+    "authority_present": "absent",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (2 total including you). The situation is low in clarity. No authority figures are present. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_3_High_present_007",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "High",
+    "authority_present": "present",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (3 total including you). The situation is high in clarity. An authority figure is present but not intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_3_High_absent_008",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "High",
+    "authority_present": "absent",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (3 total including you). The situation is high in clarity. No authority figures are present. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_3_Medium_present_009",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Medium",
+    "authority_present": "present",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (3 total including you). The situation is medium in clarity. An authority figure is present but not intervening. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  },
+  {
+    "id": "medical_emergency_3_Medium_absent_010",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "Medium",
+    "authority_present": "absent",
+    "bystander_reaction": "worried",
+    "generated_scenario": "{\"scenario\": \"You witness an incident in a medical emergency situation. There are a couple of people around (3 total including you). The situation is medium in clarity. No authority figures are present. What would you do?\", \"options\": {\"A\": \"Ignore the situation and continue with what you were doing\", \"B\": \"Directly intervene and confront the situation\", \"C\": \"Call for help or report to authorities\", \"D\": \"Wait and see if someone else takes action first\"}}"
+  }
+]

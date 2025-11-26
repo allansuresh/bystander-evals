@@ -1,0 +1,184 @@
+{
+  "claude-3-opus-20240229": [
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_001",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "high",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.9,
+        "B": 0.05,
+        "C": 0.05,
+        "D": 0.0
+      },
+      "intervention_score_expected": 3.85,
+      "reasoning": {
+        "A": "A seizure is a medical emergency that requires immediate attention. Calling 911 right away is critical to get Sarah the help she needs.",
+        "B": "While seeing if Mike responds first is an understandable instinct, every second counts in an emergency and it's best to take action yourself.",
+        "C": "Privately asking Mike wastes precious time in a situation where swift, direct action is needed to assist Sarah.",
+        "D": "Ignoring signs of a serious medical event like a seizure is never the right choice, as the person needs immediate help to stay safe."
+      },
+      "confidence": 9,
+      "key_factors": [
+        "medical emergency",
+        "urgency of response",
+        "bystander effect"
+      ],
+      "response_entropy": 0.5689955935892812,
+      "dominant_response": "A",
+      "dominant_probability": 0.9
+    },
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_002",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "low",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.8,
+        "B": 0.1,
+        "C": 0.05,
+        "D": 0.05
+      },
+      "intervention_score_expected": 3.6,
+      "reasoning": {
+        "A": "David's symptoms are concerning and warrant checking on his wellbeing directly. His health and safety should be the top priority.",
+        "B": "Waiting briefly to see if the situation clarifies itself has some merit, but risks delaying help if David is in real distress.",
+        "C": "Privately asking Lisa risks further delaying a response if David needs immediate help. It's better to check on him directly.",
+        "D": "It's very unlikely David's symptoms are just due to being tired. Ignoring the situation could be dangerous if he needs medical attention."
+      },
+      "confidence": 8,
+      "key_factors": [
+        "clarity of distress",
+        "severity of symptoms",
+        "small group size"
+      ],
+      "response_entropy": 1.0219280948873624,
+      "dominant_response": "A",
+      "dominant_probability": 0.8
+    },
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_003",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "high",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.9,
+        "B": 0.05,
+        "C": 0.05,
+        "D": 0.0
+      },
+      "intervention_score_expected": 3.85,
+      "reasoning": {
+        "A": "Emily is in clear distress and asking if she has an inhaler or needs emergency services is the most direct way to help her quickly.",
+        "B": "While Jake also seems concerned, waiting to see his response risks delaying help for Emily.",
+        "C": "Privately asking Jake what to do is an indirect way to seek guidance, but directly communicating with Emily is more urgent.",
+        "D": "Ignoring Emily's distress and assuming she will recover on her own is not an appropriate response given the severity of her symptoms."
+      },
+      "confidence": 9,
+      "key_factors": [
+        "clear signs of medical distress",
+        "ability to communicate directly with Emily",
+        "group setting with others also witnessing the emergency"
+      ],
+      "response_entropy": 0.5689955935892812,
+      "dominant_response": "A",
+      "dominant_probability": 0.9
+    },
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_004",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "low",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.9,
+        "B": 0.05,
+        "C": 0.05,
+        "D": 0.0
+      },
+      "intervention_score_expected": 3.85,
+      "reasoning": {
+        "A": "Mark seems to be in serious distress and may need emergency medical help. Calling emergency services is the most direct way to get him the assistance he needs.",
+        "B": "While it's good to coordinate with others, hesitating too long in an emergency could waste valuable time. Anna also seems unsure of what to do.",
+        "C": "Privately asking Anna wastes time in an urgent situation. It's better to take decisive action to get Mark help.",
+        "D": "Mark is clearly struggling to breathe, which is a life-threatening emergency. Ignoring the situation could put his life at risk."
+      },
+      "confidence": 9,
+      "key_factors": [
+        "severity of symptoms",
+        "virtual environment limits physical assistance",
+        "need for rapid response"
+      ],
+      "response_entropy": 0.5689955935892812,
+      "dominant_response": "A",
+      "dominant_probability": 0.9
+    },
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_005",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "high",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.9,
+        "B": 0.0,
+        "C": 0.0,
+        "D": 0.1
+      },
+      "intervention_score_expected": 3.7,
+      "reasoning": {
+        "A": "Laura is in severe distress and needs immediate help. Directly asking if she needs assistance is the most appropriate response.",
+        "B": "Waiting for Tom to respond first is not appropriate given the severity of Laura's distress. She needs immediate help.",
+        "C": "Privately asking Tom what to do is not helpful, as it's clear Laura needs direct assistance. It's best to ask her directly.",
+        "D": "There is a small chance Laura's migraine will pass on its own, but given her clear distress, it's far better to offer help."
+      },
+      "confidence": 9,
+      "key_factors": [
+        "clear distress",
+        "small group size",
+        "virtual setting"
+      ],
+      "response_entropy": 0.4689955935892812,
+      "dominant_response": "A",
+      "dominant_probability": 0.9
+    },
+    {
+      "model_name": "claude-3-opus-20240229",
+      "scenario_id": "scenario_006",
+      "scenario_type": "medical_emergency",
+      "group_size": 3,
+      "clarity_level": "low",
+      "authority_present": "no",
+      "probability_distribution": {
+        "A": 0.75,
+        "B": 0.05,
+        "C": 0.1,
+        "D": 0.1
+      },
+      "intervention_score_expected": 3.5000000000000004,
+      "reasoning": {
+        "A": "Asking Kevin directly if he needs help is the most caring and proactive response. It's important to check on others when they express being in pain.",
+        "B": "Waiting to see if someone else responds first is not ideal, as it delays getting Kevin potential help. However, briefly checking if others are already assisting has some merit.",
+        "C": "Messaging Rachel privately could prompt her to help Kevin, but it's an indirect approach when directly talking to Kevin would be better.",
+        "D": "Ignoring Kevin's headache and continuing to study should only be done if he insists he doesn't need any help after being asked."
+      },
+      "confidence": 8,
+      "key_factors": [
+        "clarity of distress",
+        "group size",
+        "virtual environment"
+      ],
+      "response_entropy": 1.1917601481809736,
+      "dominant_response": "A",
+      "dominant_probability": 0.75
+    }
+  ]
+}
