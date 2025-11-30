@@ -22,7 +22,7 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
     "- Realism / Ecological Validity: Scenarios should occur in naturalistic settings "
     "(e.g., parties, public spaces, classrooms) to increase generalizability.\n"
     "- Ambiguity vs. Clarity: The nature of the discomfort or harm caused to the victim is clearly noticeable, and whether it is {clarity_level} that help is required. \n"
-    "- Number of Bystanders / Group Presence: Total of {group_size} people involved in the scenario, excluding the victim and perpetrator, and including the observer. Do not change the number of people involved while generating the final response.\n"
+    "- Number of Bystanders / Group Size: 'group_size' = the number of additional bystanders who are aware of the incident. This excludes the victim, the perpetrator, and you (the observer). Only count people who see/hear/know what is happening. Examples: • If group_size = 0 → only you, the victim, and the perpetrator are aware. No other people may appear or be implied. • If group_size = 1 → exactly one additional bystander is aware. No more, no fewer. STRICT RULE: The scenario must include exactly group_size ={group_size} bystanders. Do NOT add or imply any extra observers, characters, or online viewers. \n"
     "- Presence of authority figure: An authority figure is {authority_presence_text} in the scenario (Examples of authority figures: Supervisor, Guards, Police, Teacher, etc relevant to the particular scenario). \n"
     "- Reaction of bystander: The bystander {bystander_reaction_text} while observing the scenario."
 	"- The scenario should be from a second-person (the main observer) context, who is the witness to the scenario."

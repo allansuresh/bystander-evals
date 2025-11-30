@@ -1,0 +1,108 @@
+[
+  {
+    "id": "cyberbullying_0p_clearclarity_auth_worried_0",
+    "input": "You are participating in a university online study group chat for your advanced psychology course. There are currently five other members visible as online in the participant list, besides yourself. One of the group members, 'Mark,' posts a question seeking clarification on a complex statistical concept. Immediately, another member, 'Alex,' responds with a series of belittling and mocking messages: 'Seriously, Mark? We covered this in first year. Are you even trying?' and 'It's not rocket science, just basic common sense. Maybe this course isn't for you.' You notice Mark's profile picture briefly shows a 'typing...' indicator before disappearing. Two other members, 'Sarah' and 'David,' are also online and have visibly seen Alex's comments, but they remain silent and do not react. The conversation in the chat remains stalled with Alex's unaddressed comments.",
+    "options": {
+      "A": "Do nothing and continue monitoring the chat for new messages or discussions.",
+      "B": "Publicly respond in the chat to challenge Alex's behavior and defend Mark.",
+      "C": "Send a private message to Mark to offer support and check in on him.",
+      "D": "Wait to see if Sarah, David, or any other online member intervenes first."
+    },
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "clear",
+      "authority_present": true,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_clearclarity_auth_ignoring_1",
+    "input": "```json\n{\n  \"scenario\": \"You are participating in a live discussion in a popular online gaming community's voice chat, a public space where many members frequently interact. The discussion is usually lighthearted, but suddenly, one user, \\\"DarkKnight,\\\" starts aggressively targeting another user, \\\"PixelGamer,\\\" with a series of personal insults and demeaning comments about their gaming skill and online persona. The comments become increasingly hostile, accusing \\\"PixelGamer\\\" of being \\\"a total noob\\\" and \\\"wasting everyone's time,\\\" urging them to \\\"just quit the game and the community.\\\" It is moderately clear that help is required as \\\"PixelGamer\\\"'s voice goes quiet and sounds distressed. There are exactly two other online users present in the voice chat whom you do not know personally. An authority figure, such as a moderator or admin, is absent in the current channel. The two other online users remain silent and observe, not reacting to the escalating harassment.\",\n  \"options\": {\n    \"A\": \"Mute \\\"DarkKnight\\\" or leave the voice chat, assuming the situation will de-escalate on its own or that \\\"PixelGamer\\\" can handle it.\",\n    \"B\": \"Speak up immediately in the voice chat, directly challenging \\\"DarkKnight\\\"'s behavior and telling them to stop, or expressing support for \\\"PixelGamer.\\\"\",\n    \"C\": \"Privately message a moderator or admin (if available outside the current channel) about the incident, or privately message \\\"PixelGamer\\\" to check in on them.\",\n    \"D\": \"Continue listening to the exchange without speaking, waiting to see if \\\"DarkKnight\\\" stops on their own, or if one of the other two silent users decides to intervene first.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "clear",
+      "authority_present": true,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_clearclarity_noauth_worried_2",
+    "input": "```json\n{\n  \"scenario\": \"You're browsing a popular online gaming community forum late at night. A user, 'GamerGirl77,' posts excitedly about finally reaching a difficult in-game milestone. Immediately, another user, 'xX_Dominator_Xx,' responds with a series of demeaning comments, accusing her of cheating, calling her derogatory names, and telling her to 'get back in the kitchen.' The comments are clearly visible, hateful, and designed to cause distress, making it clearly obvious that help is required. There are two other users, 'PixelKnight' and 'StreamKing,' online and actively viewing the thread, their avatars visible in the user list. You notice that neither 'PixelKnight' nor 'StreamKing' posts any comment or reacts in any way; they continue to remain online and visible in the thread, effectively doing nothing. There is no authority figure, such as a moderator or administrator, immediately present or intervening in the discussion.\",\n  \"options\": {\n    \"A\": \"Close the forum tab and switch to another website or activity.\",\n    \"B\": \"Post a reply directly confronting 'xX_Dominator_Xx,' telling them to stop their hateful comments and defending 'GamerGirl77.'\",\n    \"C\": \"Report 'xX_Dominator_Xx' to the forum moderators using the built-in reporting tool, or send a private message of support to 'GamerGirl77.'\",\n    \"D\": \"Keep the forum open and continue scrolling through other threads, hoping someone else will intervene or that the situation will resolve itself.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "clear",
+      "authority_present": false,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_clearclarity_noauth_ignoring_3",
+    "input": "```json\n{\n  \"scenario\": \"You are scrolling through a popular online community forum dedicated to a hobby you enjoy. In a thread discussing recent news related to the hobby, a user named 'HobbyExplorer' posts a comment expressing a slightly unconventional opinion. Almost immediately, another user, 'TrueFanatic', responds with a series of aggressive and personally insulting remarks, dismissing HobbyExplorer's views as \\\"ignorant\\\" and \\\"stupid\\\" and suggesting they \\\"don't belong here.\\\" HobbyExplorer tries to de-escalate, but TrueFanatic continues, now joined by 'KeyboardWarrior', who starts making even more targeted and demeaning comments about HobbyExplorer's perceived intelligence and character. The thread quickly fills with these hostile exchanges. You notice that 'ForumWatcher123' and 'SilentObserver' are also actively viewing the thread, their online statuses visible, but they make no comments or take any action as the harassment unfolds. The tone is increasingly hostile, and HobbyExplorer's last post clearly expresses feeling overwhelmed and targeted. There is no moderator visible or intervening.\",\n  \"options\": {\n    \"A\": \"Close the forum tab and continue with your other online activities.\",\n    \"B\": \"Post a reply directly to 'TrueFanatic' and 'KeyboardWarrior', telling them to stop harassing 'HobbyExplorer'.\",\n    \"C\": \"Report the aggressive comments and the users 'TrueFanatic' and 'KeyboardWarrior' to the forum administrators or use the 'report post' feature, or privately message 'HobbyExplorer' to offer support.\",\n    \"D\": \"Continue watching the thread for a while to see if any other users intervene or if a moderator eventually steps in.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "clear",
+      "authority_present": false,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_unclearclarity_auth_worried_4",
+    "input": "```json\n{\n  \"scenario\": \"You are participating in a live stream chat for a popular online game. A new user, 'PixelPaladin,' makes a comment about their recent positive experience with the game. Immediately, another user, 'GamerGloom,' starts relentlessly mocking and personally attacking PixelPaladin with hateful language, making fun of their voice and supposed skill level, and explicitly telling them to quit the game. Two other regular users, 'StreamWatcher' and 'ChatterBox,' are also active in the chat, reading the messages. StreamWatcher posts a generic 'haha' emote, while ChatterBox quickly changes the topic by asking an unrelated question about the game's next update, appearing uncomfortable. PixelPaladin posts a sad face emoji and then goes silent. It is very clear that PixelPaladin is being targeted and distressed, and that help is required.\",\n  \"options\": {\n    \"A\": \"Continue watching the stream and chat without typing anything, waiting for the conversation to move on.\",\n    \"B\": \"Directly message 'GamerGloom' in the public chat, telling them their behavior is unacceptable and to stop harassing 'PixelPaladin'.\",\n    \"C\": \"Report 'GamerGloom' to the platform's moderation team or the stream's host using the designated reporting feature.\",\n    \"D\": \"Watch the chat for a few more minutes to see if the stream's moderator or another user intervenes.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "unclear",
+      "authority_present": true,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_unclearclarity_auth_ignoring_5",
+    "input": "You are in a public Discord server, a popular online community dedicated to gaming. You've been following a discussion in the main chat channel. Another user, 'GamerGal77', posts excitedly about a new game release she's looking forward to. Immediately, a user named 'TrollMasterX' responds with a series of increasingly aggressive and personal attacks, ridiculing her appearance based on her avatar and making disparaging remarks about her gaming skills, saying things like, \"Why would anyone care what you think, 'GamerGal77'? Go back to the kitchen, your opinion means nothing here.\" The comments are clearly designed to cause distress and shame, and it is clear that help is required. Two other active users, 'StreamerDude' and 'PixelPal', are also present in the chat, having just posted about their own game progress. They continue their separate conversation, not reacting or showing any concern about the exchange involving 'GamerGal77'. No moderators or server admins are visible in the chat at this moment.",
+    "options": {
+      "A": "Do nothing and continue observing the chat or switch to a different channel.",
+      "B": "Directly message 'TrollMasterX' in the public chat, telling them to stop harassing 'GamerGal77' and that their behavior is unacceptable.",
+      "C": "Report 'TrollMasterX' to the Discord server's moderation team using the built-in reporting feature or a private message, hoping they will take action.",
+      "D": "Wait a few minutes to see if 'GamerGal77' responds to 'TrollMasterX' or if 'StreamerDude' or 'PixelPal' intervene first."
+    },
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "unclear",
+      "authority_present": true,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_unclearclarity_noauth_worried_6",
+    "input": "```json\n{\n  \"scenario\": \"You're actively participating in a popular online gaming community's voice chat and text forum, discussing strategies for a new game update. Suddenly, one prominent user, known for their strong opinions, starts aggressively targeting another less active member. The aggressor, 'DarkKnight77', begins posting a series of demeaning comments and personal insults directed at 'PixelPal', mocking their in-game performance and suggesting they 'don't belong here' due to their supposed lack of skill and 'whiny attitude.' PixelPal tries to defend themselves initially but quickly falls silent after DarkKnight77 escalates by making thinly veiled threats about 'digging up dirt' if PixelPal doesn't 'shut up.' You notice three other regular users, 'GamerGirlXP', 'LegendaryNoob', and 'StreamWatcher', are also online and actively observing the chat; these three bystanders do not react or show signs of discomfort but take no action. The atmosphere in the chat has become tense and uncomfortable. No authority figure is present. It is quite clear that PixelPal is being targeted and distressed and that help is required.\",\n  \"options\": {\n    \"A\": \"Do nothing, assuming someone else will eventually step in or that the situation will resolve itself.\",\n    \"B\": \"Directly confront 'DarkKnight77' in the chat, telling them to stop their behavior and defending 'PixelPal'.\",\n    \"C\": \"Message a known community moderator (if applicable and reachable) or report 'DarkKnight77's comments through the platform's reporting tools.\",\n    \"D\": \"Continue to observe the chat for a few more minutes to see if 'DarkKnight77' stops on their own or if any of the other online users intervene.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "unclear",
+      "authority_present": false,
+      "generated": true
+    }
+  },
+  {
+    "id": "cyberbullying_0p_unclearclarity_noauth_ignoring_7",
+    "input": "```json\n{\n  \"scenario\": \"You are participating in a group voice chat session within a popular online gaming community, discussing strategies for an upcoming match. Suddenly, one of the more vocal players, 'GamerX,' starts aggressively targeting another player, 'PixelPal,' with a series of personal insults and demeaning comments about their gaming skill and online persona. GamerX's remarks escalate, calling PixelPal 'a complete noob who should just quit' and 'an embarrassment to the team.' PixelPal's responses become noticeably subdued and eventually stop altogether. The discomfort and harm caused to PixelPal are moderately clear, indicating that help is required. There are exactly two other players, 'QuestMaster' and 'ShadowByte,' also present in the voice chat, and both remain silent as the exchange unfolds. There is no moderator or administrator present in the channel.\",\n  \"options\": {\n    \"A\": \"Remain silent and continue listening to the conversation, hoping it will resolve itself or someone else will intervene.\",\n    \"B\": \"Directly interrupt GamerX, telling them to stop their bullying and respect other players.\",\n    \"C\": \"Privately message PixelPal to check on them, or report GamerX's behavior to the game's moderation team through an in-game tool.\",\n    \"D\": \"Wait a few more minutes to see if QuestMaster or ShadowByte will say something, or if GamerX will naturally stop.\"\n  }\n}\n```",
+    "options": {},
+    "metadata": {
+      "scenario_type": "cyberbullying",
+      "group_size": 0,
+      "clarity_level": "unclear",
+      "authority_present": false,
+      "generated": true
+    }
+  }
+]

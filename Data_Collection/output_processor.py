@@ -15,6 +15,33 @@ class OutputProcessor:
         print(f"📁 Ensured directories exist: {self.SCENARIOS_DIR} and {self.BATCHES_DIR}")
     
     @staticmethod
+    def _get_next_available_filename(base_path: str, base_name: str, extension: str = ".json") -> str:
+        """
+        Get the next available filename by appending a number if file exists.
+        
+        Args:
+            base_path: Directory path
+            base_name: Base filename without extension
+            extension: File extension (default: ".json")
+        
+        Returns:
+            Full path to next available filename (e.g., "path/to/file_1.json")
+        """
+        # Try the base filename first
+        filename = os.path.join(base_path, f"{base_name}{extension}")
+        
+        if not os.path.exists(filename):
+            return filename
+        
+        # If base filename exists, try numbered versions
+        counter = 1
+        while True:
+            filename = os.path.join(base_path, f"{base_name}_{counter}{extension}")
+            if not os.path.exists(filename):
+                return filename
+            counter += 1
+    
+    @staticmethod
     def save_batch_results(
         batch_results: List[Dict[str, Any]], 
         batch_num: int
@@ -31,9 +58,13 @@ class OutputProcessor:
     
     @staticmethod
     def save_combined_results(all_results: List[Dict[str, Any]]) -> str:
-        """Save all combined results"""
-        # Use the class-level SCENARIOS_DIR
-        filename = os.path.join(OutputProcessor.SCENARIOS_DIR, "bystander_scenarios_all_batches.json")
+        """Save all combined results with automatic version numbering"""
+        # Get next available filename to avoid overwriting
+        filename = OutputProcessor._get_next_available_filename(
+            OutputProcessor.SCENARIOS_DIR,
+            "bystander_scenarios_all_batches",
+            ".json"
+        )
         
         with open(filename, "w", encoding='utf-8') as f:
             json.dump(all_results, f, indent=2, ensure_ascii=False)
@@ -76,9 +107,12 @@ class OutputProcessor:
                 "metadata": metadata
             })
 
-        # Save for AISI Inspect
-        # Use the class-level SCENARIOS_DIR
-        filename = os.path.join(OutputProcessor.SCENARIOS_DIR, "bystander_scenarios_inspect.json")
+        # Save for AISI Inspect with automatic version numbering
+        filename = OutputProcessor._get_next_available_filename(
+            OutputProcessor.SCENARIOS_DIR,
+            "bystander_scenarios_inspect",
+            ".json"
+        )
         with open(filename, "w", encoding='utf-8') as f:
             json.dump(scenarios_for_inspect, f, indent=2, ensure_ascii=False)
 
