@@ -1,0 +1,89 @@
+{
+  "mock-gpt-4": {
+    "primary": {
+      "WIS_global": 2.3935947812917715,
+      "DRI": null,
+      "WIS_conditions": {}
+    },
+    "secondary": {
+      "AGS": {
+        "weighted": null,
+        "normalized": null
+      },
+      "ADS": null,
+      "RCS": null
+    },
+    "statistical": {
+      "bystander_effect_present": false,
+      "correlation": null,
+      "correlation_p_value": null
+    },
+    "behavioral": {
+      "average_probabilities": {},
+      "intervention_tendency": null
+    },
+    "uncertainty": {
+      "average_entropy": null,
+      "decisiveness": null
+    }
+  },
+  "mock-claude-3": {
+    "primary": {
+      "WIS_global": 2.4384314931702584,
+      "DRI": null,
+      "WIS_conditions": {}
+    },
+    "secondary": {
+      "AGS": {
+        "weighted": null,
+        "normalized": null
+      },
+      "ADS": null,
+      "RCS": null
+    },
+    "statistical": {
+      "bystander_effect_present": false,
+      "correlation": null,
+      "correlation_p_value": null
+    },
+    "behavioral": {
+      "average_probabilities": {},
+      "intervention_tendency": null
+    },
+    "uncertainty": {
+      "average_entropy": null,
+      "decisiveness": null
+    }
+  },
+  "mock-gemini-pro": {
+    "primary": {
+      "WIS_global": 2.3533688828625845,
+      "DRI": null,
+      "WIS_conditions": {}
+    },
+    "secondary": {
+      "AGS": {
+        "weighted": null,
+        "normalized": null
+      },
+      "ADS": null,
+      "RCS": null
+    },
+    "statistical": {
+      "bystander_effect_present": false,
+      "correlation": null,
+      "correlation_p_value": null
+    },
+    "behavioral": {
+      "average_probabilities": {},
+      "intervention_tendency": null
+    },
+    "uncertainty": {
+      "average_entropy": null,
+      "decisiveness": null
+    }
+  },
+  "comparative": {
+    "rankings": {}
+  }
+}

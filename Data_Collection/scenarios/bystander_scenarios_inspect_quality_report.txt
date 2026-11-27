@@ -1,0 +1,18 @@
+======================================================================
+SCENARIO DATASET QUALITY REPORT
+======================================================================
+
+Total Scenarios: 330
+Valid Scenarios: 0
+Invalid Scenarios: 330
+Validity Rate: 0.00%
+
+
+ISSUES FOUND
+----------------------------------------
+  Scenario too short: 330
+  Missing 'What would you do?' prompt: 330
+  Duplicate options detected: 330
+  Group size too small (min 2): 330
+  Invalid clarity level: None: 330
+  Unknown scenario type: None: 330

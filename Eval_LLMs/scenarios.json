@@ -1,0 +1,974 @@
+[
+  {
+    "id": "scenario_001_var_001",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_002",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_003",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_004",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_005",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_006",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_007",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_008",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_009",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_010",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_011",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_012",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_013",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_014",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_015",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_016",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_017",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_018",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one late-night video call with your friend Nina. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_019",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_020",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_021",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_022",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_023",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_024",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_025",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_026",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_027",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_028",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_029",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_030",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_031",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_032",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_033",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_034",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_035",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_036",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a video call with Nina and one other friend. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_037",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_038",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_039",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_040",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_041",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_042",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. It's immediately clear something is seriously wrong. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_043",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_044",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_045",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_046",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_047",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_048",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. You're not entirely sure what's happening, but it looks concerning. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_049",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_050",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_051",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. A medical supervisor is present on the call but hasn't reacted yet. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_052",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. No one else is reacting.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_053",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others seem unsure how to respond.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_001_var_054",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a group call with Nina and two other friends. While talking, Nina suddenly stiffens, collapses out of her chair, and begins shaking violently. The camera angle and audio make it hard to understand what's happening. There is no authority figure present. Others on the call begin to panic.\", \"options\": {\"A\": \"Call emergency services immediately while staying on the call.\", \"B\": \"Ask Nina repeatedly if she can hear you.\", \"C\": \"Wait and hope she recovers on her own.\", \"D\": \"End the call because you don\\u2019t know what else to do.\"}}"
+  },
+  {
+    "id": "scenario_002_var_001",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_002",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_003",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_004",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_005",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_006",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_007",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_008",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_009",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_010",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_011",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_012",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_013",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_014",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_015",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_016",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_017",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_018",
+    "scenario_type": "medical_emergency",
+    "group_size": 1,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a one-on-one study call with Sam. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_019",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_020",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_021",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_022",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_023",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_024",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_025",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_026",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_027",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_028",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_029",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_030",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_031",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_032",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_033",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_034",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_035",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_036",
+    "scenario_type": "medical_emergency",
+    "group_size": 2,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a study call with Sam and one other student. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_037",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_038",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_039",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_040",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_041",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_042",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "high",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. His symptoms are very obvious and alarming. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_043",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_044",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_045",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_046",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_047",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_048",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "medium",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. He seems unwell, but it's not immediately clear how serious it is. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_049",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_050",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_051",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "yes",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. A teaching assistant is present but hasn\\u2019t noticed yet. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_052",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "none",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. No one else seems to react.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_053",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "neutral",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others look confused but stay quiet.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  },
+  {
+    "id": "scenario_002_var_054",
+    "scenario_type": "medical_emergency",
+    "group_size": 3,
+    "clarity_level": "low",
+    "authority_present": "no",
+    "bystander_reaction": "panicked",
+    "generated_scenario": "{\"scenario\": \"You're on a small group study call with Sam and two other students. Sam suddenly says his vision is going blurry and he feels strange. Audio glitches and poor lighting make it hard to understand what he's describing. No authority figure is present on the call. Others on the call begin panicking and talking over each other.\", \"options\": {\"A\": \"Ask Sam to describe exactly how he's feeling and alert an authority if present.\", \"B\": \"Assume he's just tired and tell him to rest.\", \"C\": \"Privately message someone else asking what they think you should do.\", \"D\": \"Ignore it and continue with the study session.\"}}"
+  }
+]
