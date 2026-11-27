@@ -8,6 +8,8 @@ import time
 import json
 from typing import List, Dict, Any
 
+from output_processor import strip_code_fences
+
 try:
     from google import genai
     GEMINI_AVAILABLE = True
@@ -61,6 +63,7 @@ class PipelineRunnerGemini:
                 
                 # Extract generated text
                 generated_text = response.text if hasattr(response, 'text') else str(response)
+                generated_text = strip_code_fences(generated_text)
                 
                 # Create result in the same format as distilabel output
                 result = {
@@ -69,6 +72,7 @@ class PipelineRunnerGemini:
                     "group_size": scenario.get("group_size"),
                     "clarity_level": scenario.get("clarity_level"),
                     "authority_present": scenario.get("authority_present"),
+                    "bystander_reaction": scenario.get("bystander_reaction"),
                     "generated_scenario": generated_text
                 }
                 

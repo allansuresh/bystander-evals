@@ -3,6 +3,24 @@ import json
 from typing import List, Dict, Any
 from option_shuffler import shuffle_options_and_create_mapping
 
+
+def strip_code_fences(text: str) -> str:
+    """Remove a surrounding markdown code fence (```json ... ``` or ``` ... ```) if present."""
+    stripped = text.strip()
+    if not stripped.startswith("```"):
+        return stripped
+    # Drop the opening fence line (``` or ```json)
+    newline = stripped.find("\n")
+    if newline != -1:
+        stripped = stripped[newline + 1:]
+    else:  # single-line reply like ```json{...}```
+        stripped = stripped[3:].lstrip("abcdefghijklmnopqrstuvwxyz")
+    # Drop the closing fence
+    if stripped.rstrip().endswith("```"):
+        stripped = stripped.rstrip()[:-3]
+    return stripped.strip()
+
+
 class OutputProcessor:
     """Handles saving results and format conversion"""
 
@@ -84,7 +102,7 @@ class OutputProcessor:
             
             # Parse the generated scenario if it's JSON
             try:
-                parsed_scenario = json.loads(scenario_text)
+                parsed_scenario = json.loads(strip_code_fences(scenario_text))
                 scenario_text_content = parsed_scenario.get("scenario", scenario_text)
                 options_content = parsed_scenario.get("options", {})
             except json.JSONDecodeError:
@@ -101,6 +119,7 @@ class OutputProcessor:
                 "group_size": record.get("group_size"),
                 "clarity_level": record.get("clarity_level"),
                 "authority_present": record.get("authority_present"),
+                "bystander_reaction": record.get("bystander_reaction"),
                 "generated": True,
                 "option_mapping": option_mapping  # Store the mapping for reference
             }
