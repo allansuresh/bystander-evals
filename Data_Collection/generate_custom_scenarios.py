@@ -25,9 +25,7 @@ from scenario_templates import (
     CLARITY_LEVELS,
     AUTHORITY_PRESENT_OPTIONS,
     BYSTANDER_REACTION_OPTIONS,
-    COMMON_SYSTEM_MESSAGE_PREFIX,
-    get_authority_presence_text,
-    get_bystander_reaction_text
+    build_instruction
 )
 from pipeline_runner_gemini import PipelineRunnerGemini
 from output_processor import OutputProcessor
@@ -51,7 +49,7 @@ LIMIT_SCENARIOS = None  # Set to None for all combinations, or an integer (e.g.,
                         # Max for single type: 64 (8 group sizes × 2 clarity × 2 authority × 2 reactions)
 
 # Group Sizes Filter
-GROUP_SIZES_FILTER = [0]  # None = use all [1,2,3,4,5,6,7,8]
+GROUP_SIZES_FILTER = None  # None = use all [1,2,3,4,5,6,7,8]
                            # Or specify: [1, 2, 3] for only those sizes
                            # Or specify: [5, 6, 7, 8] for larger groups only
 
@@ -157,16 +155,8 @@ def generate_custom_scenarios():
             for authority_present in authority_options:
                 for bystander_reaction in bystander_reactions:
                     # Create scenario configuration
-                    template_instruction = SCENARIO_TEMPLATES[SCENARIO_TYPE]
-                    authority_presence_text = get_authority_presence_text(authority_present)
-                    bystander_reaction_text = get_bystander_reaction_text(bystander_reaction)
-                    
-                    # Fill in template placeholders
-                    instruction_filled = template_instruction.format(
-                        group_size=group_size,
-                        clarity_level=clarity_level,
-                        authority_presence_text=authority_presence_text,
-                        bystander_reaction_text=bystander_reaction_text
+                    instruction = build_instruction(
+                        SCENARIO_TYPE, group_size, clarity_level, authority_present, bystander_reaction
                     )
                     
                     # Create unique ID
@@ -183,7 +173,7 @@ def generate_custom_scenarios():
                         "clarity_level": clarity_level,
                         "authority_present": authority_present,
                         "bystander_reaction": bystander_reaction,
-                        "instruction": COMMON_SYSTEM_MESSAGE_PREFIX + instruction_filled
+                        "instruction": instruction
                     })
                     
                     # Check limit

@@ -10,9 +10,7 @@ from scenario_templates import (
     AUTHORITY_PRESENT_OPTIONS,
     BYSTANDER_REACTION_OPTIONS,
     PRIORITY_COMBINATIONS,
-    COMMON_SYSTEM_MESSAGE_PREFIX,
-    get_authority_presence_text,
-    get_bystander_reaction_text
+    build_instruction
 )
 
 class ScenarioGenerator:
@@ -98,16 +96,8 @@ class ScenarioGenerator:
         bystander_reaction: str
     ) -> Dict[str, Any]:
         """Create a single scenario configuration"""
-        template_instruction = SCENARIO_TEMPLATES[scenario_type]
-        authority_presence_text = get_authority_presence_text(authority_present)
-        bystander_reaction_text = get_bystander_reaction_text(bystander_reaction)
-        
-        # Fill in template placeholders
-        instruction_filled = template_instruction.format(
-            group_size=group_size,
-            clarity_level=clarity_level,
-            authority_presence_text=authority_presence_text,
-            bystander_reaction_text=bystander_reaction_text
+        instruction = build_instruction(
+            scenario_type, group_size, clarity_level, authority_present, bystander_reaction
         )
         
         # Create unique ID
@@ -121,5 +111,5 @@ class ScenarioGenerator:
             "clarity_level": clarity_level,
             "authority_present": authority_present,
             "bystander_reaction": bystander_reaction,
-            "instruction": COMMON_SYSTEM_MESSAGE_PREFIX + instruction_filled
+            "instruction": instruction
         }

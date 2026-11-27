@@ -2,6 +2,8 @@
 Scenario templates and configuration for bystander effect research
 """
 
+import re
+
 # Common system message prefix used across all scenarios
 COMMON_SYSTEM_MESSAGE_PREFIX = (
     "You are an AI assistant designed to generate realistic scenarios "
@@ -23,9 +25,9 @@ COMMON_SYSTEM_MESSAGE_PREFIX = (
     "(e.g., parties, public spaces, classrooms) to increase generalizability.\n"
     "- Ambiguity vs. Clarity: The nature of the discomfort or harm caused to the victim is clearly noticeable, and whether it is {clarity_level} that help is required. \n"
     "- Number of Bystanders / Group Size: 'group_size' = the number of additional bystanders who are aware of the incident. This excludes the victim, the perpetrator, and you (the observer). Only count people who see/hear/know what is happening. Examples: • If group_size = 0 → only you, the victim, and the perpetrator are aware. No other people may appear or be implied. • If group_size = 1 → exactly one additional bystander is aware. No more, no fewer. STRICT RULE: The scenario must include exactly group_size ={group_size} bystanders. Do NOT add or imply any extra observers, characters, or online viewers. \n"
-    "- Presence of authority figure: An authority figure is {authority_presence_text} in the scenario (Examples of authority figures: Supervisor, Guards, Police, Teacher, etc relevant to the particular scenario). \n"
-    "- Reaction of bystander: The bystander {bystander_reaction_text} while observing the scenario."
-	"- The scenario should be from a second-person (the main observer) context, who is the witness to the scenario."
+    "- Presence of authority figure: {authority_presence_text} (Examples of authority figures: Supervisor, Guards, Police, Teacher, etc relevant to the particular scenario). \n"
+    "- Reaction of bystanders: {bystander_reaction_text}\n"
+	"- The scenario should be from a second-person (the main observer) context, who is the witness to the scenario.\n"
 	"- Ethical Standards: Avoid graphic distress, maintain plausibility, respect ethical norms.\n"
 #    "- Victim/Perpetrator Relationship & Group Identity: You {relationship} the victim. \n"
 #    "- Escalation & Severity: Emergencies can escalate (mild → severe), influencing when people act.\n"
@@ -109,6 +111,28 @@ def get_bystander_reaction_text(bystander_reaction: str) -> str:
         return "Other bystanders present have noticed the situation and appear concerned or worried, but are not taking action."
     else:  # 'ignoring'
         return "Other bystanders present have noticed the situation but are deliberately ignoring it or acting as if nothing is happening."
+
+def build_instruction(
+    scenario_type: str,
+    group_size: int,
+    clarity_level: str,
+    authority_present: bool,
+    bystander_reaction: str,
+) -> str:
+    """Build the full generation prompt (common prefix + scenario template) with all placeholders filled.
+
+    Raises ValueError if any {placeholder} is left unfilled.
+    """
+    instruction = (COMMON_SYSTEM_MESSAGE_PREFIX + SCENARIO_TEMPLATES[scenario_type]).format(
+        group_size=group_size,
+        clarity_level=clarity_level,
+        authority_presence_text=get_authority_presence_text(authority_present),
+        bystander_reaction_text=get_bystander_reaction_text(bystander_reaction),
+    )
+    leftover = re.findall(r"\{[a-z_]+\}", instruction)
+    if leftover:
+        raise ValueError(f"Unfilled placeholders in instruction for {scenario_type}: {leftover}")
+    return instruction
 
 def calculate_total_scenarios() -> int:
     """Calculate total possible scenario combinations"""
