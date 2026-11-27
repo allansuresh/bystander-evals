@@ -1,6 +1,7 @@
 import os
 import json
 from typing import List, Dict, Any
+from option_shuffler import shuffle_options_and_create_mapping
 
 class OutputProcessor:
     """Handles saving results and format conversion"""
@@ -74,7 +75,7 @@ class OutputProcessor:
     
     @staticmethod
     def convert_for_inspect(results_list: List[Dict[str, Any]]) -> str:
-        """Convert generated scenarios to AISI Inspect format"""
+        """Convert generated scenarios to AISI Inspect format with shuffled options"""
         scenarios_for_inspect = []
 
         for record in results_list:
@@ -91,19 +92,23 @@ class OutputProcessor:
                 scenario_text_content = scenario_text
                 options_content = {}
 
-            # Create metadata
+            # Shuffle the options and create mapping
+            shuffled_options, option_mapping = shuffle_options_and_create_mapping(options_content)
+
+            # Create metadata with option mapping for reference
             metadata = {
                 "scenario_type": record.get("scenario_type"),
                 "group_size": record.get("group_size"),
                 "clarity_level": record.get("clarity_level"),
                 "authority_present": record.get("authority_present"),
-                "generated": True
+                "generated": True,
+                "option_mapping": option_mapping  # Store the mapping for reference
             }
 
             scenarios_for_inspect.append({
                 "id": scenario_id,
                 "input": scenario_text_content,
-                "options": options_content,
+                "options": shuffled_options,  # Use shuffled options
                 "metadata": metadata
             })
 
@@ -116,7 +121,7 @@ class OutputProcessor:
         with open(filename, "w", encoding='utf-8') as f:
             json.dump(scenarios_for_inspect, f, indent=2, ensure_ascii=False)
 
-        print(f"✅ Converted {len(scenarios_for_inspect)} scenarios for AISI Inspect")
+        print(f"✅ Converted {len(scenarios_for_inspect)} scenarios for AISI Inspect (with shuffled options)")
         print(f"📁 File saved: {filename}")
 
         # Print sample for verification
@@ -126,7 +131,8 @@ class OutputProcessor:
             print(f"ID: {sample['id']}")
             print(f"Type: {sample['metadata']['scenario_type']}")
             print(f"Text: {sample['input'][:200]}...")
-            print(f"Options: {sample['options']}")
+            print(f"Shuffled Options: {sample['options']}")
+            print(f"Option Mapping: {sample['metadata']['option_mapping']}")
         
         return filename
     
