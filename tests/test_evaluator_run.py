@@ -36,10 +36,10 @@ MODEL = "gemini-fake"
 def _reply(fenced: bool = False) -> str:
     body = json.dumps({
         "option_evaluations": {
-            "A": {"probability": 70, "response_type": "direct_intervention", "reasoning": "a"},
-            "B": {"probability": 10, "response_type": "hesitation", "reasoning": "b"},
-            "C": {"probability": 10, "response_type": "non_intervention", "reasoning": "c"},
-            "D": {"probability": 10, "response_type": "indirect_intervention", "reasoning": "d"},
+            "A": {"probability": 70, "reasoning": "a"},
+            "B": {"probability": 10, "reasoning": "b"},
+            "C": {"probability": 10, "reasoning": "c"},
+            "D": {"probability": 10, "reasoning": "d"},
         },
         "confidence": 6,
     }, indent=2)
@@ -106,6 +106,47 @@ def test_prompt_has_no_key_factors():
         assert leak not in prompt.lower(), leak
     assert "key_factors" not in llm_evaluator.LLMResponse.__dataclass_fields__
     prompt.format(scenario_text="s", options_text="o")  # still formats
+
+
+def test_prompt_does_not_define_response_types():
+    prompt = llm_evaluator.PROBABILITY_EXTRACTION_PROMPT
+    for term in ("response_type", "response type", "direct_intervention", "indirect_intervention",
+                 "hesitation", "non_intervention", "Waiting to see what others do first"):
+        assert term.lower() not in prompt.lower(), term
+    assert '"probability"' in prompt and '"reasoning"' in prompt
+    assert "model_response_types" not in llm_evaluator.LLMResponse.__dataclass_fields__
+
+
+def test_load_scenarios_requires_option_types():
+    with tempfile.TemporaryDirectory() as d:
+        tmp = Path(d)
+        _, _, path = tm._built(tmp)
+        records = json.loads(path.read_text())
+        records[3].pop("option_types")
+        legacy = tmp / "legacy.json"
+        legacy.write_text(json.dumps(records))
+        with _quiet():
+            try:
+                eval_main.load_scenarios(str(legacy))
+                raise AssertionError("expected ValueError for missing option_types")
+            except ValueError as e:
+                assert "option_types" in str(e) and records[3]["id"] in str(e)
+
+
+def test_old_jsonl_lines_with_model_response_types_still_load():
+    with tempfile.TemporaryDirectory() as d:
+        tmp = Path(d)
+        scenarios, _ = _scenarios(tmp, 1)
+        ev = _evaluator(tmp)
+        with _quiet():
+            r = ev.evaluate_scenario(MODEL, scenarios[0])
+        line = llm_evaluator.response_to_dict(r)
+        line["model_response_types"] = {k: "hesitation" for k in "ABCD"}  # written by the old code
+        line["key_factors"] = []
+        path = tmp / "old.jsonl"
+        path.write_text(json.dumps(line) + "\n")
+        loaded = llm_evaluator.load_responses_jsonl(str(path))
+        assert loaded[MODEL][0].scenario_id == r.scenario_id
 
 
 # ---------------------------------------------------------------------------
@@ -240,8 +281,8 @@ def test_fenced_reply_is_parsed():
         with _quiet():
             r = ev.evaluate_scenario(MODEL, scenarios[0])
         assert r.probability_distribution == {"A": 0.7, "B": 0.1, "C": 0.1, "D": 0.1}
-        assert r.model_response_types["A"] == "direct_intervention", "fallback parser would give 'unknown'"
-        assert r.reasoning["A"] == "a"
+        assert r.reasoning == {"A": "a", "B": "b", "C": "c", "D": "d"}, "fallback parser gives empty reasoning"
+        assert r.confidence == 6
 
 
 # ---------------------------------------------------------------------------

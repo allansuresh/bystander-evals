@@ -30,6 +30,15 @@ def load_scenarios(scenarios_file: str) -> list[Scenario]:
             option_types=s.get('option_types')
         )
         scenarios.append(scenario)
+
+    # Scoring uses the dataset's letter -> response-type mapping; the model is not asked for it
+    missing = [s.id for s in scenarios if not s.option_types]
+    if missing:
+        raise ValueError(
+            f"{len(missing)} of {len(scenarios)} scenarios in {scenarios_file} have no 'option_types' "
+            f"(e.g. {missing[0]}). Use a matched scenarios file "
+            f"(Data_Collection/scenarios/matched/matched_scenarios.json)."
+        )
     
     print(f"✓ Loaded {len(scenarios)} scenarios")
     return scenarios
@@ -117,7 +126,6 @@ def main():
                     'authority_present': r.authority_present,
                     'bystander_reaction': r.bystander_reaction,
                     'option_types': r.option_types,
-                    'model_response_types': r.model_response_types,
                     'probability_distribution': r.probability_distribution,
                     'intervention_score_expected': r.intervention_score_expected,
                     'reasoning': r.reasoning,

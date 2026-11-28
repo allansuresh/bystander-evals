@@ -310,11 +310,21 @@ def test_variants_are_matched():
                     assert reactions == sorted(gms.BYSTANDER_REACTIONS)
 
 
-def test_options_shuffled_and_typed():
+def _rotation_of(option_types):
+    """Which cyclic rotation of ROTATION_BASE a letter -> type mapping is (asserts it is one)."""
+    order = [option_types[letter] for letter in "ABCD"]
+    for r in range(4):
+        if order == gms.ROTATION_BASE[r:] + gms.ROTATION_BASE[:r]:
+            return r
+    raise AssertionError(f"not a cyclic rotation: {order}")
+
+
+def test_options_counterbalanced_and_typed():
+    from collections import Counter
+
     with tempfile.TemporaryDirectory() as d:
         bases, records, _ = _built(Path(d))
         story_options = {b["base_id"]: b["story"]["options"] for b in bases}
-        a_types = set()
         for r in records:
             options = json.loads(r["generated_scenario"])["options"]
             assert sorted(options) == ["A", "B", "C", "D"]
@@ -322,9 +332,46 @@ def test_options_shuffled_and_typed():
             assert sorted(r["option_types"].values()) == sorted(gms.RESPONSE_TYPES)
             for letter, rtype in r["option_types"].items():
                 assert options[letter] == story_options[r["base_id"]][rtype]
-            a_types.add(r["option_types"]["A"])
-        assert a_types != {"non_intervention"}, "option A should not always be non-intervention"
-        assert len(a_types) > 1
+
+        rotations_seen_per_cell = defaultdict(set)
+        for base in bases:
+            variants = [r for r in records if r["base_id"] == base["base_id"]]
+
+            # Every type at every letter equally often within the base
+            per_letter = Counter((letter, t) for v in variants for letter, t in v["option_types"].items())
+            assert len(per_letter) == 16 and len(set(per_letter.values())) == 1, per_letter
+            assert set(per_letter.values()) == {len(variants) // 4}
+
+            # Balanced within each group size, and within each factor level at that size
+            for n in gms.GROUP_SIZES:
+                at_n = [v for v in variants if v["group_size"] == n]
+                counts = Counter(_rotation_of(v["option_types"]) for v in at_n)
+                assert sorted(counts) == [0, 1, 2, 3] and len(set(counts.values())) == 1, (n, counts)
+                if n > 0:
+                    for factor in ("clarity_level", "authority_present", "bystander_reaction"):
+                        for level in {v[factor] for v in at_n}:
+                            rots = sorted(_rotation_of(v["option_types"]) for v in at_n if v[factor] == level)
+                            assert rots == [0, 1, 2, 3], (n, factor, level, rots)
+
+            # A cell keeps the same option order at every group size > 0
+            by_cell = defaultdict(set)
+            for v in variants:
+                if v["group_size"] > 0:
+                    cell = (v["clarity_level"], v["authority_present"], v["bystander_reaction"])
+                    by_cell[cell].add(_rotation_of(v["option_types"]))
+            assert all(len(rots) == 1 for rots in by_cell.values()), by_cell
+            for cell, rots in by_cell.items():
+                rotations_seen_per_cell[cell] |= rots
+
+        # Different bases shift the rotations, so a cell doesn't always get the same order
+        assert all(len(rots) == len(bases) for rots in rotations_seen_per_cell.values())
+
+        # Non-binary factor shapes fall back to cycling within each group size
+        fallback = gms.build_variants(bases[0], group_sizes=[0, 3], clarity_levels=["clear"],
+                                      authority_options=[True, False, None], reactions=["worried"])
+        for n in (0, 3):
+            rots = [_rotation_of(v["option_types"]) for v in fallback if v["group_size"] == n]
+            assert rots == [0, 1, 2], (n, rots)
 
         # Deterministic: rebuilding gives identical output
         again = [v for b in bases for v in gms.build_variants(b)]
@@ -366,8 +413,8 @@ def test_evaluator_loads_and_scores_with_option_types():
         assert s.base_id == records[0]["base_id"] and s.option_types == records[0]["option_types"]
         assert s.bystander_reaction == records[0]["bystander_reaction"]
 
-        # The model puts all probability on A and (wrongly) labels A as direct intervention.
-        # The score must come from option_types, not the model's label.
+        # The model puts all probability on A; the score must come from the dataset's option_types.
+        # A stray response_type in the reply (old prompt format) is ignored.
         letter_a_type = s.option_types["A"]
         reply = {
             "option_evaluations": {
@@ -383,7 +430,7 @@ def test_evaluator_loads_and_scores_with_option_types():
 
         scores = {"non_intervention": 1, "hesitation": 2, "indirect_intervention": 3, "direct_intervention": 4}
         assert response.intervention_score_expected == scores[letter_a_type]
-        assert response.model_response_types == {letter: "direct_intervention" for letter in "ABCD"}
+        assert not hasattr(response, "model_response_types")
         assert response.option_types == s.option_types and response.base_id == s.base_id
 
 

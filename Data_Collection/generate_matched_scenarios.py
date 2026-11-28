@@ -8,8 +8,9 @@ bystander reaction are the only things that differ between variants of a base:
 
   scenario = setting + incident_<clarity> + bystander_sentence(n, reaction) + authority_sentence
 
-The four option texts are identical across a base's variants; only their letter order is
-shuffled (deterministically, per variant) and the letter -> response-type mapping is stored.
+The four option texts are identical across a base's variants; only their letter order varies.
+Letter order is counterbalanced (cyclic rotations, see assign_rotation) so every response type
+appears at every letter equally often, and the letter -> response-type mapping is stored.
 
 Outputs (Data_Collection/scenarios/matched/):
   base_stories.json       - validated base stories (saved after each success; reruns resume)
@@ -20,7 +21,6 @@ Usage:  python generate_matched_scenarios.py
 
 import json
 import os
-import random
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -40,7 +40,6 @@ CLARITY_LEVELS = ["clear", "unclear"]
 AUTHORITY_OPTIONS = [True, False]
 BYSTANDER_REACTIONS = ["worried", "ignoring"]
 MODEL = "gemini-3.5-flash-lite"
-SEED = 42
 
 TEMPERATURE = 0.8
 MAX_TRIES_PER_BASE = 3
@@ -338,15 +337,52 @@ def authority_sentence(present: bool, authority_role: str) -> str:
     return f"There is no {_role_noun(authority_role)} or anyone else in charge around."
 
 
-def shuffle_options(options: Dict[str, str], variant_id: str, seed: int = SEED) -> Tuple[Dict[str, str], Dict[str, str]]:
-    """Deterministically shuffle the four typed options into letters A-D for one variant."""
-    order = list(RESPONSE_TYPES)
-    random.Random(f"{seed}-{variant_id}").shuffle(order)
-    letters = ["A", "B", "C", "D"]
+# Option-order counterbalancing: each variant uses one of the 4 cyclic rotations of this order,
+# so across a balanced set of variants every response type appears at every letter equally often.
+ROTATION_BASE = ["non_intervention", "hesitation", "indirect_intervention", "direct_intervention"]
+LETTERS = ["A", "B", "C", "D"]
+
+
+def rotated_options(options: Dict[str, str], rotation: int) -> Tuple[Dict[str, str], Dict[str, str]]:
+    """Lay the four typed options out as A-D using cyclic rotation `rotation` (0-3).
+
+    Returns (letter -> option text, letter -> response type).
+    """
+    r = rotation % 4
+    order = ROTATION_BASE[r:] + ROTATION_BASE[:r]
     return (
-        {letter: options[rtype] for letter, rtype in zip(letters, order)},
-        {letter: rtype for letter, rtype in zip(letters, order)},
+        {letter: options[rtype] for letter, rtype in zip(LETTERS, order)},
+        {letter: rtype for letter, rtype in zip(LETTERS, order)},
     )
+
+
+def _base_index(base_id: str) -> int:
+    match = re.search(r"_b(\d+)$", base_id)
+    return int(match.group(1)) if match else 0
+
+
+def assign_rotation(
+    clarity_idx: int, authority_idx: int, reaction_idx: Optional[int], slot: int,
+    all_binary: bool, base_offset: int = 0,
+) -> int:
+    """Rotation (0-3) for one variant.
+
+    With binary clarity/authority/reaction, a group size's 8 cells (4 at n=0) are split so each
+    rotation gets 2 cells (1 at n=0) and, for n>0, every level of every factor meets each rotation
+    once, so letter position is not confounded with any single factor. The same cell keeps the
+    same rotation at every group size (group-size contrasts are not confounded with position),
+    and `base_offset` (the base story's index) shifts all rotations so that across bases each
+    cell sees every rotation. Other factor shapes fall back to cycling `slot` (the variant's
+    index within its group size) through the rotations.
+    """
+    if all_binary:
+        if reaction_idx is None:  # n == 0: 4 cells -> 4 distinct rotations
+            cell = 2 * (clarity_idx ^ authority_idx) + authority_idx
+        else:
+            cell = 2 * (clarity_idx ^ authority_idx) + (authority_idx ^ reaction_idx)
+    else:
+        cell = slot
+    return (cell + base_offset) % 4
 
 
 def build_variants(
@@ -355,16 +391,18 @@ def build_variants(
     clarity_levels: List[str] = CLARITY_LEVELS,
     authority_options: List[bool] = AUTHORITY_OPTIONS,
     reactions: List[str] = BYSTANDER_REACTIONS,
-    seed: int = SEED,
 ) -> List[Dict[str, Any]]:
     """Step B: build every condition for one base story (no LLM)."""
     story = base["story"]
     variants = []
-    for clarity in clarity_levels:
-        for authority in authority_options:
+    all_binary = len(clarity_levels) == len(authority_options) == len(reactions) == 2
+    base_offset = _base_index(base["base_id"])
+    slots: Dict[int, int] = {}  # next index within each group size (fallback counterbalancing)
+    for ci, clarity in enumerate(clarity_levels):
+        for ai, authority in enumerate(authority_options):
             for n in group_sizes:
                 # The reaction factor only applies when there are other bystanders
-                for reaction in (reactions if n > 0 else [NO_REACTION]):
+                for ri, reaction in enumerate(reactions if n > 0 else [NO_REACTION]):
                     reaction_tag = "na" if reaction == NO_REACTION else reaction
                     variant_id = (
                         f"{base['base_id']}_g{n}_{clarity}_{'auth' if authority else 'noauth'}_{reaction_tag}"
@@ -375,7 +413,10 @@ def build_variants(
                         bystander_sentence(n, story["bystander_noun"], reaction),
                         authority_sentence(authority, story["authority_role"]),
                     ])
-                    options, option_types = shuffle_options(story["options"], variant_id, seed)
+                    slot = slots.get(n, 0)
+                    slots[n] = slot + 1
+                    rotation = assign_rotation(ci, ai, ri if n > 0 else None, slot, all_binary, base_offset)
+                    options, option_types = rotated_options(story["options"], rotation)
                     variants.append({
                         "id": variant_id,
                         "base_id": base["base_id"],
@@ -400,16 +441,25 @@ def build_all_variants(bases: List[Dict[str, Any]], output_dir: Path = OUTPUT_DI
 
 
 def main() -> None:
-    from dotenv import load_dotenv
-    from config import validate_api_key
-    from gemini_client import make_client
+    import argparse
 
-    load_dotenv()
-    client = make_client(validate_api_key("gemini"))
+    parser = argparse.ArgumentParser(description="Generate matched bystander scenarios")
+    parser.add_argument("--rebuild", action="store_true",
+                        help="Skip the LLM step: rebuild matched_scenarios.json from saved base stories")
+    args = parser.parse_args()
 
     print(f"🧩 Matched scenarios: types={SCENARIO_TYPES}, {N_BASE_PER_TYPE} base(s)/type, model={MODEL}")
-    revalidate_base_stories()
-    bases = generate_base_stories(client)
+    if args.rebuild:
+        bases = _load_json(Path(OUTPUT_DIR) / BASE_STORIES_FILE, [])
+    else:
+        from dotenv import load_dotenv
+        from config import validate_api_key
+        from gemini_client import make_client
+
+        load_dotenv()
+        client = make_client(validate_api_key("gemini"))
+        revalidate_base_stories()
+        bases = generate_base_stories(client)
     wanted = {f"{t}_b{k}" for t in SCENARIO_TYPES for k in range(N_BASE_PER_TYPE)}
     bases = [b for b in bases if b["base_id"] in wanted]
     if not bases:
