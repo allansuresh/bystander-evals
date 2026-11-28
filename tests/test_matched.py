@@ -243,7 +243,12 @@ def test_bystander_sentences():
     w = gms.REACTION_SENTENCES["worried"]
     w1 = " They look uncomfortable and worried, but they don't say or do anything."
     i1 = " They carry on as if nothing is happening and don't say or do anything."
-    assert gms.bystander_sentence(0, "viewers", "n/a") == "No one else is aware of what is happening."
+    assert gms.bystander_sentence(0, "viewers", "unstated") == "No one else is aware of what is happening."
+    # "unstated": count sentence only, no reaction sentence
+    assert gms.bystander_sentence(1, "viewers", "unstated") == "One other viewer is also watching this happen."
+    assert gms.bystander_sentence(1, "people in the chat", "unstated") == (
+        "One of the people in the chat is also watching this happen.")
+    assert gms.bystander_sentence(8, "viewers", "unstated") == "8 other viewers are also watching this happen."
     assert gms.bystander_sentence(1, "viewers", "worried") == "One other viewer is also watching this happen." + w1
     assert gms.bystander_sentence(1, "viewers", "ignoring") == "One other viewer is also watching this happen." + i1
     assert gms.bystander_sentence(1, "people", "worried") == "One other person is also watching this happen." + w1
@@ -255,7 +260,8 @@ def test_bystander_sentences():
     for n in (1, 2, 8):
         for r in gms.BYSTANDER_REACTIONS:
             sentence = gms.bystander_sentence(n, "viewers", r)
-            assert ("none of them" in sentence) == (n > 1), (n, r)
+            assert ("none of them" in sentence) == (n > 1 and r != "unstated"), (n, r)
+            assert sentence.endswith("watching this happen.") == (r == "unstated"), (n, r)
     assert gms.bystander_sentence(8, "viewers", "worried") == "8 other viewers are also watching this happen." + w
     # Defensive: a leading "other" is stripped even if it reaches bystander_sentence
     assert gms.bystander_sentence(8, "other channel viewers", "worried") == (
@@ -304,7 +310,7 @@ def test_variants_are_matched():
             for (clarity, authority), members in groups.items():
                 assert len({p for _, p, _ in members}) == 1 and len({s for _, _, s in members}) == 1
                 zero = [v for v, _, _ in members if v["group_size"] == 0]
-                assert len(zero) == 1 and zero[0]["bystander_reaction"] == "n/a", (clarity, authority)
+                assert len(zero) == 1 and zero[0]["bystander_reaction"] == "unstated", (clarity, authority)
                 for n in gms.GROUP_SIZES[1:]:
                     reactions = sorted(v["bystander_reaction"] for v, _, _ in members if v["group_size"] == n)
                     assert reactions == sorted(gms.BYSTANDER_REACTIONS)
@@ -342,29 +348,44 @@ def test_options_counterbalanced_and_typed():
             assert len(per_letter) == 16 and len(set(per_letter.values())) == 1, per_letter
             assert set(per_letter.values()) == {len(variants) // 4}
 
-            # Balanced within each group size, and within each factor level at that size
+            # Balanced within each group size, and as evenly as possible within each factor level
             for n in gms.GROUP_SIZES:
                 at_n = [v for v in variants if v["group_size"] == n]
                 counts = Counter(_rotation_of(v["option_types"]) for v in at_n)
                 assert sorted(counts) == [0, 1, 2, 3] and len(set(counts.values())) == 1, (n, counts)
                 if n > 0:
-                    for factor in ("clarity_level", "authority_present", "bystander_reaction"):
+                    # each reaction level (4 cells) meets every rotation exactly once
+                    for level in gms.BYSTANDER_REACTIONS:
+                        rots = sorted(_rotation_of(v["option_types"]) for v in at_n if v["bystander_reaction"] == level)
+                        assert rots == [0, 1, 2, 3], (n, level, rots)
+                    # clarity / authority levels (6 cells each): every rotation, counts differ by <= 1
+                    for factor in ("clarity_level", "authority_present"):
                         for level in {v[factor] for v in at_n}:
-                            rots = sorted(_rotation_of(v["option_types"]) for v in at_n if v[factor] == level)
-                            assert rots == [0, 1, 2, 3], (n, factor, level, rots)
+                            c = Counter(_rotation_of(v["option_types"]) for v in at_n if v[factor] == level)
+                            assert sorted(c) == [0, 1, 2, 3] and max(c.values()) - min(c.values()) <= 1, (n, factor, c)
 
-            # A cell keeps the same option order at every group size > 0
+            # A cell keeps the same option order at every group size; group 0 pairs with "unstated"
             by_cell = defaultdict(set)
             for v in variants:
-                if v["group_size"] > 0:
-                    cell = (v["clarity_level"], v["authority_present"], v["bystander_reaction"])
-                    by_cell[cell].add(_rotation_of(v["option_types"]))
+                cell = (v["clarity_level"], v["authority_present"], v["bystander_reaction"])
+                by_cell[cell].add(_rotation_of(v["option_types"]))
             assert all(len(rots) == 1 for rots in by_cell.values()), by_cell
             for cell, rots in by_cell.items():
                 rotations_seen_per_cell[cell] |= rots
 
         # Different bases shift the rotations, so a cell doesn't always get the same order
         assert all(len(rots) == len(bases) for rots in rotations_seen_per_cell.values())
+
+        # The 2-reaction design keeps its exact balance: every level of every factor meets
+        # each rotation once at each group size > 0
+        two = gms.build_variants(bases[0], reactions=["worried", "ignoring"])
+        assert len(two) == 4 * (1 + (len(gms.GROUP_SIZES) - 1) * 2)
+        for n in gms.GROUP_SIZES[1:]:
+            at_n = [v for v in two if v["group_size"] == n]
+            for factor in ("clarity_level", "authority_present", "bystander_reaction"):
+                for level in {v[factor] for v in at_n}:
+                    rots = sorted(_rotation_of(v["option_types"]) for v in at_n if v[factor] == level)
+                    assert rots == [0, 1, 2, 3], (n, factor, level, rots)
 
         # Non-binary factor shapes fall back to cycling within each group size
         fallback = gms.build_variants(bases[0], group_sizes=[0, 3], clarity_levels=["clear"],

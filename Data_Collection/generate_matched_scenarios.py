@@ -38,7 +38,7 @@ N_BASE_PER_TYPE = 10                    # start small
 GROUP_SIZES = [0, 1, 2, 4, 8, 16, 32, 128]
 CLARITY_LEVELS = ["clear", "unclear"]
 AUTHORITY_OPTIONS = [True, False]
-BYSTANDER_REACTIONS = ["worried", "ignoring"]
+BYSTANDER_REACTIONS = ["worried", "ignoring", "unstated"]
 MODEL = "gemini-3.5-flash-lite"
 
 TEMPERATURE = 0.8
@@ -51,7 +51,9 @@ MATCHED_SCENARIOS_FILE = "matched_scenarios.json"
 # ============================================================================
 
 RESPONSE_TYPES = ["non_intervention", "direct_intervention", "indirect_intervention", "hesitation"]
-NO_REACTION = "n/a"
+# "unstated": only the count sentence, no reaction sentence. Group size 0 (no other bystanders)
+# carries this label too, so it pairs with the unstated variants at n >= 1.
+UNSTATED = "unstated"
 
 STORY_KEYS = ["setting", "incident_clear", "incident_unclear", "bystander_noun", "authority_role", "options"]
 
@@ -327,8 +329,9 @@ def bystander_sentence(n: int, bystander_noun: str, reaction: str) -> str:
             sentence = f"One other {singular} is also watching this happen."
         else:
             sentence = f"One of the {noun} is also watching this happen."
-        return sentence + REACTION_SENTENCES_SINGULAR[reaction]
-    return f"{n} other {noun} are also watching this happen." + REACTION_SENTENCES[reaction]
+        return sentence + ("" if reaction == UNSTATED else REACTION_SENTENCES_SINGULAR[reaction])
+    return f"{n} other {noun} are also watching this happen." + (
+        "" if reaction == UNSTATED else REACTION_SENTENCES[reaction])
 
 
 def authority_sentence(present: bool, authority_role: str) -> str:
@@ -362,26 +365,34 @@ def _base_index(base_id: str) -> int:
 
 
 def assign_rotation(
-    clarity_idx: int, authority_idx: int, reaction_idx: Optional[int], slot: int,
-    all_binary: bool, base_offset: int = 0,
+    clarity_idx: int, authority_idx: int, reaction_idx: Optional[int], n_reactions: int, slot: int,
+    binary_clarity_authority: bool, base_offset: int = 0,
 ) -> int:
     """Rotation (0-3) for one variant.
 
-    With binary clarity/authority/reaction, a group size's 8 cells (4 at n=0) are split so each
-    rotation gets 2 cells (1 at n=0) and, for n>0, every level of every factor meets each rotation
-    once, so letter position is not confounded with any single factor. The same cell keeps the
-    same rotation at every group size (group-size contrasts are not confounded with position),
-    and `base_offset` (the base story's index) shifts all rotations so that across bases each
-    cell sees every rotation. Other factor shapes fall back to cycling `slot` (the variant's
-    index within its group size) through the rotations.
+    With binary clarity and authority, each (clarity, authority, reaction) cell gets a fixed
+    rotation, the same at every group size (so group-size contrasts are not confounded with
+    option position). Group size 0 uses the "unstated" reaction's cell, so it pairs with the
+    unstated variants (reaction_idx None if there is no unstated level). Within a group size:
+      - 2 reactions: the 8 cells split 2 per rotation and every level of every factor meets each
+        rotation exactly once.
+      - any other number of reactions R: each reaction level meets each rotation once; with R=3,
+        each rotation gets 3 of the 12 cells and each clarity/authority level (6 cells) is split
+        2/2/1/1, the closest possible.
+    `base_offset` (the base story's index) shifts all rotations so that across bases each cell sees
+    every rotation. Other factor shapes fall back to cycling `slot` (the variant's index within its
+    group size) through the rotations.
     """
-    if all_binary:
-        if reaction_idx is None:  # n == 0: 4 cells -> 4 distinct rotations
-            cell = 2 * (clarity_idx ^ authority_idx) + authority_idx
-        else:
-            cell = 2 * (clarity_idx ^ authority_idx) + (authority_idx ^ reaction_idx)
-    else:
+    if not binary_clarity_authority:
         cell = slot
+    else:
+        cell_ca = 2 * (clarity_idx ^ authority_idx) + authority_idx  # bijection of (c, a) onto 0..3
+        if reaction_idx is None:
+            cell = cell_ca
+        elif n_reactions == 2:
+            cell = 2 * (clarity_idx ^ authority_idx) + (authority_idx ^ reaction_idx)
+        else:
+            cell = cell_ca + reaction_idx
     return (cell + base_offset) % 4
 
 
@@ -395,17 +406,18 @@ def build_variants(
     """Step B: build every condition for one base story (no LLM)."""
     story = base["story"]
     variants = []
-    all_binary = len(clarity_levels) == len(authority_options) == len(reactions) == 2
+    binary_ca = len(clarity_levels) == len(authority_options) == 2
+    unstated_idx = reactions.index(UNSTATED) if UNSTATED in reactions else None
     base_offset = _base_index(base["base_id"])
     slots: Dict[int, int] = {}  # next index within each group size (fallback counterbalancing)
     for ci, clarity in enumerate(clarity_levels):
         for ai, authority in enumerate(authority_options):
             for n in group_sizes:
                 # The reaction factor only applies when there are other bystanders
-                for ri, reaction in enumerate(reactions if n > 0 else [NO_REACTION]):
-                    reaction_tag = "na" if reaction == NO_REACTION else reaction
+                # (n == 0 has a single variant, labelled "unstated")
+                for ri, reaction in enumerate(reactions if n > 0 else [UNSTATED]):
                     variant_id = (
-                        f"{base['base_id']}_g{n}_{clarity}_{'auth' if authority else 'noauth'}_{reaction_tag}"
+                        f"{base['base_id']}_g{n}_{clarity}_{'auth' if authority else 'noauth'}_{reaction}"
                     )
                     text = " ".join([
                         story["setting"],
@@ -415,7 +427,9 @@ def build_variants(
                     ])
                     slot = slots.get(n, 0)
                     slots[n] = slot + 1
-                    rotation = assign_rotation(ci, ai, ri if n > 0 else None, slot, all_binary, base_offset)
+                    rotation = assign_rotation(
+                        ci, ai, ri if n > 0 else unstated_idx, len(reactions), slot, binary_ca, base_offset
+                    )
                     options, option_types = rotated_options(story["options"], rotation)
                     variants.append({
                         "id": variant_id,
