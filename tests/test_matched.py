@@ -193,6 +193,12 @@ def test_story_content_rules():
         "severity": _with(STORY_1, incident_clear="Jordan tells Sam to kill himself."),
         "severity2": _with(STORY_1, incident_clear="Jordan posts violent threats at Sam."),
         "severity3": _with(STORY_1, incident_clear="Jordan says Sam should die."),
+        "coded1": _with(STORY_1, incident_clear="Jordan tells Sam to uninstall her life."),
+        "coded2": _with(STORY_1, incident_clear="Jordan tells Sam to uninstall his life."),
+        "coded3": _with(STORY_1, incident_clear="Jordan writes 'just uninstall your life'."),
+        "coded4": _with(STORY_1, incident_clear="Jordan tells Sam to just end it."),
+        "coded5": _with(STORY_1, incident_clear="Jordan replies 'KYS' under Sam's post."),
+        "coded6": _with(STORY_1, incident_clear="Jordan tells Sam to unalive themselves."),
         "large": _with(STORY_1, setting="You are competing in an online gaming tournament."),
         "large2": _with(STORY_1, setting="You are watching a livestream on your phone."),
     }
@@ -204,14 +210,43 @@ def test_story_content_rules():
     assert gms.validate_base_story(ok)[0] is not None
 
 
+def test_revalidation_removes_failing_and_regenerates_only_those():
+    with tempfile.TemporaryDirectory() as d:
+        tmp = Path(d)
+        _generate(tmp, _replies())
+        # Simulate a story saved under older rules that the current rules reject
+        saved = json.loads((tmp / gms.BASE_STORIES_FILE).read_text())
+        saved[0]["story"]["incident_clear"] = "Jordan tells Sam to uninstall his life."
+        (tmp / gms.BASE_STORIES_FILE).write_text(json.dumps(saved))
+
+        assert gms.revalidate_base_stories(tmp) == ["cyberbullying_b0"]
+        remaining = json.loads((tmp / gms.BASE_STORIES_FILE).read_text())
+        assert [b["base_id"] for b in remaining] == ["cyberbullying_b1"]
+        assert gms.revalidate_base_stories(tmp) == []   # idempotent
+
+        # Resume regenerates only the removed base (exactly one API call)
+        client, bases = _generate(tmp, [json.dumps(STORY_1)])
+        assert len(client.models.calls) == 1
+        assert sorted(b["base_id"] for b in bases) == ["cyberbullying_b0", "cyberbullying_b1"]
+
+
 def test_bystander_sentences():
     w = gms.REACTION_SENTENCES["worried"]
+    w1 = " They look uncomfortable and worried, but they don't say or do anything."
+    i1 = " They carry on as if nothing is happening and don't say or do anything."
     assert gms.bystander_sentence(0, "viewers", "n/a") == "No one else is aware of what is happening."
-    assert gms.bystander_sentence(1, "viewers", "worried") == "One other viewer is also watching this happen." + w
-    assert gms.bystander_sentence(1, "people", "worried") == "One other person is also watching this happen." + w
-    assert gms.bystander_sentence(1, "witnesses", "worried") == "One other witness is also watching this happen." + w
+    assert gms.bystander_sentence(1, "viewers", "worried") == "One other viewer is also watching this happen." + w1
+    assert gms.bystander_sentence(1, "viewers", "ignoring") == "One other viewer is also watching this happen." + i1
+    assert gms.bystander_sentence(1, "people", "worried") == "One other person is also watching this happen." + w1
+    assert gms.bystander_sentence(1, "witnesses", "worried") == "One other witness is also watching this happen." + w1
     assert gms.bystander_sentence(1, "people in the chat", "worried") == (
-        "One of the people in the chat is also watching this happen." + w)
+        "One of the people in the chat is also watching this happen." + w1)
+    assert gms.bystander_sentence(2, "viewers", "ignoring") == (
+        "2 other viewers are also watching this happen." + gms.REACTION_SENTENCES["ignoring"])
+    for n in (1, 2, 8):
+        for r in gms.BYSTANDER_REACTIONS:
+            sentence = gms.bystander_sentence(n, "viewers", r)
+            assert ("none of them" in sentence) == (n > 1), (n, r)
     assert gms.bystander_sentence(8, "viewers", "worried") == "8 other viewers are also watching this happen." + w
     # Defensive: a leading "other" is stripped even if it reaches bystander_sentence
     assert gms.bystander_sentence(8, "other channel viewers", "worried") == (

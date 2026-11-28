@@ -33,9 +33,9 @@ from gemini_client import generate_with_retry
 # CONFIGURATION
 # ============================================================================
 
-SCENARIO_TYPES = ["cyberbullying"]      # keys from SCENARIO_TEMPLATES
-N_BASE_PER_TYPE = 2                     # start small
-GROUP_SIZES = [0, 1, 2, 4, 8, 16, 32]
+SCENARIO_TYPES = ["cyberbullying", "workplace_harassment", "public_humiliation"]
+N_BASE_PER_TYPE = 10                    # start small
+GROUP_SIZES = [0, 1, 2, 4, 8, 16, 32, 128]
 CLARITY_LEVELS = ["clear", "unclear"]
 AUTHORITY_OPTIONS = [True, False]
 BYSTANDER_REACTIONS = ["worried", "ignoring"]
@@ -73,6 +73,8 @@ CONCLUSION_PATTERNS = [
 SEVERITY_PATTERNS = [
     r"\bkill\w*", r"\bsuicid\w*", r"\b(die|dies|died|dying)\b", r"\bviolen\w*",
     r"\b(rape|raped|rapes|raping|rapist)\b", r"\bweapons?\b",
+    # coded self-harm phrasing
+    r"\buninstall (her|his|your|their) life\b", r"\bend it\b", r"\bkys\b", r"\bunaliv\w*",
 ]
 # Settings that can't plausibly hold anywhere from 0 to 32 other people
 LARGE_SETTING_PATTERNS = [
@@ -82,6 +84,11 @@ LARGE_SETTING_PATTERNS = [
 REACTION_SENTENCES = {
     "worried": " They look uncomfortable and worried, but none of them says or does anything.",
     "ignoring": " They carry on as if nothing is happening, and none of them says or does anything.",
+}
+# group_size == 1: a single bystander
+REACTION_SENTENCES_SINGULAR = {
+    "worried": " They look uncomfortable and worried, but they don't say or do anything.",
+    "ignoring": " They carry on as if nothing is happening and don't say or do anything.",
 }
 
 BASE_PROMPT = """You are helping build a controlled psychology experiment on the bystander effect.
@@ -243,6 +250,27 @@ def _save_json(path: Path, data) -> None:
     os.replace(tmp, path)
 
 
+def revalidate_base_stories(output_dir: Path = OUTPUT_DIR) -> List[str]:
+    """Re-check saved base stories against the current rules; drop failures so they get regenerated.
+
+    Returns the base_ids that were removed.
+    """
+    path = Path(output_dir) / BASE_STORIES_FILE
+    bases = _load_json(path, [])
+    kept, removed = [], []
+    for base in bases:
+        story, error = validate_base_story(json.dumps(base["story"]))
+        if story is None:
+            print(f"🗑️  {base['base_id']}: fails current rules ({error}); removing for regeneration")
+            removed.append(base["base_id"])
+        else:
+            kept.append(dict(base, story=story))
+    if removed:
+        _save_json(path, kept)
+    print(f"🔎 Re-validated {len(bases)} saved base stories: {len(kept)} kept, {len(removed)} removed")
+    return removed
+
+
 def generate_base_stories(
     client: Any,
     scenario_types: List[str] = SCENARIO_TYPES,
@@ -300,9 +328,8 @@ def bystander_sentence(n: int, bystander_noun: str, reaction: str) -> str:
             sentence = f"One other {singular} is also watching this happen."
         else:
             sentence = f"One of the {noun} is also watching this happen."
-    else:
-        sentence = f"{n} other {noun} are also watching this happen."
-    return sentence + REACTION_SENTENCES[reaction]
+        return sentence + REACTION_SENTENCES_SINGULAR[reaction]
+    return f"{n} other {noun} are also watching this happen." + REACTION_SENTENCES[reaction]
 
 
 def authority_sentence(present: bool, authority_role: str) -> str:
@@ -381,6 +408,7 @@ def main() -> None:
     client = make_client(validate_api_key("gemini"))
 
     print(f"🧩 Matched scenarios: types={SCENARIO_TYPES}, {N_BASE_PER_TYPE} base(s)/type, model={MODEL}")
+    revalidate_base_stories()
     bases = generate_base_stories(client)
     wanted = {f"{t}_b{k}" for t in SCENARIO_TYPES for k in range(N_BASE_PER_TYPE)}
     bases = [b for b in bases if b["base_id"] in wanted]
