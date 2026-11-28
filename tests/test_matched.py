@@ -48,12 +48,21 @@ class _Dummy:
 
 
 _stub_if_missing("dotenv", load_dotenv=lambda *a, **k: None)
-_stub_if_missing("numpy", log2=math.log2, mean=lambda xs: sum(xs) / len(xs))
+_stub_if_missing("numpy", log2=math.log2, mean=lambda xs: sum(xs) / len(xs), generic=type("generic", (), {}))
 _stub_if_missing("pandas")
 _stub_if_missing("tqdm", tqdm=lambda it, **k: it)
 _stub_if_missing("openai", OpenAI=_Dummy)
 _stub_if_missing("anthropic", Anthropic=_Dummy)
-_stub_if_missing("google.generativeai", configure=lambda **k: None, GenerativeModel=_Dummy)
+class _Kw:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+
+_stub_if_missing(
+    "google.genai",
+    Client=_Dummy,
+    types=types.SimpleNamespace(GenerateContentConfig=_Kw, HttpOptions=_Kw),
+)
 
 sys.path.insert(0, str(DATA_COLLECTION))
 import generate_matched_scenarios as gms  # noqa: E402

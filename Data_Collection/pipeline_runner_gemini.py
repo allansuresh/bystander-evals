@@ -8,7 +8,7 @@ import time
 import json
 from typing import List, Dict, Any
 
-from output_processor import strip_code_fences
+from text_utils import strip_code_fences
 from gemini_client import make_client, generate_with_retry
 
 try:

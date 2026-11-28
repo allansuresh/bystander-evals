@@ -1,11 +1,12 @@
 import os
 import json
 import argparse
-import pickle
 import sys
 from datetime import datetime
 from config import Config
-from llm_evaluator import LLMEvaluator, Scenario, LLMResponse, summarize_run
+from llm_evaluator import (
+    DEFAULT_RPM, RESPONSES_JSONL, LLMEvaluator, Scenario, LLMResponse, load_responses_jsonl, summarize_run,
+)
 from metrics_calculator import MetricsCalculator
 
 def load_scenarios(scenarios_file: str) -> list[Scenario]:
@@ -37,24 +38,34 @@ def main():
     parser = argparse.ArgumentParser(description='Evaluate LLMs for Bystander Effect')
     parser.add_argument('--scenarios-file', type=str, required=True,
                        help='Path to scenarios JSON file')
-    parser.add_argument('--models', nargs='+',
-                       help='Models to evaluate (overrides config)')
+    parser.add_argument('--models', nargs='+', required=True,
+                       help='Models to evaluate, e.g. gemini-3.5-flash-lite claude-... gpt-...')
     parser.add_argument('--output-dir', type=str,
-                       default=f'evaluation_{datetime.now().strftime("%Y%m%d_%H%M%S")}',
-                       help='Output directory for results')
+                       help='Output directory for results (default: evaluation_<timestamp>)')
     parser.add_argument('--limit', type=int,
                        help='Limit number of scenarios to evaluate (for testing)')
-    parser.add_argument('--resume', action='store_true',
-                       help='Resume from intermediate results in --output-dir: keep saved responses '
-                            'and evaluate only the (model, scenario) pairs not yet done')
+    parser.add_argument('--resume', metavar='OUTPUT_DIR', type=str,
+                       help=f'Continue a previous run in OUTPUT_DIR: skip (model, scenario) pairs '
+                            f'already in its {RESPONSES_JSONL} and evaluate the rest')
+    parser.add_argument('--rpm', type=float, default=DEFAULT_RPM,
+                       help=f'Max requests per minute per model (client-side; default {DEFAULT_RPM}; 0 = unlimited)')
     
     args = parser.parse_args()
+
+    if args.resume:
+        if not os.path.isdir(args.resume):
+            parser.error(f"--resume: output directory not found: {args.resume}")
+        if args.output_dir and os.path.abspath(args.output_dir) != os.path.abspath(args.resume):
+            parser.error("--resume already sets the output directory; drop --output-dir or make them match")
+        output_dir = args.resume
+    else:
+        output_dir = args.output_dir or f'evaluation_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
     
     # Initialize configuration
     config = Config()
-    if args.models:
-        config.MODELS_TO_EVALUATE = args.models
-    config.OUTPUT_DIR = args.output_dir
+    config.MODELS_TO_EVALUATE = args.models
+    config.OUTPUT_DIR = output_dir
+    config.RPM = args.rpm
     
     print("=" * 60)
     print("BYSTANDER EFFECT LLM EVALUATION")
@@ -63,6 +74,7 @@ def main():
     print(f"- Output directory: {config.OUTPUT_DIR}")
     print(f"- Models: {', '.join(config.MODELS_TO_EVALUATE)}")
     print(f"- Temperature: {config.TEMPERATURE}")
+    print(f"- Rate limit: {config.RPM:g} requests/min per model" if config.RPM else "- Rate limit: none")
     
     # Load scenarios
     scenarios = load_scenarios(args.scenarios_file)
@@ -71,17 +83,16 @@ def main():
         scenarios = scenarios[:args.limit]
         print(f"⚠ Limited to {args.limit} scenarios for testing")
     
-    # Check for intermediate results
+    # Resume: load responses already saved in the output dir's JSONL
     existing = None
-    intermediate_path = f"{config.OUTPUT_DIR}/intermediate_responses.pkl"
+    jsonl_path = os.path.join(config.OUTPUT_DIR, RESPONSES_JSONL)
     if args.resume:
-        if os.path.exists(intermediate_path):
-            with open(intermediate_path, 'rb') as f:
-                existing = pickle.load(f)
-            n_saved = sum(len(v) for v in existing.values())
-            print(f"\n✓ Resuming from {intermediate_path} ({n_saved} saved responses)")
+        existing = load_responses_jsonl(jsonl_path)
+        n_saved = sum(len(v) for v in existing.values())
+        if n_saved:
+            print(f"\n✓ Resuming from {jsonl_path} ({n_saved} saved responses)")
         else:
-            print(f"\n⚠ --resume given but {intermediate_path} not found; starting fresh")
+            print(f"\n⚠ No saved responses in {jsonl_path}; evaluating everything")
 
     # Evaluate LLMs (skips pairs already in `existing`)
     print(f"\n2. Evaluating {len(config.MODELS_TO_EVALUATE)} models on {len(scenarios)} scenarios...")
@@ -131,9 +142,9 @@ def main():
         print(f"  {evaluator.stop_reason}")
         print("  Progress is saved. After the quota resets, rerun with:")
         print(f"    python main.py --scenarios-file {args.scenarios_file} "
-              f"--output-dir {config.OUTPUT_DIR} --resume"
-              + (f" --models {' '.join(config.MODELS_TO_EVALUATE)}" if args.models else "")
-              + (f" --limit {args.limit}" if args.limit else ""))
+              f"--models {' '.join(config.MODELS_TO_EVALUATE)} --resume {config.OUTPUT_DIR}"
+              + (f" --limit {args.limit}" if args.limit else "")
+              + (f" --rpm {args.rpm:g}" if args.rpm != DEFAULT_RPM else ""))
         print("=" * 60)
         sys.exit(3)
     

@@ -3,23 +3,7 @@ import json
 from typing import List, Dict, Any
 from option_shuffler import shuffle_options_and_create_mapping
 
-
-def strip_code_fences(text: str) -> str:
-    """Remove a surrounding markdown code fence (```json ... ``` or ``` ... ```) if present."""
-    stripped = text.strip()
-    if not stripped.startswith("```"):
-        return stripped
-    # Drop the opening fence line (``` or ```json)
-    newline = stripped.find("\n")
-    if newline != -1:
-        stripped = stripped[newline + 1:]
-    else:  # single-line reply like ```json{...}```
-        stripped = stripped[3:].lstrip("abcdefghijklmnopqrstuvwxyz")
-    # Drop the closing fence
-    if stripped.rstrip().endswith("```"):
-        stripped = stripped.rstrip()[:-3]
-    return stripped.strip()
-
+from text_utils import strip_code_fences  # re-exported for existing imports
 
 class OutputProcessor:
     """Handles saving results and format conversion"""

@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from scenario_templates import SCENARIO_TEMPLATES
-from output_processor import strip_code_fences
+from text_utils import strip_code_fences
 from gemini_client import generate_with_retry
 
 # ============================================================================

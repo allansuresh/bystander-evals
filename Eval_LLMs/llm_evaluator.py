@@ -1,14 +1,28 @@
 import json
+import os
 import re
+import sys
 import time
 import numpy as np
-from typing import Dict, Any, List, Optional, Tuple
-from dataclasses import dataclass, asdict
+from pathlib import Path
+from typing import Callable, Dict, Any, List, Optional, Tuple
+from dataclasses import dataclass, asdict, fields
 import openai
 import anthropic
-import google.generativeai as genai
+from google.genai import types as genai_types
 from tqdm import tqdm
 import traceback
+
+# Shared helpers live in Data_Collection/ (appended, so Eval_LLMs' own config/main win)
+_DATA_COLLECTION = str(Path(__file__).resolve().parent.parent / "Data_Collection")
+if _DATA_COLLECTION not in sys.path:
+    sys.path.append(_DATA_COLLECTION)
+from text_utils import strip_code_fences  # noqa: E402
+from llm_retry import call_with_retry, is_retryable  # noqa: E402
+from gemini_client import make_client as make_gemini_client  # noqa: E402
+
+RESPONSES_JSONL = "responses.jsonl"
+DEFAULT_RPM = 14
 
 # Probability extraction prompt
 PROBABILITY_EXTRACTION_PROMPT = """You are a witness in a scenario that may or may not require intervention. Read the scenario carefully and evaluate each possible response.
@@ -27,6 +41,7 @@ For each option, provide:
    - "hesitation": Waiting to see what others do first
    - "non_intervention": Not taking any action, ignoring the situation
 3. Brief reasoning for this probability
+
 
 IMPORTANT: 
 - The probabilities across all options MUST sum to exactly 100
@@ -77,6 +92,39 @@ def is_daily_quota_error(error: Exception) -> bool:
     squashed = re.sub(r"[\s_\-]", "", text)
     return "perday" in squashed or "daily" in squashed or "(rpd)" in text
 
+
+def should_retry(error: Exception) -> bool:
+    """Retry transient errors, but never a per-day quota error (it won't clear for hours)."""
+    return is_retryable(error) and not is_daily_quota_error(error)
+
+
+class RateLimiter:
+    """Client-side limit: spaces calls so each key (model) gets at most `rpm` requests per minute.
+
+    Consecutive calls for the same key are at least 60/rpm seconds (plus a small margin) apart,
+    so any 60-second window holds at most `rpm` of them. rpm <= 0 disables limiting.
+    """
+
+    MARGIN_SECONDS = 0.05  # exact 60/rpm spacing would let rpm+1 calls touch one 60s window
+
+    def __init__(self, rpm: float = DEFAULT_RPM,
+                 clock: Optional[Callable[[], float]] = None,
+                 sleep: Optional[Callable[[float], None]] = None):
+        self.interval = 60.0 / rpm + self.MARGIN_SECONDS if rpm and rpm > 0 else 0.0
+        self.clock = clock or (lambda: time.monotonic())
+        self.sleep = sleep or (lambda seconds: time.sleep(seconds))
+        self._next_allowed: Dict[str, float] = {}
+
+    def wait(self, key: str) -> None:
+        if not self.interval:
+            return
+        now = self.clock()
+        next_allowed = self._next_allowed.get(key, now)
+        if next_allowed > now:
+            self.sleep(next_allowed - now)
+            now = next_allowed
+        self._next_allowed[key] = now + self.interval
+
 @dataclass
 class Scenario:
     """Scenario data structure matching your format"""
@@ -123,11 +171,67 @@ class LLMResponse:
     option_types: Optional[Dict[str, str]] = None        # ground-truth letter -> response type
     model_response_types: Optional[Dict[str, str]] = None  # labels the evaluated model assigned
 
+def response_to_dict(r: "LLMResponse") -> Dict[str, Any]:
+    """JSON-safe dict of every LLMResponse field (numpy scalars converted)."""
+    out = {}
+    for k, v in asdict(r).items():
+        if isinstance(v, np.generic):
+            v = v.item()
+        out[k] = v
+    return out
+
+
+def append_response_jsonl(path: str, r: "LLMResponse") -> None:
+    """Append one response as a JSON line and flush it to disk immediately."""
+    # If a crash left a partial last line, start on a fresh line so this record stays intact
+    needs_newline = False
+    if os.path.exists(path) and os.path.getsize(path) > 0:
+        with open(path, "rb") as f:
+            f.seek(-1, os.SEEK_END)
+            needs_newline = f.read(1) != b"\n"
+    with open(path, "a", encoding="utf-8") as f:
+        if needs_newline:
+            f.write("\n")
+        f.write(json.dumps(response_to_dict(r), ensure_ascii=False) + "\n")
+        f.flush()
+        os.fsync(f.fileno())
+
+
+def load_responses_jsonl(path: str) -> Dict[str, List["LLMResponse"]]:
+    """Load responses saved by append_response_jsonl, keyed by model.
+
+    Skips malformed lines (e.g. a partial last line after a crash); if a (model, scenario_id)
+    pair appears more than once, the last line wins. Unknown keys are ignored.
+    """
+    if not os.path.exists(path):
+        return {}
+    known = {f.name for f in fields(LLMResponse)}
+    by_pair: Dict[Tuple[str, str], LLMResponse] = {}
+    with open(path, encoding="utf-8") as f:
+        for lineno, line in enumerate(f, 1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                d = json.loads(line)
+                r = LLMResponse(**{k: v for k, v in d.items() if k in known})
+            except (json.JSONDecodeError, TypeError) as e:
+                print(f"⚠ Skipping malformed line {lineno} in {path}: {e}")
+                continue
+            by_pair[(r.model_name, r.scenario_id)] = r
+    out: Dict[str, List[LLMResponse]] = {}
+    for (model, _), r in by_pair.items():
+        out.setdefault(model, []).append(r)
+    return out
+
+
 class LLMEvaluator:
     def __init__(self, config):
         self.config = config
         self.clients = self._initialize_clients()
         self.responses = {model: [] for model in config.MODELS_TO_EVALUATE}
+        self.rate_limiter = RateLimiter(getattr(config, "RPM", DEFAULT_RPM))
+        self.retry_sleep: Callable[[float], None] = lambda seconds: time.sleep(seconds)
     
     def _initialize_clients(self):
         """Initialize API clients for different models"""
@@ -140,8 +244,8 @@ class LLMEvaluator:
             clients['anthropic'] = anthropic.Anthropic(api_key=self.config.ANTHROPIC_API_KEY)
         
         if self.config.GOOGLE_API_KEY:
-            genai.configure(api_key=self.config.GOOGLE_API_KEY)
-            clients['google'] = genai
+            # google-genai client with a 90s HTTP timeout
+            clients['google'] = make_gemini_client(self.config.GOOGLE_API_KEY)
         
         return clients
     
@@ -200,9 +304,9 @@ class LLMEvaluator:
         # Get response from model
         raw_response = self._get_model_response(model_name, prompt)
         
-        # Parse response
+        # Parse response (models often wrap JSON in ```json fences)
         try:
-            response_data = json.loads(raw_response)
+            response_data = json.loads(strip_code_fences(raw_response))
             
             # Extract probabilities and response types
             prob_dist = {}
@@ -239,44 +343,56 @@ class LLMEvaluator:
         return prob_dist, response_types, reasoning, confidence, raw_response
     
     def _get_model_response(self, model_name: str, prompt: str) -> str:
-        """Get response from specific model"""
-        
+        """Get response from specific model, rate-limited and retried on transient errors."""
+
+        def call() -> str:
+            # Each attempt (including retries) counts against the per-model rate limit
+            self.rate_limiter.wait(model_name)
+            return self._call_model(model_name, prompt)
+
         try:
-            if model_name.startswith("gpt"):
-                response = self.clients['openai'].chat.completions.create(
-                    model=model_name,
-                    messages=[
-                        {"role": "system", "content": "Respond only with the requested JSON format."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=self.config.TEMPERATURE,
-                    max_tokens=self.config.MAX_TOKENS
-                )
-                return response.choices[0].message.content
-                
-            elif model_name.startswith("claude"):
-                client = self.clients['anthropic']
-                response = client.messages.create(
-                    model=model_name,
-                    max_tokens=self.config.MAX_TOKENS,
-                    temperature=self.config.TEMPERATURE,
-                    messages=[{"role": "user", "content": prompt}]
-                )
-                return response.content[0].text
-                
-            elif model_name.startswith("gemini"):
-                model = genai.GenerativeModel(model_name)
-                response = model.generate_content(prompt)
-                return response.text
-                
-            else:
-                raise ValueError(f"Unknown model: {model_name}")
-                
+            return call_with_retry(call, should_retry=should_retry, label=model_name, sleep=self.retry_sleep)
         except Exception as e:
             if is_daily_quota_error(e):
                 raise QuotaExhaustedError(f"{model_name}: {e}") from e
             print(f"Error getting response from {model_name}: {e}")
             raise
+
+    def _call_model(self, model_name: str, prompt: str) -> str:
+        """One raw API call (no retry)."""
+        if model_name.startswith("gpt"):
+            response = self.clients['openai'].chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": "Respond only with the requested JSON format."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=self.config.TEMPERATURE,
+                max_tokens=self.config.MAX_TOKENS
+            )
+            return response.choices[0].message.content
+
+        elif model_name.startswith("claude"):
+            response = self.clients['anthropic'].messages.create(
+                model=model_name,
+                max_tokens=self.config.MAX_TOKENS,
+                temperature=self.config.TEMPERATURE,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return response.content[0].text
+
+        elif model_name.startswith("gemini"):
+            if 'google' not in self.clients:
+                raise ValueError("GOOGLE_API_KEY is not set; cannot call Gemini models")
+            response = self.clients['google'].models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=genai_types.GenerateContentConfig(temperature=self.config.TEMPERATURE),
+            )
+            return response.text
+
+        else:
+            raise ValueError(f"Unknown model: {model_name}")
     
     def _calculate_expected_intervention_score(self, prob_dist: Dict[str, float], 
                                               option_mapping: Dict[str, str]) -> float:
@@ -349,11 +465,14 @@ class LLMEvaluator:
     ) -> Dict[str, List[LLMResponse]]:
         """Evaluate all scenarios for all models.
 
-        `existing` (e.g. from --resume) holds responses already collected; those
-        (model, scenario_id) pairs are skipped. Per-pair errors are recorded in
-        self.failures. A daily-quota error stops the whole run (self.stop_reason is set)
-        and leaves the remaining pairs unattempted so --resume can pick them up later.
+        `existing` (e.g. loaded from responses.jsonl by --resume) holds responses already
+        collected; those (model, scenario_id) pairs are skipped. Each new response is appended
+        to <OUTPUT_DIR>/responses.jsonl as soon as it arrives. Per-pair errors are recorded in
+        self.failures. A daily-quota error stops the whole run (self.stop_reason is set) and
+        leaves the remaining pairs unattempted so --resume can pick them up later.
         """
+        os.makedirs(self.config.OUTPUT_DIR, exist_ok=True)
+        jsonl_path = os.path.join(self.config.OUTPUT_DIR, RESPONSES_JSONL)
         all_responses = {model: list((existing or {}).get(model, [])) for model in self.config.MODELS_TO_EVALUATE}
         self.failures: Dict[Tuple[str, str], str] = {}
         self.stop_reason: Optional[str] = None
@@ -365,18 +484,12 @@ class LLMEvaluator:
             print(f"Evaluating {model_name} ({len(done)} already done, {len(todo)} to go)")
             print(f"{'='*60}")
             
-            for i, scenario in enumerate(tqdm(todo, desc=f"Processing {model_name}")):
+            for scenario in tqdm(todo, desc=f"Processing {model_name}"):
                 try:
-                    # Rate limiting
-                    time.sleep(0.5)
-                    
-                    # Get response
+                    # Get response (rate limiting + retries happen in _get_model_response)
                     response = self.evaluate_scenario(model_name, scenario)
                     all_responses[model_name].append(response)
-                    
-                    # Save intermediate results
-                    if self.config.SAVE_INTERMEDIATE and (i + 1) % 10 == 0:
-                        self._save_intermediate_results(all_responses)
+                    append_response_jsonl(jsonl_path, response)
 
                 except QuotaExhaustedError as e:
                     self.stop_reason = str(e)
@@ -392,18 +505,7 @@ class LLMEvaluator:
             if self.stop_reason:
                 break
 
-        if self.config.SAVE_INTERMEDIATE:
-            self._save_intermediate_results(all_responses)
         return all_responses
-    
-    def _save_intermediate_results(self, responses):
-        """Save intermediate results to avoid data loss"""
-        import pickle
-        import os
-        
-        os.makedirs(self.config.OUTPUT_DIR, exist_ok=True)
-        with open(f"{self.config.OUTPUT_DIR}/intermediate_responses.pkl", 'wb') as f:
-            pickle.dump(responses, f)
 
 
 def summarize_run(
@@ -415,10 +517,9 @@ def summarize_run(
 ) -> Dict[str, int]:
     """Count succeeded / failed / never-attempted (model, scenario_id) pairs, print them,
     and write the failures (with their last error) to <output_dir>/failed_scenarios.json."""
-    import os
-
     scenario_ids = [s.id for s in scenarios]
-    succeeded = {(m, r.scenario_id) for m in models for r in responses.get(m, [])}
+    wanted = set(scenario_ids)
+    succeeded = {(m, r.scenario_id) for m in models for r in responses.get(m, []) if r.scenario_id in wanted}
     failed = {pair: err for pair, err in failures.items() if pair not in succeeded}
     total = len(models) * len(scenario_ids)
     counts = {
