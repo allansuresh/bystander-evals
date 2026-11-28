@@ -9,6 +9,7 @@ import json
 from typing import List, Dict, Any
 
 from output_processor import strip_code_fences
+from gemini_client import make_client, generate_with_retry
 
 try:
     from google import genai
@@ -32,11 +33,8 @@ class PipelineRunnerGemini:
         self.temperature = temperature
         self.max_tokens = max_tokens
         
-        # Initialize the Gemini client
-        # The API key can be set via environment variable or passed to Client
-        # Setting it as environment variable for the client to pick up
-        os.environ["GOOGLE_API_KEY"] = api_key
-        self.client = genai.Client()
+        # Initialize the Gemini client (with HTTP timeout; see gemini_client.py)
+        self.client = make_client(api_key)
     
     def run_batch(
         self, 
@@ -56,13 +54,10 @@ class PipelineRunnerGemini:
                 # Generate scenario using Gemini
                 instruction = scenario.get("instruction", "")
                 
-                response = self.client.models.generate_content(
-                    model=self.model,
-                    contents=instruction
+                # Retries transient errors (429/503/504/timeouts) with exponential backoff
+                generated_text = generate_with_retry(
+                    self.client, self.model, instruction, temperature=self.temperature
                 )
-                
-                # Extract generated text
-                generated_text = response.text if hasattr(response, 'text') else str(response)
                 generated_text = strip_code_fences(generated_text)
                 
                 # Create result in the same format as distilabel output

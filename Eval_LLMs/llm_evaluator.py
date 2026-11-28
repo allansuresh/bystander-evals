@@ -71,6 +71,9 @@ class Scenario:
     authority_present: str
     bystander_reaction: str
     generated_scenario: str
+    # Matched scenarios only: shared base story id, and letter -> true response type
+    base_id: Optional[str] = None
+    option_types: Optional[Dict[str, str]] = None
     
     def get_scenario_text(self) -> str:
         """Extract scenario text from generated_scenario"""
@@ -101,6 +104,9 @@ class LLMResponse:
     dominant_response: str
     dominant_probability: float
     raw_response: str
+    base_id: Optional[str] = None
+    option_types: Optional[Dict[str, str]] = None        # ground-truth letter -> response type
+    model_response_types: Optional[Dict[str, str]] = None  # labels the evaluated model assigned
 
 class LLMEvaluator:
     def __init__(self, config):
@@ -132,9 +138,10 @@ class LLMEvaluator:
             model_name, scenario
         )
         
-        # Use the LLM-provided response types instead of manual mapping
+        # Score with the ground-truth option types when the scenario provides them (matched
+        # scenarios); otherwise fall back to the response types the model assigned itself.
         intervention_score_expected = self._calculate_expected_intervention_score(
-            prob_dist, response_types  # Pass response_types directly
+            prob_dist, scenario.option_types or response_types
         )
         
         entropy = self._calculate_entropy(prob_dist)
@@ -157,7 +164,10 @@ class LLMEvaluator:
             response_entropy=entropy,
             dominant_response=dominant_response[0],
             dominant_probability=dominant_response[1],
-            raw_response=raw_response
+            raw_response=raw_response,
+            base_id=scenario.base_id,
+            option_types=scenario.option_types,
+            model_response_types=response_types
         )
     
     def _get_probability_distribution(self, model_name: str, scenario: Scenario) -> Tuple[Dict[str, float], Dict[str, str], Dict[str, str], int, List[str], str]:

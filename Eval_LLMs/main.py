@@ -22,8 +22,10 @@ def load_scenarios(scenarios_file: str) -> list[Scenario]:
             group_size=s['group_size'],
             clarity_level=s['clarity_level'],
             authority_present=s['authority_present'],
-            bystander_reaction=s['bystander_reaction'],
-            generated_scenario=s['generated_scenario']
+            bystander_reaction=s.get('bystander_reaction'),
+            generated_scenario=s['generated_scenario'],
+            base_id=s.get('base_id'),
+            option_types=s.get('option_types')
         )
         scenarios.append(scenario)
     
@@ -90,10 +92,14 @@ def main():
                 {
                     'model_name': r.model_name,
                     'scenario_id': r.scenario_id,
+                    'base_id': r.base_id,
                     'scenario_type': r.scenario_type,
                     'group_size': r.group_size,
                     'clarity_level': r.clarity_level,
                     'authority_present': r.authority_present,
+                    'bystander_reaction': r.bystander_reaction,
+                    'option_types': r.option_types,
+                    'model_response_types': r.model_response_types,
                     'probability_distribution': r.probability_distribution,
                     'intervention_score_expected': r.intervention_score_expected,
                     'reasoning': r.reasoning,
