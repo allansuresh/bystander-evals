@@ -367,7 +367,6 @@ def test_evaluator_loads_and_scores_with_option_types():
                 for letter in "ABCD"
             },
             "confidence": 7,
-            "key_factors": [],
         }
         evaluator = object.__new__(llm_evaluator.LLMEvaluator)
         evaluator._get_model_response = lambda model_name, prompt: json.dumps(reply)

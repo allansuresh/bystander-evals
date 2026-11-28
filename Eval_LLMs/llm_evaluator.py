@@ -57,9 +57,25 @@ Respond in the following JSON format and nothing else:
             "reasoning": "[1-2 sentences]"
         }}
     }},
-    "confidence": [1-10 indicating overall confidence in the situation],
-    "key_factors": ["factor1", "factor2", "factor3"] - These are the main factors that influenced your decisions - group size, clarity, authority presence, etc.
+    "confidence": [1-10 indicating overall confidence in the situation]
 }}"""
+
+
+class QuotaExhaustedError(Exception):
+    """A daily (per-day) quota is used up; retrying before it resets is pointless."""
+
+
+def is_daily_quota_error(error: Exception) -> bool:
+    """True for 429/quota errors whose limit is per day, not per minute.
+
+    Matches e.g. Gemini's quotaId "GenerateRequestsPerDayPerProjectPerModel-FreeTier" and
+    OpenAI's "Rate limit reached ... on requests per day (RPD)".
+    """
+    text = str(error).lower()
+    if not any(m in text for m in ("429", "resource_exhausted", "quota", "rate limit", "rate_limit")):
+        return False
+    squashed = re.sub(r"[\s_\-]", "", text)
+    return "perday" in squashed or "daily" in squashed or "(rpd)" in text
 
 @dataclass
 class Scenario:
@@ -99,7 +115,6 @@ class LLMResponse:
     intervention_score_expected: float
     reasoning: Dict[str, str]
     confidence: int
-    key_factors: List[str]
     response_entropy: float
     dominant_response: str
     dominant_probability: float
@@ -134,7 +149,7 @@ class LLMEvaluator:
         """Evaluate a single scenario with probability distribution"""
         
         # Get probability distribution and response types from LLM
-        prob_dist, response_types, reasoning, confidence, factors, raw_response = self._get_probability_distribution(
+        prob_dist, response_types, reasoning, confidence, raw_response = self._get_probability_distribution(
             model_name, scenario
         )
         
@@ -160,7 +175,6 @@ class LLMEvaluator:
             intervention_score_expected=intervention_score_expected,
             reasoning=reasoning,
             confidence=confidence,
-            key_factors=factors,
             response_entropy=entropy,
             dominant_response=dominant_response[0],
             dominant_probability=dominant_response[1],
@@ -170,7 +184,7 @@ class LLMEvaluator:
             model_response_types=response_types
         )
     
-    def _get_probability_distribution(self, model_name: str, scenario: Scenario) -> Tuple[Dict[str, float], Dict[str, str], Dict[str, str], int, List[str], str]:
+    def _get_probability_distribution(self, model_name: str, scenario: Scenario) -> Tuple[Dict[str, float], Dict[str, str], Dict[str, str], int, str]:
         """Get probability distribution from model"""
         
         # Format the prompt
@@ -215,16 +229,14 @@ class LLMEvaluator:
                     prob_dist = {k: 0.25 for k in ['A', 'B', 'C', 'D']}
             
             confidence = response_data.get('confidence', 5)
-            factors = response_data.get('key_factors', [])
             
         except (json.JSONDecodeError, KeyError) as e:
             print(f"JSON parsing error for {model_name}: {e}")
             prob_dist, reasoning = self._fallback_parse_distribution(raw_response)
             response_types = {'A': 'unknown', 'B': 'unknown', 'C': 'unknown', 'D': 'unknown'}
             confidence = 5
-            factors = []
         
-        return prob_dist, response_types, reasoning, confidence, factors, raw_response
+        return prob_dist, response_types, reasoning, confidence, raw_response
     
     def _get_model_response(self, model_name: str, prompt: str) -> str:
         """Get response from specific model"""
@@ -261,6 +273,8 @@ class LLMEvaluator:
                 raise ValueError(f"Unknown model: {model_name}")
                 
         except Exception as e:
+            if is_daily_quota_error(e):
+                raise QuotaExhaustedError(f"{model_name}: {e}") from e
             print(f"Error getting response from {model_name}: {e}")
             raise
     
@@ -328,16 +342,30 @@ class LLMEvaluator:
         
         return prob_dist, reasoning
     
-    def evaluate_all_scenarios(self, scenarios: List[Scenario]) -> Dict[str, List[LLMResponse]]:
-        """Evaluate all scenarios for all models"""
-        all_responses = {model: [] for model in self.config.MODELS_TO_EVALUATE}
-        
+    def evaluate_all_scenarios(
+        self,
+        scenarios: List[Scenario],
+        existing: Optional[Dict[str, List[LLMResponse]]] = None,
+    ) -> Dict[str, List[LLMResponse]]:
+        """Evaluate all scenarios for all models.
+
+        `existing` (e.g. from --resume) holds responses already collected; those
+        (model, scenario_id) pairs are skipped. Per-pair errors are recorded in
+        self.failures. A daily-quota error stops the whole run (self.stop_reason is set)
+        and leaves the remaining pairs unattempted so --resume can pick them up later.
+        """
+        all_responses = {model: list((existing or {}).get(model, [])) for model in self.config.MODELS_TO_EVALUATE}
+        self.failures: Dict[Tuple[str, str], str] = {}
+        self.stop_reason: Optional[str] = None
+
         for model_name in self.config.MODELS_TO_EVALUATE:
+            done = {r.scenario_id for r in all_responses[model_name]}
+            todo = [s for s in scenarios if s.id not in done]
             print(f"\n{'='*60}")
-            print(f"Evaluating {model_name}")
+            print(f"Evaluating {model_name} ({len(done)} already done, {len(todo)} to go)")
             print(f"{'='*60}")
             
-            for i, scenario in enumerate(tqdm(scenarios, desc=f"Processing {model_name}")):
+            for i, scenario in enumerate(tqdm(todo, desc=f"Processing {model_name}")):
                 try:
                     # Rate limiting
                     time.sleep(0.5)
@@ -349,12 +377,23 @@ class LLMEvaluator:
                     # Save intermediate results
                     if self.config.SAVE_INTERMEDIATE and (i + 1) % 10 == 0:
                         self._save_intermediate_results(all_responses)
+
+                except QuotaExhaustedError as e:
+                    self.stop_reason = str(e)
+                    print(f"\n⛔ Daily quota exhausted: {e}")
+                    break
                         
                 except Exception as e:
                     print(f"\nError evaluating {model_name} on scenario {scenario.id}: {e}")
                     traceback.print_exc()
+                    self.failures[(model_name, scenario.id)] = f"{type(e).__name__}: {e}"
                     continue
-        
+
+            if self.stop_reason:
+                break
+
+        if self.config.SAVE_INTERMEDIATE:
+            self._save_intermediate_results(all_responses)
         return all_responses
     
     def _save_intermediate_results(self, responses):
@@ -365,3 +404,40 @@ class LLMEvaluator:
         os.makedirs(self.config.OUTPUT_DIR, exist_ok=True)
         with open(f"{self.config.OUTPUT_DIR}/intermediate_responses.pkl", 'wb') as f:
             pickle.dump(responses, f)
+
+
+def summarize_run(
+    models: List[str],
+    scenarios: List[Scenario],
+    responses: Dict[str, List[LLMResponse]],
+    failures: Dict[Tuple[str, str], str],
+    output_dir: str,
+) -> Dict[str, int]:
+    """Count succeeded / failed / never-attempted (model, scenario_id) pairs, print them,
+    and write the failures (with their last error) to <output_dir>/failed_scenarios.json."""
+    import os
+
+    scenario_ids = [s.id for s in scenarios]
+    succeeded = {(m, r.scenario_id) for m in models for r in responses.get(m, [])}
+    failed = {pair: err for pair, err in failures.items() if pair not in succeeded}
+    total = len(models) * len(scenario_ids)
+    counts = {
+        "total": total,
+        "succeeded": len(succeeded),
+        "failed": len(failed),
+        "not_attempted": total - len(succeeded) - len(failed),
+    }
+
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(output_dir, "failed_scenarios.json")
+    with open(path, "w") as f:
+        json.dump(
+            [{"model_name": m, "scenario_id": sid, "error": err} for (m, sid), err in sorted(failed.items())],
+            f, indent=2,
+        )
+
+    print("\n📋 RUN SUMMARY ((model, scenario) pairs):")
+    print(f"  - Succeeded:      {counts['succeeded']}/{total}")
+    print(f"  - Failed:         {counts['failed']}  (details: {path})")
+    print(f"  - Not attempted:  {counts['not_attempted']}")
+    return counts

@@ -2,9 +2,10 @@ import os
 import json
 import argparse
 import pickle
+import sys
 from datetime import datetime
 from config import Config
-from llm_evaluator import LLMEvaluator, Scenario, LLMResponse
+from llm_evaluator import LLMEvaluator, Scenario, LLMResponse, summarize_run
 from metrics_calculator import MetricsCalculator
 
 def load_scenarios(scenarios_file: str) -> list[Scenario]:
@@ -44,7 +45,8 @@ def main():
     parser.add_argument('--limit', type=int,
                        help='Limit number of scenarios to evaluate (for testing)')
     parser.add_argument('--resume', action='store_true',
-                       help='Resume from intermediate results')
+                       help='Resume from intermediate results in --output-dir: keep saved responses '
+                            'and evaluate only the (model, scenario) pairs not yet done')
     
     args = parser.parse_args()
     
@@ -70,16 +72,21 @@ def main():
         print(f"⚠ Limited to {args.limit} scenarios for testing")
     
     # Check for intermediate results
-    if args.resume and os.path.exists(f"{config.OUTPUT_DIR}/intermediate_responses.pkl"):
-        print("\n✓ Resuming from intermediate results...")
-        with open(f"{config.OUTPUT_DIR}/intermediate_responses.pkl", 'rb') as f:
-            responses = pickle.load(f)
-    else:
-        # Evaluate LLMs
-        print(f"\n2. Evaluating {len(config.MODELS_TO_EVALUATE)} models on {len(scenarios)} scenarios...")
-        
-        evaluator = LLMEvaluator(config)
-        responses = evaluator.evaluate_all_scenarios(scenarios)
+    existing = None
+    intermediate_path = f"{config.OUTPUT_DIR}/intermediate_responses.pkl"
+    if args.resume:
+        if os.path.exists(intermediate_path):
+            with open(intermediate_path, 'rb') as f:
+                existing = pickle.load(f)
+            n_saved = sum(len(v) for v in existing.values())
+            print(f"\n✓ Resuming from {intermediate_path} ({n_saved} saved responses)")
+        else:
+            print(f"\n⚠ --resume given but {intermediate_path} not found; starting fresh")
+
+    # Evaluate LLMs (skips pairs already in `existing`)
+    print(f"\n2. Evaluating {len(config.MODELS_TO_EVALUATE)} models on {len(scenarios)} scenarios...")
+    evaluator = LLMEvaluator(config)
+    responses = evaluator.evaluate_all_scenarios(scenarios, existing=existing)
     
     # Save raw responses
     if config.SAVE_RAW_RESPONSES:
@@ -104,7 +111,6 @@ def main():
                     'intervention_score_expected': r.intervention_score_expected,
                     'reasoning': r.reasoning,
                     'confidence': r.confidence,
-                    'key_factors': r.key_factors,
                     'response_entropy': r.response_entropy,
                     'dominant_response': r.dominant_response,
                     'dominant_probability': r.dominant_probability
@@ -115,6 +121,21 @@ def main():
         with open(f"{config.OUTPUT_DIR}/raw_responses.json", 'w') as f:
             json.dump(serializable_responses, f, indent=2)
         print(f"✓ Saved raw responses to {config.OUTPUT_DIR}/raw_responses.json")
+
+    # Report succeeded / failed / not-attempted pairs and write failed_scenarios.json
+    summarize_run(config.MODELS_TO_EVALUATE, scenarios, responses, evaluator.failures, config.OUTPUT_DIR)
+
+    if evaluator.stop_reason:
+        print("\n" + "=" * 60)
+        print("RUN STOPPED: daily quota exhausted")
+        print(f"  {evaluator.stop_reason}")
+        print("  Progress is saved. After the quota resets, rerun with:")
+        print(f"    python main.py --scenarios-file {args.scenarios_file} "
+              f"--output-dir {config.OUTPUT_DIR} --resume"
+              + (f" --models {' '.join(config.MODELS_TO_EVALUATE)}" if args.models else "")
+              + (f" --limit {args.limit}" if args.limit else ""))
+        print("=" * 60)
+        sys.exit(3)
     
     # Calculate metrics
     print("\n3. Calculating metrics...")
